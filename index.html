@@ -1,19 +1,267 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <link rel="icon" href="C:\xampp\htdocs\fate\images\icon\favicon.ico"> -->
-  <!-- CSS only -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="style/fate.css">
-  <title>Fate Grand Order</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Chu - Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/portfolio.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="profile-background">
+
+    <!-- navbar start -->
+    <nav class="navbar navbar-light nav-background shadow-sm">
+        <div class="container-lg">
+            <a class="navbar-brand text-white fw-bold fs-4" href="#">PORTFOLIO</a>
+
+            <div class="dropdown">
+                <button class="btn btn-violet px-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#home">Home</a></li>
+                    <li><a class="dropdown-item" href="#about">About</a></li>
+                    <li><a class="dropdown-item" href="#portfolio">Portfolio</a></li>
+                    <li><a class="dropdown-item" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- home section start -->
+    <section class="home py-5" id="home">
+        <div class="container-lg">
+            <div class="row profile-background min-vh-100 align-items-center align-content-center">
+                <div class="col-md-6 mt-5 mt-md-0">
+                    <div class="home-img text-center">
+                        <img src="assets/img/profile.png" class="rounded-circle img-fluid border-violet"
+                            alt="profile img">
+                    </div>
+                </div>
+                <div class="col-md-6 mt-5 mt-md-0 order-md-first">
+                    <div class="home-text">
+                        <h1 class="text-violet text-uppercase fs-1 fw-bold">Thomas CHU</h1>
+                        <h2 class="fs-4 text-white">Computer Science Student</h2>
+                        <p class="mt-4 text-white2">Grounded and solution-oriented computer science student with a wide
+                            variety of skills. Composed and able to work well by himself and with others. Interested in
+                            data science and artificial intelligence.</p>
+                        <a href="#portfolio" class="btn btn-violet px-3 mt-3 text-white"> My Projects</a>
+                        <a href="#" class="btn btn-danger px-3 mt-3 ms-3 text-white">
+                            <i class="fa-solid fa-download me-2"></i>
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- home section end -->
+
+    <!-- about section end -->
+
+    <section class="about py-5" id="about">
+        <div class="container-lg py-4 bg-dark-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title ">
+                        <h2 class="fw-bold mb-5 text-white">About Me</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 ">
+                    <div class="about-text ms-4 mb-4">
+                        <h3 class="text-white fs-4 mb-3">Current position</h3>
+                        <p class="text-white2">French Scientific Baccalauréat graduate with physics
+                            specialities.
+                            Studied 2 years in a
+                            high-level French CPGE in the physics course. Currently a 2nd year in the "BUT Informatique"
+                            of Belfort in France.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 d-flex align-items-center">
+                            <div class="social-links mt-3 ms-4 mb-4">
+                                <a href="https://www.facebook.com/thomas.chu.3958" class="text-violet me-3 "><i
+                                        class="fab fa-facebook-f fa-2xl"></i></a>
+                                <a href="https://github.com/GitGudShu" class="text-violet me-3 "><i
+                                        class="fa-brands fa-github fa-2xl"></i></a>
+                                <a href="https://www.linkedin.com/in/thomas-chu-259702235/" class="text-violet me-3 "><i
+                                        class="fab fa-linkedin-in fa-2xl"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-6 ">
+                    <div class="skill-items ms-4 mb-4">
+                        <h3 class="text-white fs-4 mb-3">Skills</h3>
+                        <span class="badge rounded pill text-white bg-violet">Java</span>
+                        <span class="badge rounded pill text-white bg-violet">Python</span>
+                        <span class="badge rounded pill text-white bg-violet">HTML</span>
+                        <span class="badge rounded pill text-white bg-violet">CSS</span>
+                        <span class="badge rounded pill text-white bg-violet">Javascript</span>
+                        <span class="badge rounded pill text-white bg-violet">PHP</span>
+                        <span class="badge rounded pill text-white bg-violet">MySQL</span>
+                        <span class="badge rounded pill text-white bg-violet">Merise</span>
+                        <span class="badge rounded pill text-white bg-violet">C</span>
+                        <span class="badge rounded pill text-white bg-violet">C#</span>
+                    </div>
+
+                    <div class="language-items ms-4 mb-4">
+                        <h3 class="text-white fs-4 mb-3 mt-3">Languages</h3>
+                        <span class="badge rounded pill text-white bg-violet">French</span>
+                        <span class="badge rounded pill text-white bg-violet">English</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- about section end -->
+
+    <!-- portfolio section start -->
+
+    <section class="portfolio py-5" id="portfolio">
+        <div class="container-lg py-4 bg-dark-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title text-center">
+                        <h2 class="fw-bold mb-5 text-white"> Latest Works</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item">
+                        <img src="assets/img/portfolio/1.png" class="w-100 h-100 img-thumbnail" alt="portfolio-item">
+                        <h3 class="fs-5 my-3 text-white">
+                            Unity 2D Platformer
+                            <span class="badge rounded pill text-white bg-violet ms-2">C#</span>
+                        </h3>
+
+                        <p class="mb-5"><a href="#" class="btn btn-violet px-3 mt-1 text-white">More details</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item">
+                        <img src="assets/img/portfolio/0.png" class="w-100 h-100 img-thumbnail" alt="portfolio-item">
+                        <h3 class="fs-5 my-3 text-white">Under construction</h3>
+                        <p class="mb-5"><a href="#" class="btn btn-violet px-3 mt-1 text-white">More details</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item">
+                        <img src="assets/img/portfolio/0.png" class="w-100 h-100 img-thumbnail" alt="portfolio-item">
+                        <h3 class="fs-5 my-3 text-white">Under construction</h3>
+                        <p class="mb-5"><a href="#" class="btn btn-violet px-3 mt-1 text-white">More details</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item">
+                        <img src="assets/img/portfolio/0.png" class="w-100 img-thumbnail" alt="portfolio-item">
+                        <h3 class="fs-5 my-3 text-white">Under construction</h3>
+                        <p class="mb-5"><a href="#" class="btn btn-violet px-3 mt-1 text-white">More details</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item">
+                        <img src="assets/img/portfolio/0.png" class="w-100 img-thumbnail" alt="portfolio-item">
+                        <h3 class="fs-5 my-3 text-white">Under construction</h3>
+                        <p class="mb-5"><a href="#" class="btn btn-violet px-3 mt-1 text-white">More details</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="portfolio-item">
+                        <img src="assets/img/portfolio/0.png" class="w-100 img-thumbnail" alt="portfolio-item">
+                        <h3 class="fs-5 my-3 text-white">Under construction</h3>
+                        <p class="mb-5"><a href="#" class="btn btn-violet px-3 mt-1 text-white">More details</a></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- portfolio section end -->
+
+    <!-- contact section start -->
+
+    <section class="contact py-5" id="contact">
+        <div class="container-lg py-4 bg-dark-content">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-title">
+                        <h2 class="fw-bold mb-5 text-white"> Contact Me </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+
+                    <div class="contact-item text-white d-flex mb-3 ms-3">
+                        <div class="icon fs-4 text-violet">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="text ms-3">
+                            <h3 class="fs-5">Email</h3>
+                            <span>thomas.chu@edu.univ-fcomte.fr</span>
+                            <p>thomaschu@live.fr</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item text-white d-flex mb-3 ms-3">
+                        <div class="icon fs-4 text-violet">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="text ms-3">
+                            <h3 class="fs-5">Phone</h3>
+                            <p>+33 (0)6 28 56 17 81</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item text-white d-flex mb-3 ms-3">
+                        <div class="icon fs-4 text-violet">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="text ms-3">
+                            <h3 class="fs-5">Address</h3>
+                            <p>6 Impasse Marie Richard - 70200 LURE, FRANCE</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- contact section end -->
+
+    <!-- footer start -->
+    <footer class="footer border-top py-4">
+        <div class="container-lg">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="text-white">&copy; 2022 Thomas CHU</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+
+    <script src="js/bootstrap.bundle.min.js"></script>
 </body>
 
+<!-- credits : https://www.youtube.com/watch?v=viF2sRr0Amk&t=460s&ab_channel=TheWebShala -->
+
+</html>
