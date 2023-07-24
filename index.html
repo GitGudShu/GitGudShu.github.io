@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio | Thomas Chu</title>
 
+    <!-- swiper css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"/>
     <!-- box icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
@@ -233,11 +234,43 @@
         <h2 class="heading">Valuable <span>Testimonial</span></h2>
 
         <div class="testimonial-wrapper">
-            <div class="testimonial-box">
-                <div class="testimonial-content">
-                    <div class="testimonial-slide">
+            <div class="testimonial-box mySwiper">
+                <div class="testimonial-content swiper-wrapper">
+                    <div class="testimonial-slide swiper-slide">
                         <img src="images/tako1.png" alt="">
-                        <h3>Lone Tako</h3>
+                        <h3>Lone Tako 1</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Sed do eiusmod tempor incididunt ut labore et 
+                            dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris nisi ut 
+                            aliquip ex ea commodo consequat.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Sed do eiusmod tempor incididunt ut labore et 
+                            dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris nisi ut 
+                            aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="testimonial-slide swiper-slide">
+                        <img src="images/tako1.png" alt="">
+                        <h3>Lone Tako 2</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Sed do eiusmod tempor incididunt ut labore et 
+                            dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris nisi ut 
+                            aliquip ex ea commodo consequat.
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Sed do eiusmod tempor incididunt ut labore et 
+                            dolore magna aliqua. Ut enim ad minim veniam, 
+                            quis nostrud exercitation ullamco laboris nisi ut 
+                            aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="testimonial-slide swiper-slide">
+                        <img src="images/tako1.png" alt="">
+                        <h3>Lone Tako 3</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                             Sed do eiusmod tempor incididunt ut labore et 
                             dolore magna aliqua. Ut enim ad minim veniam, 
@@ -251,9 +284,16 @@
                         </p>
                     </div>
                 </div>
+
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
         </div>
     </div>
+    
+    <!-- swiper js -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
     <!-- custom js -->
     <script src="js/script.js"></script>
