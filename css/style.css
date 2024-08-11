@@ -75,6 +75,12 @@
   --shape-corner-full: 500px;
   --shape-corner-circle: 50%;
 
+  /** Radius */
+  --radius-medium: 10px;
+  --radius-large: 20px;
+  --radius-extra-large: 30px;
+  --radius-full: 500px;
+
   /** Box Shadow */
   --elevation-1: 0px 1px 3px 1px #00000026, 0px 1px 2px 0px #0000004d;
 
@@ -493,6 +499,32 @@ body {
  .card-subtitle { color: var(--on-surface-variant); }
 
  .card-title { color: var(--on-surface); }
+
+
+/**
+ * NAVBAR
+ */
+
+  .navbar {
+    background-color: var(--surface-container-low);
+    border-radius: 500px;
+  }
+
+  .nav-menu {
+    display: flex;
+  }
+
+  .nav-link {
+    color: var(--on-surface-variant);
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background-color: var(--primary);
+    color: var(--on-surface);
+  }
 
 /**
  * INPUT FIELD

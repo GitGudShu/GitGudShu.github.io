@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta tags -->
+    <title>Thomas Chu - Portfolio</title>
+    <meta name="title" content="Thomas Chu - Portfolio">
+    <meta name="description" content="This is a personal portfolio made by Shu the takodachi">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&family=Open+Sans:wght@400;500&display=swap">
+
+    <!-- Material icon link -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
+    <!-- Custom CSS link -->
+    <link rel="stylesheet" href="../../../css/style.css">
+</head>
+
+<body>
+    <!-- Top bar -->
+    <header class="topbar">
+
+        <a href="../../../index.html" class="logo">
+            <img src="../../../assets/images/Logo_dark.png" alt="Porfolio" class="dark" width="145" height="32">
+            <img src="../../../assets/images/Logo_light.png" alt="Porfolio" class="light" width="145" height="32">
+        </a>
+
+        <!-- Navbar -->
+        <div>
+            <nav class="navbar">
+                <div class="container">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="../home.html" class="nav-link">Voir les autres projets BUT</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <button class="icon-btn theme-btn">
+            <span class="material-symbols-outlined dark" aria-hidden="true"> dark_mode </span>
+            <span class="material-symbols-outlined light" aria-hidden="true"> light_mode </span>
+            <div class="state-layer"></div>
+        </button>
+
+    </header>
+
+    <main>
+        <article>
+
+            <!-- Description section -->
+            <section class="section" style="margin-top: 5em;">
+                <div class="container">
+
+                    <div class="main-description">
+                        <span class="label-large section-subtitle">Semestre 1 (2021)</span>
+                        <h1 class="display-small">Le jeu du jeton manquant : SAE 1.01-1.02</h1>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Content section -->
+            <section class="section">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Les règles du jeu</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Le <i>Jeton Manquant</i> est un jeu à deux joueurs dont les règles sont les suivantes :
+                                    <div class="list-content">
+                                        <ul class="custom-list">
+                                            <li>Le plateau de jeu, comporte 21 emplacements répartis en triangle</li>
+                                            <li>Le jeu comporte 10 jetons bleus numérotés de 1 à 10 et 10 jetons rouges également numérotés de 1 à 10</li>
+                                            <li>Un joueur détient les jetons bleus, l’autre les rouges</li>
+                                            <li>Chaque joueur empile ses jetons dans l’ordre croissant de 1 à 10 avec le numéro 1 sur le dessus de la pile</li>
+                                            <li>Les bleus commencent la partie</li>
+                                            <li>Chaque joueur place à son tour un jeton sur un emplacement libre</li>
+                                            <li>Lorsque les deux joueurs ont placé les 20 jetons, il reste un emplacement non occupé</li>
+                                            <li>On somme alors séparément les valeurs des jetons voisins de l’emplacement vide</li>
+                                            <li>Le joueur dont la somme est la plus petite gagne la partie</li>
+                                            <li>Une partie peut-être déclarée nulle si la somme des bleus est égale à la somme des rouges.</li>
+                                        </ul>
+                                    </div>
+    
+                                    <strong>Membres du projet: </strong>
+    
+                                    <div class="list-content">
+                                        <ul class="custom-list">
+                                            <li>Thomas Chu (Moi)</li>
+                                            <li>Aurélien Guillou</li>
+                                        </ul>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+    
+                        <div class="card">
+                            <figure>
+                                <img src="../../../assets/images/but/jeton-whole.png" alt="Jeton manquant" width="300" height="300">
+                            </figure>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Description du travail effectué lors de ce projet</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Pour ce projet, un squelette du code nous avait déjà été fourni avec quelques méthodes vides mais décrites par une documentation.
+                                    Mon collègue (AURELIEN GUILLOU) et moi avions pour objectif de développer le jeu respectant des règles strictes avec un affichage du plateau sur le terminal. 
+                                    Il fallait réaliser un code simple permettant de poser les jetons sur le plateau, réaliser le dernier calcul décidant du vainqueur de la partie et 
+                                    enfin faire quelques tests unitaires avec des traces d'éxecutions.
+                                    La seconde partie du jeu se tournait vers la conception d'une IA, deux algorithmes de jeu 
+                                    automatique permettant de jouer seul contre l'ordinateur précisément. 
+                                    De plus, nous devions faire une comparaison d'approches algorithmiques sur ces deux IA, effectuer des mesures de performance 
+                                    simples et compiler toutes ces informations dans un rapport rédigé en anglais.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Ma contribution dans ce projet</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Dans la première partie de ce projet, j'ai écrit quelques méthodes dans le code et essentiellement 
+                                    renchérit sur le code de mon collègue (Aurélien GUILLOU). Je suis nottamment responsable de la méthode pour trouver le numéro 
+                                    de la case en fin d'une ligne donnée, d'une méthode qui permet de récuperer le numéro de la ligne d'une case donnée, j'ai écrit 
+                                    l'algorithme permettant le calcul SommeVoisins (permet de calculer les scores en prenant en compte les valeurs des cases autours 
+                                    de la dernière case vide) et enfin j'ai optimisé le code des IA, nottament sur le tri des listes et la suppression des doublons dans la liste.
+                                    Dans la seconde partie du projet, j'étais responsable des TestUnitaires, j'ai réalisé la batterie de Tests que nous avons écrite pour comparer 
+                                    les performances de nos IA contre elles-mêmes et contre une intelligence humaine. Pour cela j'ai fait des redirections de tests 
+                                    à l'aide de fichier csv, rassembler le tout dans un tableau excel et tracer un diagramme en barre pour observer les résultats. 
+                                    Ensuite j'ai fait un test de complexité algorithmique temporelle pour encore une fois, comparer l'efficacité des algorithmes, 
+                                    c'est à dire réaliser un calcul qui revient à compter le nombres d'opérations élémentaires effectués par l'algorithme en 
+                                    prenant en compte le langage de programmation utilisé (java), éventuellement le compilateur employé et le processeur de 
+                                    l'ordinateur. Enfin, mon collègue a écrit un plan pour le rapport qui devait contenir toutes les informations 
+                                    concernant nos tests rédigé en anglais et j'ai écrit le reste.
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Traduction de ma participation en compétences</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Ma participation se trouve essentiellement sur les tests unitaires, la rédaction du rapport et l'amélioration du code source du jeu 
+                                    d'un point de vue complexité temporelle et documentation. J'ai participé au développement mais une 
+                                    bonne partie vient de mon collègue (Aurélien GUILLOU). C'est pourquoi je dirai pour ces SAE que je possède la compétence 2 
+                                    sur l'optimisation des applications informatique avec ma participation sur le rapport, l'amélioration des performances, 
+                                    les tests unitaires, la partie justifiant les choix et validant nos résultats. Comme précisé, la partie de la réalisation a, 
+                                    en grande partie été réalisé par mon collègue, je dirai donc que je ne suis pas étranger à la compétence 1 
+                                    car j'ai bien évidemment participé à la création de l'application, mais moins évidente compte tenu du travail effectué.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Résultats obtenus</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Voici un rapport ci-dessous rédigé en anglais détaillant une étude qui compare des IA codées par les participants de ce projet, 
+                                    développées pour jouer et éventuellement gagner la partie.
+                                </span>
+
+                                <p class="body-medium card-text">
+                                    <a href="../rapports/descriptionAlgo.pdf" class="btn">Télécharger le rapport</a>
+                                </p>
+                            </div>
+                        </div>
+                               
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Retour réflexif</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Maintenant que le projet est terminé, je regrette un peu l'efficacité des IA, l'idée naïve que nous voulions 
+                                    développer au début et changer plus tard est malheureusement restée car nous n'avons pas trouvé mieux. 
+                                    Peut être qu'avec plus de temps nous aurions pu trouvé quelque chose mais je dirais que nous nous 
+                                    étions plutôt bien organisé dans l'ensemble. J'essaierai d'améliorer mes compétences en développement 
+                                    algorithmique pour écrire plus vite dans le futur.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+                    
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="body-medium"></p>
+        </div>
+    </footer>
+
+    <!-- Custom JS link -->
+    <script src="../../../js/script.js"></script>
+
+    <!-- CSS script for this page -->
+    <style>
+
+        .row {
+            display: flex;
+            gap: 2em;
+            padding-bottom: 2em;
+            align-items: center;
+        }
+        
+        .card .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .card {
+            max-width: 70%;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .title {
+            font-size: 1.5em;
+        }
+
+        .main-description {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .custom-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .custom-list li::before {
+            content: '•'; /* Use bullet character */
+            color: #555; /* Bullet color */
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em; /* Align the bullet with text */
+        }
+
+        .list-content {
+            padding: .5em 2em;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</body>
+</html>
