@@ -389,6 +389,7 @@ body {
   display: grid;
   place-items: center;
   padding-inline: 24px;
+  max-width: 300px;
   border-radius: var(--radius-full);
   background-color: var(--primary);
   color: var(--on-primary);

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta tags -->
+    <title>Thomas Chu - Portfolio</title>
+    <meta name="title" content="Thomas Chu - Portfolio">
+    <meta name="description" content="This is a personal portfolio made by Shu the takodachi">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&family=Open+Sans:wght@400;500&display=swap">
+
+    <!-- Material icon link -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
+    <!-- Custom CSS link -->
+    <link rel="stylesheet" href="../../../css/style.css">
+</head>
+
+<body>
+    <!-- Top bar -->
+    <header class="topbar">
+
+        <a href="../../../index.html" class="logo">
+            <img src="../../../assets/images/Logo_dark.png" alt="Porfolio" class="dark" width="145" height="32">
+            <img src="../../../assets/images/Logo_light.png" alt="Porfolio" class="light" width="145" height="32">
+        </a>
+
+        <!-- Navbar -->
+        <div>
+            <nav class="navbar">
+                <div class="container">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="../home.html" class="nav-link">Voir les autres projets (BUT)</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <button class="icon-btn theme-btn">
+            <span class="material-symbols-outlined dark" aria-hidden="true"> dark_mode </span>
+            <span class="material-symbols-outlined light" aria-hidden="true"> light_mode </span>
+            <div class="state-layer"></div>
+        </button>
+
+    </header>
+
+    <main>
+        <article>
+
+            <!-- Description section -->
+            <section class="section" style="margin-top: 5em;">
+                <div class="container">
+
+                    <div class="main-description">
+                        <span class="label-large section-subtitle">Semestre 1 (2021)</span>
+                        <h1 class="display-small">Application web : SAE1.04</h1>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Content section -->
+            <section class="section">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Description du projet</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Pour ce projet nous devions partir du besoin d'un client et réaliser une base de données pour satisfaire ce besoin après un entretien.
+                                    <br>
+
+                                    La première étape du projet était de réaliser un rapport d'analyse des besoins qui 
+                                    regroupe une présentation de l'entreprise (client) et ses besoins, une synthèse des 
+                                    données pertinentes utiles pour l'entreprise, un schéma du MCD et une justification des choix de la modélisation choisie.
+                                    <br><br>
+
+                                    Ensuite nous devions coder, donc écrire sur un script SQL permettant de tester notre 
+                                    application et enfin utiliser ce script et l'implémenter dans une application web (en Flask Python)
+                                    <br><br>
+    
+                                    <strong>Membres du projet: </strong>
+    
+                                    <div class="list-content">
+                                        <ul class="custom-list">
+                                            <li>Thomas Chu (Moi)</li>
+                                            <li>Baptite Laval</li>
+                                            <li>Farès Feddaoui</li>
+                                            <li>Lilian Hernandez</li>
+                                        </ul>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <figure>
+                                <img src="../../../assets/images/but/boutique_s1.png" alt="Web screen" width="400" height="400">
+                            </figure>
+                            <div><i>Affichage de la boutique dans notre application</i></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Ma contribution dans ce projet</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Pour ce projet j'ai donc écrit le rapport d'analyse des besoins du choix des idées, 
+                                    réalisation du MCD, modélisation sur looping à l'écriture complète du rapport. 
+                                    Nos clients étaient une entreprise de pompe à chaleur, pour répondre à ses 
+                                    besoins j'ai contacter un technicien avec un génie thermique pour me guider 
+                                    dans les choix de la modélisation et l'organisation d'une mission pour installer une pompe à chaleur.
+                                    <br><br>
+
+                                    <p class="body-medium card-text">
+                                        <a href="../rapports/21_Analyse.pdf" class="btn">Télécharger l'analyse des besoins</a>
+                                    </p>  
+                                    <br>
+
+                                    Une fois le modèle fini, je l'ai implémenter dans un script SQL, 
+                                    créer les tables et un collègue à fait les insertions (mettre des valeurs dans les tables).
+                                    <br><br>
+
+                                    <p class="body-medium card-text">
+                                        <a href="../rapports/Sae_1.04_Explication_mcd.odt" class="btn">Télécharger l'explication du MCD</a>
+                                    </p>  
+                                    <br>
+                                    
+                                    Chaque membre du groupe à ensuite dû rendre fonctionnelle l'application web avec cette base 
+                                    de donnée en Flask Python. Mes collègues ayant quelques difficultés avec l'outil j'ai dû également 
+                                    corriger leurs erreurs et écrire une bonne partie des tables en plus de celle qui m'a été attribué.
+                                    
+
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <figure>
+                                <img src="../../../assets/images/but/article_edit.png" alt="Web screen" width="400" height="400">
+                            </figure>
+                            <div><i>Gestion des articles dans notre application</i></div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Traduction de ma participation en compétences</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    <strong>Compétence 3 : Administrer des systèmes informatiques communicants complexes</strong>
+                                    <br><br>
+                                    
+                                    Dans ma partie du projet, j'ai dû penser à une architecture logicielle à partir du besoin d'un client. 
+                                    Une fois de le cahier des charges conçu, j'ai installer puis configurer les infrastructures 
+                                    et services des réseaux permettant de satisfaire le besoin. J'ai obtenu des bases sur la 
+                                    configuration d'un serveur et des services reseaux et quelques connaissances en politique de 
+                                    sécurité réseaux. Je marche donc sur la bonne voie et continue d'améliorer et d'approfondir cette compétence.
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Retour réflexif</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Je n'étais pas le chef de projet mais j'aurai aimé une meilleure répartition du travail, 
+                                    la participation des membres dans ce projet était extrêmement inégale et je me suis 
+                                    retrouvé à faire une grosse partie du projet seul. Donc je dirai essayer d'améliorer 
+                                    la cohérence de groupe pour la prochaine fois.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+                    
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="body-medium"></p>
+        </div>
+    </footer>
+
+    <!-- Custom JS link -->
+    <script src="../../../js/script.js"></script>
+
+    <!-- CSS script for this page -->
+    <style>
+
+        .row {
+            display: flex;
+            gap: 2em;
+            padding-bottom: 2em;
+            align-items: center;
+        }
+        
+        .card .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .card {
+            max-width: 70%;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .title {
+            font-size: 1.5em;
+        }
+
+        .main-description {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .custom-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .custom-list li::before {
+            content: '•'; /* Use bullet character */
+            color: #555; /* Bullet color */
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em; /* Align the bullet with text */
+        }
+
+        .list-content {
+            padding: .5em 2em;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</body>
+</html>

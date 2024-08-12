@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta tags -->
+    <title>Thomas Chu - Portfolio</title>
+    <meta name="title" content="Thomas Chu - Portfolio">
+    <meta name="description" content="This is a personal portfolio made by Shu the takodachi">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&family=Open+Sans:wght@400;500&display=swap">
+
+    <!-- Material icon link -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
+    <!-- Custom CSS link -->
+    <link rel="stylesheet" href="../../../css/style.css">
+</head>
+
+<body>
+    <!-- Top bar -->
+    <header class="topbar">
+
+        <a href="../../../index.html" class="logo">
+            <img src="../../../assets/images/Logo_dark.png" alt="Porfolio" class="dark" width="145" height="32">
+            <img src="../../../assets/images/Logo_light.png" alt="Porfolio" class="light" width="145" height="32">
+        </a>
+
+        <!-- Navbar -->
+        <div>
+            <nav class="navbar">
+                <div class="container">
+                    <ul class="nav-menu">
+                        <li class="nav-item">
+                            <a href="../home.html" class="nav-link">Voir les autres projets (BUT)</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <button class="icon-btn theme-btn">
+            <span class="material-symbols-outlined dark" aria-hidden="true"> dark_mode </span>
+            <span class="material-symbols-outlined light" aria-hidden="true"> light_mode </span>
+            <div class="state-layer"></div>
+        </button>
+
+    </header>
+
+    <main>
+        <article>
+
+            <!-- Description section -->
+            <section class="section" style="margin-top: 5em;">
+                <div class="container">
+
+                    <div class="main-description">
+                        <span class="label-large section-subtitle">Semestre 2 (2022)</span>
+                        <h1 class="display-small">SAE2.04 : Développement d'un site e-commerce</h1>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Content section -->
+            <section class="section">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Description du projet</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    En partant d’un cahier des charges, il fallait réaliser et étudier une base de données. 
+                                    À partir d’un jeu d’essais, il fallait proposer d'une visualisation des informations permettant
+                                     d’apporter une analyse à l’entreprise. Cette SAÉ permet une première approche complète des 
+                                     aspects de conception, implémentation, administration et exploitation d’une base de données.
+                                    <br><br>
+
+                                    Nous devions donc étudier les données et visualiser les informations à partir d'un projet python 
+                                    et une base de donnée, crée une modèle conceptuel de base de donnée, faire une présentation
+                                     orale des résulats en anglais, un script de création de base de données et enfin une interface
+                                      pour ajouter/modifier/supprimer des données et visualiser ces informations.
+                                    <br><br>
+
+                                    <strong>Membres du projet: </strong>
+    
+                                    <div class="list-content">
+                                        <ul class="custom-list">
+                                            <li>Étudiant référent : CHU Thomas (Moi)</li>
+                                            <li>Étudiant 2 : GUILLOU Aurélien</li>
+                                            <li>Étudiant 3 : GIRAUD Thomas</li>
+                                            <li>Étudiant 4 : LACHAT Antoine</li>
+                                        </ul>
+                                    </div>
+
+                                    <br>
+                                    <div class="row">
+                                        <strong>URL du projet github  == ></strong>
+
+                                        <p class="body-medium card-text">
+                                            <a href="https://github.com/aurelienGUILLOU/SAE" class="btn">Cliquez ici :)</a>
+                                        </p>  
+                                    </div>
+                                  
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <figure>
+                                <img src="../../../assets/images/but/ecommerce_s2.png" alt="Web screen" width="400" height="400">
+                            </figure>
+                            <div><i>Page d'acceuil de notre application</i></div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Ma contribution dans ce projet</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Mon travail au début du projet était d'adapter la partie sécurité pour notre projet, 
+                                    les mots de passe des comptes utilisateurs sont cryptés par exemple (la plupart de 
+                                    code était donné et expliqué en TD). Une fois le panier et le code adapté à notre projet
+                                     (affichage des peintures dans la boutique et non des articles), mon travail fut de 
+                                     trouver le code pour calculer les sommes d'argent dans le panier et m'occuper de toute la partie commande:
+                                    <br><br>
+
+                                    <div class="list-content">
+                                        <ul class="custom-list">
+                                            <li>Passer une commande une fois les articles sélectionnés dans le panier</li>
+                                            <li>Affichage dans une autre page, toutes les commandes effectuées par le client</li>
+                                            <li>Affichage des détails de chaque commande</li>
+                                            <li>Donner à l'admin le pouvoir d'expédier les commandes de tous les clients ("en traitement" par défaut)</li>
+                                        </ul>
+                                    </div>
+                                    <br><br>
+                                    
+                                    Le rapport ci-dessous a été écrit par mon collègue Aurélien Guillou, 
+                                    j'ai simplement participé à la réalisation du MCD et à la mise en page du rapport dans cette partie.
+                                    <br><br>
+
+                                    <p class="body-medium card-text">
+                                        <a href="../rapports/sae204_n°11.pdf" class="btn">Télécharger le rapport</a>
+                                    </p>
+                                    <br><br>
+
+                                    Le projet a ensuite été séparé en 4 parties (pour les 4 élèves), ma partie 
+                                    convernait la gestion des commentaires sur les articles et l'affichage de 
+                                    graphiques permettant de visualiser une étude statistiques sur les types de peinture et les commentaires.
+                                    
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <figure>
+                                <img src="../../../assets/images/but/article_edit.png" alt="Web screen" width="400" height="400">
+                            </figure>
+                            <div><i>Gestion des articles dans notre application</i></div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Traduction de ma participation en compétences</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+
+                                    <strong>Compétence 4 : Gérer les données de l’information</strong>
+                                    <br><br>
+                                    <strong>Compétence 5 : Conduire un projet</strong>
+                                    <br><br>
+                                    <strong>Compétence 6 : Travailler dans une équipe informatique</strong>
+                                    <br><br>
+                                    
+                                    À partir d'un modèle conceptuel de données, j'ai permis l'affichage et le bon fonctionnement du site: 
+                                    l'ajout de nouveaux articles en tant qu'administrateur, l'affichage de graphiques visuels sur les 
+                                    nombreuses données comme la quantité de commentaires postés pour chaque article etc..
+                                    <br><br>
+
+                                    J'ai optimisé le modèle au besoin de la demande énoncé dans le cahier des charges et 
+                                    coordonner une équipe informatique pour satisfaire cette demande dans les meilleurs 
+                                    délais et coûts. Ces 3 compétences sont dans la bonne voie et je travaillerai davantage pour les consolider.
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="card">
+                            <div class="card-content">
+                                <h2 class="title-large card-title title">Retour réflexif</h2>
+                                <div style="border-top: .1px solid;"></div>
+
+                                <span class="label-large card-subtitle">
+                                    Le projet c'est très bien déroulé, un point qu'il faut améliorer de 
+                                    mon côté est ma capacité à diriger une équipe, le travail était assez 
+                                    inégal entre les membres du groupe, j'aurais peut-être pu mieux découper les 
+                                    tâches. Mais certains ont plus de difficultés que d'autres et nous avions 
+                                    des délais relativement courts donc ce résultat était probablement prévisible. 
+                                    L'important est que chacun s'est améliorer à son rythme lors de ce projet, d'un point de vue pédagogique.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+                    
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="body-medium"></p>
+        </div>
+    </footer>
+
+    <!-- Custom JS link -->
+    <script src="../../../js/script.js"></script>
+
+    <!-- CSS script for this page -->
+    <style>
+
+        .row {
+            display: flex;
+            gap: 2em;
+            padding-bottom: 2em;
+            align-items: center;
+        }
+        
+        .card .card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .card {
+            max-width: 70%;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .title {
+            font-size: 1.5em;
+        }
+
+        .main-description {
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+
+        .custom-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .custom-list li::before {
+            content: '•'; /* Use bullet character */
+            color: #555; /* Bullet color */
+            display: inline-block; 
+            width: 1em;
+            margin-left: -1em; /* Align the bullet with text */
+        }
+
+        .list-content {
+            padding: .5em 2em;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .row {
+                flex-direction: column;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</body>
+</html>
