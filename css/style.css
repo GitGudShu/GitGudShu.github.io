@@ -76,6 +76,7 @@
   --shape-corner-circle: 50%;
 
   /** Radius */
+  --radius-small: 5px;
   --radius-medium: 10px;
   --radius-large: 20px;
   --radius-extra-large: 30px;
