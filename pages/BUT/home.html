@@ -307,7 +307,7 @@
         .projects .card {
             flex: 1 1 calc(33.333% - 1em);
             box-sizing: border-box;
-            max-width: 35%;
+            max-width: 33.333%;
         }
 
         .separator::after {
@@ -322,6 +322,29 @@
 
         .separator:not(:empty)::before {
             margin-right: .25em;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .projects .card {
+                flex: 1 1 45%;
+                max-width: 45%;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .projects {
+                flex-direction: column;
+                gap: 1em;
+            }
+            
+            .projects .card {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
         }
     </style>
 </body>
