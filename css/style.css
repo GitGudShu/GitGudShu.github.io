@@ -403,6 +403,20 @@ body {
   box-shadow: var(--elevation-1);
  }
 
+ .interactive-btn {
+  border-radius: var(--radius-small);
+  font-weight: var(--weight-medium);
+  color: var(--on-primary);
+  background-color: var(--primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  padding: .5em 1em;
+}
+
+.interactive-btn:hover {
+  background-color: var(--primary-hover); /* A slightly darker or different shade of the primary color */
+  color: var(--on-primary-hover); /* A different color for the text if desired */
+}
+
 
 
 /**
