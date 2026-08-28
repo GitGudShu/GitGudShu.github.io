@@ -78,7 +78,7 @@ const FILE = 'https://commons.wikimedia.org/wiki/File';
 
 export const TRACKS = [
   {
-    id: 'film-suite', videoId: '8wiibGgXmVU', art: 'melody',
+    id: 'the-great-tree', videoId: 'A7rtqUVyCyo', art: 'melody',
     photo: {
       src: `${COMMONS}/a/ac/John_Powell_with_his_Score_%28cropped%2C_denoised%29.jpg/960px-John_Powell_with_his_Score_%28cropped%2C_denoised%29.jpg`,
       author: 'MCSBasPJF',
@@ -87,7 +87,7 @@ export const TRACKS = [
     },
   },
   {
-    id: 'violet-evergarden', videoId: '8QrpzphrQ7s', art: 'pedal',
+    id: 'never-coming-back', videoId: '2W5aNN6_DSg', art: 'pedal',
     photo: {
       src: `${COMMONS}/4/47/Evan_Call_at_MCM_Comic_Con_London_22_May_2026_01_%28cropped%29.jpg/960px-Evan_Call_at_MCM_Comic_Con_London_22_May_2026_01_%28cropped%29.jpg`,
       author: 'DavidPMaynard',
@@ -98,8 +98,7 @@ export const TRACKS = [
   { id: 'blessings', videoId: '2lmPm_yZ9Ow', art: 'borrowed' },
   // ロキシーからの贈り物
   { id: 'gift-from-roxy', videoId: 'CCLGUHut90A', art: 'melody' },
-  // 猫の爪
-  { id: 'cats-claw', videoId: 'ud6nGuolrAs', art: 'pedal' },
+  { id: 'above', videoId: 'QHRcpLQhE0Q', art: 'pedal' },
   {
     id: 'you-will-be-found', videoId: 'mSfH2AuhXfw', art: 'melody',
     photo: {
@@ -109,9 +108,9 @@ export const TRACKS = [
       href: `${FILE}:Pasek_and_Paul_-_Benj_Pasek_and_Justin_Paul.JPG`,
     },
   },
-  // 彼方
+  // 約束
   {
-    id: 'kanata', videoId: 'BDUItFbK_U4', art: 'borrowed',
+    id: 'promise', videoId: '6uRrJEZXZBo', art: 'borrowed',
     photo: {
       src: `${COMMONS}/8/81/Yuki_Kajiura_at_Anime_Expo_2012.jpg/960px-Yuki_Kajiura_at_Anime_Expo_2012.jpg`,
       author: 'Erika Rodriguez',

@@ -192,6 +192,23 @@ export function initPlayer({ root, dict, getLang }) {
     });
   }
 
+  /**
+   * Returns the stage to the composer's photograph. Their player is destroyed
+   * rather than hidden: while it is on the page it is fully visible, and when
+   * it is not wanted it is gone.
+   */
+  function showCover() {
+    clearInterval(ticker);
+    yt?.destroy?.();
+    yt = null;
+    stage.querySelector('iframe')?.remove();
+    facade.hidden = false;
+    root.classList.remove('is-loaded');
+    paintPlayState(false);
+    seek.value = '0';
+    time.textContent = '0:00';
+  }
+
   function toggle() {
     if (!yt) { mount(true); return; }
     if (yt.getPlayerState?.() === 1) yt.pauseVideo();
@@ -202,6 +219,7 @@ export function initPlayer({ root, dict, getLang }) {
     const found = TRACKS.findIndex((entry) => entry.id === id);
     if (found === -1) return;
     index = found;
+    showCover();
     paintTrack();
     if (autoplay) mount(true);
   }
@@ -224,15 +242,16 @@ export function initPlayer({ root, dict, getLang }) {
     yt?.setVolume?.(Math.round(level * 100));
   });
 
+  // Picking from the list swaps the cover. The play button starts it.
   list?.addEventListener('click', (event) => {
     const row = event.target.closest('[data-track]');
-    if (row) select(row.dataset.track, true);
+    if (row) select(row.dataset.track, false);
   });
 
   // "Hear it" buttons sitting next to the passage they belong to.
   for (const cue of document.querySelectorAll('[data-play]')) {
     cue.addEventListener('click', () => {
-      select(cue.dataset.play, true);
+      select(cue.dataset.play, true);   // "Hear it" means hear it
       root.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
   }
