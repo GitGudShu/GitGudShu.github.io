@@ -81,23 +81,23 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #100D16;
-  --surface: #17131F;
-  --surface-raised: #1E1929;
-  --border: #2C2438;
-  --border-strong: #6B5F86;
+  --bg: #1E1A26;
+  --surface: #262130;
+  --surface-raised: #2E2839;
+  --border: #3A3348;
+  --border-strong: #736790;
   --text: #E8E3F0;
   --text-muted: #A79FB8;
-  --text-faint: #857C95;
+  --text-faint: #9691A6;
   --accent: #B9A5FF;
   --accent-strong: #CDBCFF;
   --accent-contrast: #1B1330;
 
-  --shadow-card: 0 1px 2px color-mix(in oklab, #000000 40%, transparent),
-                 0 8px 28px color-mix(in oklab, #000000 32%, transparent);
-  --shadow-card-hover: 0 2px 6px color-mix(in oklab, #000000 50%, transparent),
-                       0 18px 48px color-mix(in oklab, #000000 42%, transparent);
-  --shadow-nav: 0 1px 28px color-mix(in oklab, #000000 45%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, #000000 28%, transparent),
+                 0 8px 28px color-mix(in oklab, #000000 22%, transparent);
+  --shadow-card-hover: 0 2px 6px color-mix(in oklab, #000000 34%, transparent),
+                       0 18px 48px color-mix(in oklab, #000000 28%, transparent);
+  --shadow-nav: 0 1px 28px color-mix(in oklab, #000000 30%, transparent);
   --glow-accent: 0 0 70px color-mix(in oklab, var(--accent) 18%, transparent);
 }
 
@@ -106,23 +106,23 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --bg: #100D16;
-    --surface: #17131F;
-    --surface-raised: #1E1929;
-    --border: #2C2438;
-    --border-strong: #6B5F86;
+    --bg: #1E1A26;
+    --surface: #262130;
+    --surface-raised: #2E2839;
+    --border: #3A3348;
+    --border-strong: #736790;
     --text: #E8E3F0;
     --text-muted: #A79FB8;
-    --text-faint: #857C95;
+    --text-faint: #9691A6;
     --accent: #B9A5FF;
     --accent-strong: #CDBCFF;
     --accent-contrast: #1B1330;
 
-    --shadow-card: 0 1px 2px color-mix(in oklab, #000000 40%, transparent),
-                   0 8px 28px color-mix(in oklab, #000000 32%, transparent);
-    --shadow-card-hover: 0 2px 6px color-mix(in oklab, #000000 50%, transparent),
-                         0 18px 48px color-mix(in oklab, #000000 42%, transparent);
-    --shadow-nav: 0 1px 28px color-mix(in oklab, #000000 45%, transparent);
+    --shadow-card: 0 1px 2px color-mix(in oklab, #000000 28%, transparent),
+                   0 8px 28px color-mix(in oklab, #000000 22%, transparent);
+    --shadow-card-hover: 0 2px 6px color-mix(in oklab, #000000 34%, transparent),
+                         0 18px 48px color-mix(in oklab, #000000 28%, transparent);
+    --shadow-nav: 0 1px 28px color-mix(in oklab, #000000 30%, transparent);
     --glow-accent: 0 0 70px color-mix(in oklab, var(--accent) 18%, transparent);
   }
 }

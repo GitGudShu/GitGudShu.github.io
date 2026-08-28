@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import { particleCount, wrapPosition, repulsion } from '../js/particles.js';
 
 test('particle count halves on small screens and is capped on large ones', () => {
-  assert.equal(particleCount(1920), 60);
-  assert.equal(particleCount(1280), 60);
-  assert.equal(particleCount(768), 60);
-  assert.equal(particleCount(767), 30);
-  assert.equal(particleCount(320), 30);
+  assert.equal(particleCount(1920), 170);
+  assert.equal(particleCount(1280), 170);
+  assert.equal(particleCount(768), 170);
+  assert.equal(particleCount(767), 85);
+  assert.equal(particleCount(320), 85);
 });
 
 test('particle count respects a custom base', () => {

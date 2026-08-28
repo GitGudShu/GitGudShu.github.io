@@ -8,7 +8,7 @@ const POINTER_RADIUS = 120;
 const MAX_DPR = 2;
 
 /** Half the field on small screens. */
-export function particleCount(width, base = 60) {
+export function particleCount(width, base = 170) {
   return width < 768 ? Math.round(base / 2) : base;
 }
 
@@ -52,16 +52,29 @@ export function initParticles({ canvas }) {
   let running = false;
   const pointer = { x: -9999, y: -9999 };
   let accent = '185, 165, 255';
+  let alphaScale = 1;
 
-  function readAccent() {
+  const resolve = (value) => {
     // Canvas cannot read a CSS variable, so resolve it per theme.
     const probe = document.createElement('span');
-    probe.style.color = 'var(--accent)';
+    probe.style.color = value;
     probe.style.display = 'none';
     document.body.appendChild(probe);
     const rgb = getComputedStyle(probe).color.match(/\d+/g);
     probe.remove();
-    if (rgb && rgb.length >= 3) accent = rgb.slice(0, 3).join(', ');
+    return rgb && rgb.length >= 3 ? rgb.slice(0, 3).map(Number) : null;
+  };
+
+  function readTheme() {
+    const rgb = resolve('var(--accent)');
+    if (rgb) accent = rgb.join(', ');
+
+    // Dark motes on a light ground read heavier than light ones on a dark one.
+    const bg = resolve('var(--bg)');
+    if (bg) {
+      const lum = (0.2126 * bg[0] + 0.7152 * bg[1] + 0.0722 * bg[2]) / 255;
+      alphaScale = lum > 0.5 ? 0.6 : 1;
+    }
   }
 
   function seed() {
@@ -69,11 +82,11 @@ export function initParticles({ canvas }) {
     particles = Array.from({ length: count }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: 1 + Math.random() * 1.5,
+      r: 1.1 + Math.random() * 1.7,
       vy: 0.08 + Math.random() * 0.22,
       vx: (Math.random() - 0.5) * 0.12,
       phase: Math.random() * Math.PI * 2,
-      alpha: 0.06 + Math.random() * 0.06,
+      alpha: 0.14 + Math.random() * 0.16,
       ox: 0,
       oy: 0,
     }));
@@ -109,7 +122,7 @@ export function initParticles({ canvas }) {
 
       ctx.beginPath();
       ctx.arc(p.x + p.ox, p.y + p.oy, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${accent}, ${(p.alpha + strength * 0.14).toFixed(3)})`;
+      ctx.fillStyle = `rgba(${accent}, ${((p.alpha + strength * 0.14) * alphaScale).toFixed(3)})`;
       ctx.fill();
     }
 
@@ -135,7 +148,7 @@ export function initParticles({ canvas }) {
     if (event.matches) { stop(); canvas.remove(); }
   }
 
-  readAccent();
+  readTheme();
   resize();
   start();
 
@@ -143,7 +156,7 @@ export function initParticles({ canvas }) {
   window.addEventListener('pointermove', onPointerMove, { passive: true });
   document.addEventListener('pointerleave', onPointerLeave);
   document.addEventListener('visibilitychange', onVisibility);
-  document.addEventListener('theme:changed', readAccent);
+  document.addEventListener('theme:changed', readTheme);
   reducedMotion.addEventListener('change', onReducedMotionChange);
 
   return {
@@ -153,7 +166,7 @@ export function initParticles({ canvas }) {
       window.removeEventListener('pointermove', onPointerMove);
       document.removeEventListener('pointerleave', onPointerLeave);
       document.removeEventListener('visibilitychange', onVisibility);
-      document.removeEventListener('theme:changed', readAccent);
+      document.removeEventListener('theme:changed', readTheme);
       reducedMotion.removeEventListener('change', onReducedMotionChange);
     },
   };

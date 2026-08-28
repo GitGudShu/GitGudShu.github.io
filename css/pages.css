@@ -18,11 +18,12 @@
 .hero__tagline {
   font-family: var(--font-display);
   font-variation-settings: "SOFT" 40, "WONK" 0;
-  font-size: var(--fs-h3);
+  font-size: clamp(1.05rem, 1rem + .3vw, 1.3rem);
   font-weight: 400;
   font-style: italic;
+  line-height: 1.45;
   color: var(--accent);
-  max-width: 34ch;
+  max-width: 46ch;
   margin-block-end: var(--space-4);
 }
 

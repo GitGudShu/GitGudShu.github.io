@@ -26,9 +26,9 @@ test('parseTokens extracts both theme blocks', async () => {
   const css = await readFile(new URL('../css/tokens.css', import.meta.url), 'utf8');
   const { light, dark } = parseTokens(css);
   assert.equal(light['--bg'], '#E9E4F0');
-  assert.equal(dark['--bg'], '#100D16');
+  assert.equal(dark['--bg'], '#1E1A26');
   assert.equal(light['--text-faint'], '#6B6379');
-  assert.equal(dark['--text-faint'], '#857C95');
+  assert.equal(dark['--text-faint'], '#9691A6');
 });
 
 test('every required pair meets its AA threshold in both themes', async () => {

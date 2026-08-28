@@ -5,7 +5,7 @@ export const home = {
 
     'hero.eyebrow': 'Data Scientist · AI Engineer',
     'hero.name': 'Thomas Chu',
-    'hero.tagline': 'I build decision-support systems where the hard part is the data, not the dashboard.',
+    'hero.tagline': "It's a running gag among my friends that I'm data-driven to a fault. Nothing is ever absolute, but the right data gives you a much better grasp on a choice. Let's get you the best odds.",
     'hero.intro': "I'm a data science apprentice at UTBM, working in the AIMOS team at FEMTO-ST. My work sits where data engineering meets operational research: taking messy institutional data and turning it into something a decision-maker can actually act on.",
     'hero.cta.work': 'View my work',
     'hero.cta.cv': 'Download CV',
@@ -101,7 +101,7 @@ export const home = {
 
     'hero.eyebrow': 'Data Scientist · Ingénieur IA',
     'hero.name': 'Thomas Chu',
-    'hero.tagline': "Je construis des systèmes d'aide à la décision où la vraie difficulté tient à la donnée, pas au tableau de bord.",
+    'hero.tagline': "C'est devenu une blague avec mes amis : je me fie aux données jusqu'à l'excès. Rien n'est jamais absolu, mais les bonnes données donnent une bien meilleure prise sur un choix. Mettons toutes les chances de votre côté.",
     'hero.intro': "Apprenti en data science à l'UTBM, je travaille au sein de l'équipe AIMOS de FEMTO-ST. Mon travail se situe à la rencontre de l'ingénierie des données et de la recherche opérationnelle : prendre des données institutionnelles en désordre et en faire quelque chose sur quoi un décideur peut réellement agir.",
     'hero.cta.work': 'Voir mes projets',
     'hero.cta.cv': 'Télécharger le CV',
