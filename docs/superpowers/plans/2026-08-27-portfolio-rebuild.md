@@ -5468,7 +5468,7 @@ git commit -m "feat: add metadata, 404 page and project README"
 
 **Deletion is the last step for a reason:** every one of these files is referenced by the site being replaced. Removing them earlier would have broken intermediate states and made bisecting a regression harder.
 
-- [ ] **Step 1: Confirm nothing still references the files about to be deleted**
+- [x] **Step 1: Confirm nothing still references the files about to be deleted**
 
 Run:
 
@@ -5479,7 +5479,7 @@ grep -rniE 'style\.css|js/script\.js|Logo_dark|Logo_light|Thumbs\.db|Optimops_DB
 
 Expected: **no output.** Any hit must be fixed before deleting — deleting a file something still links to turns a working page into a 404.
 
-- [ ] **Step 2: Write the failing regression guard**
+- [x] **Step 2: Write the failing regression guard**
 
 `tests/no-legacy.test.mjs`:
 
@@ -5548,12 +5548,12 @@ test('no stylesheet outside tokens.css contains a colour literal', async () => {
 });
 ```
 
-- [ ] **Step 3: Run the guard to verify it fails**
+- [x] **Step 3: Run the guard to verify it fails**
 
 Run: `node --test tests/no-legacy.test.mjs`
 Expected: FAIL — `css/style.css should have been deleted`.
 
-- [ ] **Step 4: Delete the legacy files**
+- [x] **Step 4: Delete the legacy files**
 
 ```bash
 git rm css/style.css js/script.js
@@ -5564,7 +5564,7 @@ git rm assets/images/Thumbs.db
 git rm assets/images/but/Optimops_DBv1.mwb
 ```
 
-- [ ] **Step 5: Run the guard to verify it passes**
+- [x] **Step 5: Run the guard to verify it passes**
 
 Run: `node --test tests/no-legacy.test.mjs`
 Expected: PASS, 5/5.
@@ -5572,12 +5572,12 @@ Expected: PASS, 5/5.
 Run: `npm run verify`
 Expected: everything PASS.
 
-- [ ] **Step 6: Confirm the report set is intact**
+- [x] **Step 6: Confirm the report set is intact**
 
 Run: `ls -1 pages/BUT/rapports | wc -l`
 Expected: the same count as before Task 15 (18 files at the time of writing). If it dropped, restore with `git checkout HEAD -- pages/BUT/rapports`.
 
-- [ ] **Step 7: Responsive sweep — all pages, all widths**
+- [x] **Step 7: Responsive sweep — all pages, all widths**
 
 For each of the eight pages, at each of 320, 360, 390, 414, 480, 600, 768, 834, 1024, 1280, 1440 and 1920px, run in the console:
 
@@ -5589,11 +5589,11 @@ Expected: `true` at every width on every page. Record any `false` and fix it bef
 
 Also confirm at 740×360 (landscape phone) that the homepage hero fits within one viewport height.
 
-- [ ] **Step 8: Theme sweep**
+- [x] **Step 8: Theme sweep**
 
 Load every page in both themes. Confirm no element renders with an obviously wrong colour, and in particular that the frosted navbar, card borders, the timeline rail, the portrait ring and every cover motif read correctly in **both**.
 
-- [ ] **Step 9: Bilingual sweep**
+- [x] **Step 9: Bilingual sweep**
 
 Load every page in both languages. Confirm:
 - No raw key (a string like `p.context.body`) is visible anywhere.
@@ -5601,7 +5601,7 @@ Load every page in both languages. Confirm:
 - `document.documentElement.lang` matches the selection on every page.
 - The language choice persists across every navigation and a reload.
 
-- [ ] **Step 10: Accessibility sweep**
+- [x] **Step 10: Accessibility sweep**
 
 On the homepage and one project page:
 1. Tab from the top: the skip link appears first and works.
@@ -5610,19 +5610,19 @@ On the homepage and one project page:
 4. The placeholder card is not focusable.
 5. Run an automated audit (Lighthouse or axe) — accessibility score 100, zero violations. Fix anything reported.
 
-- [ ] **Step 11: Reduced-motion and touch sweep**
+- [x] **Step 11: Reduced-motion and touch sweep**
 
 With `prefers-reduced-motion: reduce` emulated, load every page and confirm `document.getElementById('particles') === null` and that all content is visible without scrolling-triggered animation. Repeat under a touch device profile.
 
-- [ ] **Step 12: Link sweep**
+- [x] **Step 12: Link sweep**
 
 Click every link on every page: nav, cards, archive rule, all prev/next, every PDF in the archive, `CV-FR.pdf` from both places, GitHub and LinkedIn. Confirm zero 404s.
 
-- [ ] **Step 13: Console sweep**
+- [x] **Step 13: Console sweep**
 
 Load all eight pages in both languages and both themes. Expected: **zero errors and zero warnings** in the console. A warning is a defect here, not noise.
 
-- [ ] **Step 14: Privacy sweep**
+- [x] **Step 14: Privacy sweep**
 
 Run:
 
@@ -5633,14 +5633,14 @@ grep -rniE '0628561781|06 28 56|impasse|marie richard|70200|google\.[a-z.]*/maps
 
 Expected: **no output.** Anything found must be removed before this task is complete.
 
-- [ ] **Step 15: Commit**
+- [x] **Step 15: Commit**
 
 ```bash
 git add -A
 git commit -m "chore: remove legacy site and add regression guards"
 ```
 
-- [ ] **Step 16: Record the verification results**
+- [x] **Step 16: Record the verification results**
 
 Report the actual outcome of Steps 6–14 — not "all checks pass", but what each sweep returned, including anything that failed and had to be fixed. If any step was skipped, say which and why. Do not report the rebuild complete until every step above has actually been run.
 

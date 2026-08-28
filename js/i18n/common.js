@@ -21,7 +21,7 @@ export const common = {
     'footer.source': 'Source on GitHub',
     'social.github': 'GitHub profile',
     'social.linkedin': 'LinkedIn profile',
-    'nf.title': 'This page doesn’t exist',
+    'nf.title': "This page doesn't exist",
     'nf.text': 'The link may be out of date, or I may have moved something. The work is all still here.',
     'nf.cta': 'Back to work',
   },

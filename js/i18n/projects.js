@@ -43,7 +43,7 @@ export const projects = {
       'meta.title': 'OptimOps Neo — Thomas Chu',
       'meta.description': "Une plateforme full-stack d'aide à la décision pour un service d'incendie et de secours français : analyse de couverture, simulation de scénarios et optimisation des ressources.",
 
-      'p.eyebrow': "Full-stack · aide à la décision · 2023 — aujourd’hui",
+      'p.eyebrow': "Full-stack · aide à la décision · 2023 — aujourd'hui",
       'p.title': 'OptimOps Neo',
       'p.lead': "Une plateforme d'aide à la décision qui permet à un service d'incendie et de secours de savoir ce qui se passerait s'il déplaçait un engin, modifiait un régime de garde ou perdait un centre pendant une journée — avec une réponse fondée sur son propre historique opérationnel plutôt que sur l'intuition.",
 
@@ -110,7 +110,7 @@ export const projects = {
       'meta.title': "Moteur d'indicateurs — Thomas Chu",
       'meta.description': "Reconstruction complète d'un moteur d'indicateurs opérationnels : contrat d'entrée validé, cœur en modèle en étoile, et harnais de non-régression vérifiant chaque valeur face au moteur remplacé.",
 
-      'p.eyebrow': "Architecture de données · 2025 — aujourd’hui",
+      'p.eyebrow': "Architecture de données · 2025 — aujourd'hui",
       'p.title': "Moteur d'indicateurs",
       'p.lead': "Le moteur d'indicateurs sous OptimOps, reconstruit depuis les fondations — parce que le moyen le plus rapide de perdre confiance dans un tableau de bord est de ne pas pouvoir expliquer d'où vient l'un de ses chiffres.",
 
