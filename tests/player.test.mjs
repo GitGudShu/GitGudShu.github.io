@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { formatTime, clampVolume, nextIndex, VOLUME_KEY } from '../js/player.js';
-import { TRACKS, hasVideo, renderTrackArt } from '../js/data/tracks.js';
+import { TRACKS, hasVideo, videoIdFor, parseVideoId, renderTrackArt } from '../js/data/tracks.js';
 import { music } from '../js/i18n/music.js';
 import { LANGS, translate } from '../js/i18n/index.js';
 
@@ -34,10 +34,39 @@ test('the volume key is stable', () => {
   assert.equal(VOLUME_KEY, 'tc-volume');
 });
 
-test('hasVideo only accepts a non-empty id, so an unset track stays silent', () => {
-  assert.equal(hasVideo({ videoId: 'dQw4w9WgXcQ' }), true);
-  assert.equal(hasVideo({ videoId: '' }), false);
-  assert.equal(hasVideo({ videoId: '   ' }), false);
+test('parseVideoId accepts every shape of link YouTube hands out', () => {
+  const ID = 'dQw4w9WgXcQ';
+  for (const input of [
+    ID,
+    `  ${ID}  `,
+    `https://www.youtube.com/watch?v=${ID}`,
+    `http://youtube.com/watch?v=${ID}`,
+    `https://www.youtube.com/watch?v=${ID}&t=42s`,
+    `https://www.youtube.com/watch?app=desktop&v=${ID}`,
+    `https://youtu.be/${ID}`,
+    `https://youtu.be/${ID}?si=aBcDeFgHiJk`,
+    `https://music.youtube.com/watch?v=${ID}`,
+    `https://www.youtube.com/embed/${ID}`,
+    `https://www.youtube-nocookie.com/embed/${ID}`,
+    `https://www.youtube.com/shorts/${ID}`,
+    `https://www.youtube.com/live/${ID}`,
+  ]) {
+    assert.equal(parseVideoId(input), ID, `failed on ${input}`);
+  }
+});
+
+test('parseVideoId refuses anything that is not a YouTube video', () => {
+  for (const input of ['', '   ', 'nonsense', 'https://vimeo.com/12345',
+                       'https://www.youtube.com/@somechannel', undefined, null, 42]) {
+    assert.equal(parseVideoId(input), '');
+  }
+});
+
+test('an unset or unparseable link leaves the track silent rather than broken', () => {
+  assert.equal(hasVideo({ link: 'https://youtu.be/dQw4w9WgXcQ' }), true);
+  assert.equal(videoIdFor({ link: 'https://youtu.be/dQw4w9WgXcQ' }), 'dQw4w9WgXcQ');
+  assert.equal(hasVideo({ link: '' }), false);
+  assert.equal(hasVideo({ link: 'https://example.com/nope' }), false);
   assert.equal(hasVideo({}), false);
   assert.equal(hasVideo(undefined), false);
 });

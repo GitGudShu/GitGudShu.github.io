@@ -1,17 +1,31 @@
 /**
  * The music the page talks about, played through YouTube's own embedded player.
  *
- * ── PASTE VIDEO IDS HERE ──────────────────────────────────────────────────
- * The id is the part after v= in the URL:
- *     youtube.com/watch?v=dQw4w9WgXcQ   ->   videoId: 'dQw4w9WgXcQ'
+ * ── PASTE YOUTUBE LINKS HERE ──────────────────────────────────────────────
+ * Paste the whole link. Any of these work, and so does the bare id:
+ *     https://www.youtube.com/watch?v=dQw4w9WgXcQ
+ *     https://youtu.be/dQw4w9WgXcQ?si=whatever
+ *     https://music.youtube.com/watch?v=dQw4w9WgXcQ&t=42
+ *     dQw4w9WgXcQ
  *
  * Use an official upload: the label, the composer's own channel, or the
  * auto-generated "Topic" channel. Embedding a fan re-upload is the one case
  * where it stops being protected, because you are knowingly framing an
- * unauthorised copy. A track with no id renders as "link not set" and stays
+ * unauthorised copy. A track left empty renders as "link not set" and stays
  * silent rather than breaking the page.
  * ──────────────────────────────────────────────────────────────────────────
  */
+
+/** Pulls the 11-character id out of whatever shape of link was pasted. */
+export function parseVideoId(input) {
+  if (typeof input !== 'string') return '';
+  const value = input.trim();
+  if (/^[\w-]{11}$/.test(value)) return value;
+  const match = value.match(
+    /(?:youtube(?:-nocookie)?\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|live\/)|youtu\.be\/)([\w-]{11})/,
+  );
+  return match ? match[1] : '';
+}
 
 const art = (body) =>
   '<svg viewBox="0 0 200 200" class="art" aria-hidden="true" focusable="false" ' +
@@ -56,16 +70,21 @@ function borrowedArt() {
 const ART = { melody: melodyArt, pedal: pedalArt, borrowed: borrowedArt };
 
 export const TRACKS = [
-  { id: 'forbidden-friendship', videoId: '', art: 'melody' },
-  { id: 'violet-evergarden', videoId: '', art: 'pedal' },
-  { id: 'be-still-my-soul', videoId: '', art: 'borrowed' },
-  { id: 'land-of-the-lustrous', videoId: '', art: 'melody' },
-  { id: 'you-say-run', videoId: '', art: 'pedal' },
-  { id: 'waving-through-a-window', videoId: '', art: 'melody' },
+  { id: 'forbidden-friendship', link: '', art: 'melody' },
+  { id: 'violet-evergarden', link: '', art: 'pedal' },
+  { id: 'be-still-my-soul', link: '', art: 'borrowed' },
+  { id: 'land-of-the-lustrous', link: '', art: 'melody' },
+  { id: 'you-say-run', link: '', art: 'pedal' },
+  { id: 'waving-through-a-window', link: '', art: 'melody' },
 ];
 
+/** The id a track will actually play, or '' when the link is missing or junk. */
+export function videoIdFor(track) {
+  return parseVideoId(track?.link ?? '');
+}
+
 export function hasVideo(track) {
-  return typeof track?.videoId === 'string' && track.videoId.trim().length > 0;
+  return videoIdFor(track).length > 0;
 }
 
 export function renderTrackArt(id) {

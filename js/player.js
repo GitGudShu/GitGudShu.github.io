@@ -1,6 +1,6 @@
 import { readStored, writeStored } from './storage.js';
 import { translate } from './i18n/index.js';
-import { TRACKS, hasVideo, renderTrackArt } from './data/tracks.js';
+import { TRACKS, hasVideo, videoIdFor, renderTrackArt } from './data/tracks.js';
 
 export const VOLUME_KEY = 'tc-volume';
 
@@ -125,9 +125,10 @@ export function initPlayer({ root, dict, getLang }) {
     const current = track();
     if (!hasVideo(current)) return;
 
+    const videoId = videoIdFor(current);
     if (yt?.loadVideoById) {
-      if (autoplay) yt.loadVideoById(current.videoId);
-      else yt.cueVideoById(current.videoId);
+      if (autoplay) yt.loadVideoById(videoId);
+      else yt.cueVideoById(videoId);
       return;
     }
 
@@ -148,7 +149,7 @@ export function initPlayer({ root, dict, getLang }) {
 
     yt = new YT.Player(host, {
       host: HOST,
-      videoId: current.videoId,
+      videoId,
       playerVars: { rel: 0, modestbranding: 1, playsinline: 1, autoplay: autoplay ? 1 : 0 },
       events: {
         onReady: () => {

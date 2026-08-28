@@ -54,7 +54,7 @@ js/
   diagrams.js         Inline SVG diagrams
   player.js           Audio player for the music page
   data/projects.js    Project card metadata
-  data/tracks.js      The tracks, their cover art, and the video ids to fill in
+  data/tracks.js      The tracks, their cover art, and the YouTube links to fill in
 tools/                Checkers, the portrait crop, and the screenshot redactor
 tests/                Unit tests for the pure modules
 ```
