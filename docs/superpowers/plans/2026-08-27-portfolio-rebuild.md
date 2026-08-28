@@ -723,7 +723,7 @@ git commit -m "feat: add theme module with safe storage and view-transition togg
   - `js/i18n/common.js` exports `common: { en: {...}, fr: {...} }`.
   - Dictionary shape: flat objects keyed by dotted string ids, e.g. `'nav.work'`.
 
-- [ ] **Step 1: Write the failing i18n test**
+- [x] **Step 1: Write the failing i18n test**
 
 `tests/i18n.test.mjs`:
 
@@ -802,12 +802,12 @@ test('translate falls back to English, then to the key itself', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/i18n.test.mjs`
 Expected: FAIL — `Cannot find module '../js/i18n/index.js'`.
 
-- [ ] **Step 3: Implement the i18n engine**
+- [x] **Step 3: Implement the i18n engine**
 
 `js/i18n/index.js`:
 
@@ -937,7 +937,7 @@ export function initI18n({ dict, buttons = [] }) {
 }
 ```
 
-- [ ] **Step 4: Write the shared dictionary**
+- [x] **Step 4: Write the shared dictionary**
 
 `js/i18n/common.js`:
 
@@ -991,7 +991,7 @@ export const common = {
 };
 ```
 
-- [ ] **Step 5: Implement the parity checker**
+- [x] **Step 5: Implement the parity checker**
 
 `tools/check-i18n.mjs`:
 
@@ -1051,7 +1051,7 @@ if (failures > 0) {
 console.log('\nAll dictionaries at full FR/EN parity.');
 ```
 
-- [ ] **Step 6: Run the tests to verify they pass**
+- [x] **Step 6: Run the tests to verify they pass**
 
 Run: `node --test tests/i18n.test.mjs`
 Expected: PASS, 9/9.
@@ -1059,7 +1059,7 @@ Expected: PASS, 9/9.
 Run: `node tools/check-i18n.mjs`
 Expected: `PASS  common — 21 keys at full parity`, three `SKIP` lines, exit 0.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add js/i18n/index.js js/i18n/common.js tools/check-i18n.mjs tests/i18n.test.mjs
