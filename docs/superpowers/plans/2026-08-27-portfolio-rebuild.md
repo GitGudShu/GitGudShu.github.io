@@ -3304,7 +3304,7 @@ git commit -m "feat: add about section and hobbies band"
 - Consumes: `.rail`, `.section__head`, `.eyebrow`, `.chip`, `.chip-row`, `.reveal`, `.icon-btn` from Task 4; `renderIcon` and the `data-icon` painter from Tasks 6 and 8.
 - Produces: CSS classes `.timeline`, `.timeline__item`, `.timeline__dot`, `.timeline__role`, `.timeline__meta`, `.timeline__text`, `.skills`, `.skill-group`, `.contact`, `.contact__list`, `.contact__item`, `.socials`.
 
-- [ ] **Step 1: Add the résumé and contact keys to `js/i18n/home.js`**
+- [x] **Step 1: Add the résumé and contact keys to `js/i18n/home.js`**
 
 Merge into `en`:
 
@@ -3386,7 +3386,7 @@ and into `fr`:
     'contact.social.label': 'Ailleurs',
 ```
 
-- [ ] **Step 2: Replace the `#resume` section body in `index.html`**
+- [x] **Step 2: Replace the `#resume` section body in `index.html`**
 
 Note there is deliberately **no phone number and no street address** anywhere in this markup.
 
@@ -3478,7 +3478,7 @@ Note there is deliberately **no phone number and no street address** anywhere in
   </section>
 ```
 
-- [ ] **Step 3: Replace the `#contact` section body in `index.html`**
+- [x] **Step 3: Replace the `#contact` section body in `index.html`**
 
 ```html
   <section class="section" id="contact" aria-labelledby="contact-title">
@@ -3524,7 +3524,7 @@ Note there is deliberately **no phone number and no street address** anywhere in
   </section>
 ```
 
-- [ ] **Step 4: Append timeline, skills and contact styles to `css/components.css`**
+- [x] **Step 4: Append timeline, skills and contact styles to `css/components.css`**
 
 ```css
 /* ---- Timeline ---- */
@@ -3616,7 +3616,7 @@ Note there is deliberately **no phone number and no street address** anywhere in
 .socials .icon-btn:hover { border-color: var(--accent); }
 ```
 
-- [ ] **Step 5: Verify no forbidden personal data survives anywhere**
+- [x] **Step 5: Verify no forbidden personal data survives anywhere**
 
 Run:
 
@@ -3627,7 +3627,7 @@ grep -rniE '0628561781|06 28 56|impasse|marie richard|70200|google\.[a-z.]*/maps
 
 Expected: **no output.** Any hit is a privacy failure and must be removed before committing. (`projects/` and `archive.html` do not exist yet; the `2>/dev/null` suppresses that.)
 
-- [ ] **Step 6: Verify in the browser**
+- [x] **Step 6: Verify in the browser**
 
 At 1440, 1024, 768, 700, 699, 414 and 320px confirm:
 1. The timeline rail runs behind all dots with no gap at the top or bottom; dots align with each role line.
@@ -3638,12 +3638,12 @@ At 1440, 1024, 768, 700, 699, 414 and 320px confirm:
 6. `document.documentElement.scrollWidth <= window.innerWidth` is `true` at every width.
 7. `CV-FR.pdf` downloads from both the hero and the résumé button.
 
-- [ ] **Step 7: Run the check suite**
+- [x] **Step 7: Run the check suite**
 
 Run: `npm run verify`
 Expected: all PASS.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add index.html css/components.css js/i18n/home.js

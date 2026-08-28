@@ -211,11 +211,131 @@
   </section>
 
   <section class="section" id="resume" aria-labelledby="resume-title">
-    <div class="rail"><h2 class="section__title" id="resume-title" data-i18n="resume.title">Résumé</h2></div>
+    <div class="rail">
+      <div class="section__head reveal">
+        <p class="eyebrow" data-i18n="nav.resume">R&eacute;sum&eacute;</p>
+        <h2 class="section__title" id="resume-title" data-i18n="resume.title">R&eacute;sum&eacute;</h2>
+      </div>
+
+      <h3 class="eyebrow reveal" data-i18n="resume.experience">Experience</h3>
+      <ol class="timeline reveal" style="--i:1">
+        <li class="timeline__item">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__role" data-i18n="resume.exp1.role">Data Scientist &mdash; FEMTO-ST, AIMOS team</p>
+          <p class="timeline__meta" data-i18n="resume.exp1.meta">2023 &mdash; present &middot; Belfort, France</p>
+          <p class="timeline__text" data-i18n="resume.exp1.text">Building a decision-support platform.</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__role" data-i18n="resume.exp2.role">Research Assistant Intern &mdash; University of Portsmouth</p>
+          <p class="timeline__meta" data-i18n="resume.exp2.meta">2023 &middot; Portsmouth, United Kingdom</p>
+          <p class="timeline__text" data-i18n="resume.exp2.text">Multimodal emotion recognition.</p>
+        </li>
+      </ol>
+
+      <h3 class="eyebrow reveal" data-i18n="resume.education">Education</h3>
+      <ol class="timeline reveal" style="--i:1">
+        <li class="timeline__item">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__role" data-i18n="resume.edu1.role">Engineering Degree in Computer Science &mdash; UTBM</p>
+          <p class="timeline__meta" data-i18n="resume.edu1.meta">2024 &mdash; present &middot; Belfort, France &middot; apprenticeship</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__role" data-i18n="resume.edu2.role">Bachelor of Computer Science (BUT) &mdash; IUT Nord Franche-Comt&eacute;</p>
+          <p class="timeline__meta" data-i18n="resume.edu2.meta">2021 &mdash; 2024 &middot; Belfort, France</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__role" data-i18n="resume.edu3.role">Preparatory classes for the Grandes &Eacute;coles (CPGE) &mdash; Lyc&eacute;e Victor Hugo</p>
+          <p class="timeline__meta" data-i18n="resume.edu3.meta">2019 &mdash; 2021 &middot; Besan&ccedil;on, France</p>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__dot" aria-hidden="true"></span>
+          <p class="timeline__role" data-i18n="resume.edu4.role">Scientific Baccalaureate &mdash; Lyc&eacute;e Georges Colomb</p>
+          <p class="timeline__meta" data-i18n="resume.edu4.meta">2016 &mdash; 2019 &middot; Lure, France</p>
+        </li>
+      </ol>
+
+      <h3 class="eyebrow reveal" data-i18n="resume.skills">Skills</h3>
+      <div class="skills reveal" style="--i:1">
+        <div class="skill-group">
+          <p class="eyebrow" data-i18n="resume.skills.data">Data &amp; ML</p>
+          <ul class="chip-row">
+            <li class="chip">Python</li><li class="chip">Pandas</li><li class="chip">NumPy</li>
+            <li class="chip">scikit-learn</li><li class="chip">PyTorch</li>
+            <li class="chip">Transformers</li><li class="chip">Jupyter</li><li class="chip">W&amp;B</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <p class="eyebrow" data-i18n="resume.skills.backend">Backend</p>
+          <ul class="chip-row">
+            <li class="chip">FastAPI</li><li class="chip">Flask</li><li class="chip">REST</li>
+            <li class="chip">SQL</li><li class="chip">MongoDB</li><li class="chip">Node.js</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <p class="eyebrow" data-i18n="resume.skills.frontend">Frontend</p>
+          <ul class="chip-row">
+            <li class="chip">Vue 3</li><li class="chip">Quasar</li><li class="chip">JavaScript</li>
+            <li class="chip">ECharts</li><li class="chip">Leaflet</li><li class="chip">HTML &amp; CSS</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <p class="eyebrow" data-i18n="resume.skills.ops">Data engineering &amp; Ops</p>
+          <ul class="chip-row">
+            <li class="chip">Parquet</li><li class="chip">Star schema</li><li class="chip">pytest</li>
+            <li class="chip">Git</li><li class="chip">Docker</li><li class="chip">Linux</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="reveal" style="--i:2">
+        <a class="btn btn--ghost" href="CV-FR.pdf" download data-i18n="resume.cta">Download CV</a>
+      </p>
+    </div>
   </section>
 
   <section class="section" id="contact" aria-labelledby="contact-title">
-    <div class="rail"><h2 class="section__title" id="contact-title" data-i18n="contact.title">Contact</h2></div>
+    <div class="rail">
+      <div class="section__head reveal">
+        <p class="eyebrow" data-i18n="nav.contact">Contact</p>
+        <h2 class="section__title" id="contact-title" data-i18n="contact.title">Contact</h2>
+        <p class="section__lead" data-i18n="contact.lead">The fastest way to reach me is email.</p>
+      </div>
+
+      <div class="contact reveal" style="--i:1">
+        <ul class="contact__list">
+          <li class="contact__item">
+            <span class="contact__icon" data-icon="mail" aria-hidden="true"></span>
+            <div>
+              <p class="eyebrow" data-i18n="contact.email.label">Email</p>
+              <a href="mailto:ml.thomaschu@gmail.com">ml.thomaschu@gmail.com</a>
+              <a href="mailto:thomas.chu@edu.univ-fcomte.fr">thomas.chu@edu.univ-fcomte.fr</a>
+            </div>
+          </li>
+          <li class="contact__item">
+            <span class="contact__icon" data-icon="location" aria-hidden="true"></span>
+            <div>
+              <p class="eyebrow" data-i18n="contact.location.label">Location</p>
+              <p data-i18n="contact.location.value">Franche-Comt&eacute;, France &middot; open to relocation</p>
+            </div>
+          </li>
+        </ul>
+
+        <div>
+          <p class="eyebrow" data-i18n="contact.social.label">Elsewhere</p>
+          <div class="socials">
+            <a class="icon-btn" href="https://github.com/GitGudShu"
+               data-icon="github" data-i18n-attr="aria-label:social.github"
+               aria-label="GitHub profile" rel="me noopener"></a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/thomas-chu-259702235/"
+               data-icon="linkedin" data-i18n-attr="aria-label:social.linkedin"
+               aria-label="LinkedIn profile" rel="me noopener"></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
 

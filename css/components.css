@@ -343,3 +343,91 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
   font-size: var(--fs-mono);
   letter-spacing: var(--tracking-mono);
 }
+
+/* ---- Timeline ---- */
+.timeline {
+  position: relative;
+  margin-block: var(--space-4) var(--space-7);
+  padding-inline-start: var(--space-6);
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  inset-block: 6px 6px;
+  inset-inline-start: 5px;
+  inline-size: 1px;
+  background: linear-gradient(
+    to bottom,
+    var(--accent),
+    color-mix(in oklab, var(--border) 100%, transparent)
+  );
+}
+
+.timeline__item { position: relative; padding-block-end: var(--space-5); max-width: none; }
+.timeline__item:last-child { padding-block-end: 0; }
+
+.timeline__dot {
+  position: absolute;
+  inset-inline-start: calc(var(--space-6) * -1);
+  inset-block-start: 7px;
+  inline-size: 11px;
+  block-size: 11px;
+  border-radius: var(--radius-full);
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+.timeline__role { font-weight: 600; }
+.timeline__meta {
+  margin-block-start: var(--space-1);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--text-faint);
+}
+.timeline__text { margin-block-start: var(--space-2); color: var(--text-muted); font-size: var(--fs-small); }
+
+/* ---- Skills ---- */
+.skills {
+  display: grid;
+  gap: var(--space-5);
+  margin-block: var(--space-4) var(--space-6);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+.skill-group .chip-row { margin-block-start: var(--space-3); }
+.skill-group .chip { cursor: default; }
+
+/* ---- Contact ---- */
+.contact {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+@media (min-width: 700px) { .contact { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); } }
+
+.contact__list { display: flex; flex-direction: column; gap: var(--space-5); }
+.contact__item { display: flex; gap: var(--space-4); align-items: flex-start; max-width: none; }
+.contact__icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 38px;
+  block-size: 38px;
+  border-radius: var(--radius-full);
+  background: color-mix(in oklab, var(--accent) 12%, transparent);
+  color: var(--accent);
+}
+.contact__icon svg { inline-size: 19px; block-size: 19px; }
+.contact__item a { display: block; font-size: var(--fs-small); }
+.contact__item p:not(.eyebrow) { font-size: var(--fs-small); color: var(--text-muted); }
+.contact__item > div > .eyebrow { margin-block-end: var(--space-2); }
+
+.socials { display: flex; gap: var(--space-2); margin-block-start: var(--space-3); }
+.socials .icon-btn { border: 1px solid var(--border); }
+.socials .icon-btn:hover { border-color: var(--accent); }
