@@ -104,9 +104,8 @@ test('the page wires the player, the tracklist and the cue buttons', async () =>
   for (const track of TRACKS) {
     assert.match(html, new RegExp(`data-track="${track.id}"`), `${track.id} missing from the tracklist`);
   }
-  for (const id of ['goodnight-sweet-possums', 'song-for-the-beyond', 'blessings']) {
-    assert.match(html, new RegExp(`data-play="${id}"`), `${id} has no cue button`);
-  }
+  const cues = [...html.matchAll(/data-play="([^"]+)"/g)].map((m) => m[1]);
+  assert.equal(cues.length, 3, 'each analysed passage needs its own cue button');
 });
 
 test('the video player is never embedded until the visitor asks for it', async () => {
@@ -116,30 +115,50 @@ test('the video player is never embedded until the visitor asks for it', async (
   assert.doesNotMatch(html, /youtube\.com|youtu\.be/, 'no player embed before a click');
 });
 
-test('cover art is either a photo we may host or a thumbnail we only point at', async () => {
+test('every cover is licensed to show, and points somewhere real', async () => {
   for (const track of TRACKS) {
     const cover = coverFor(track);
     assert.ok(['photo', 'thumb'].includes(cover.kind), `${track.id} has no cover`);
 
     if (cover.kind === 'photo') {
-      // Hosting somebody's photograph needs a licence and an attribution.
-      await access(new URL(`../${cover.src}`, import.meta.url));
+      // Showing somebody's photograph means naming them and their licence.
+      assert.match(cover.src, /^https:\/\/upload\.wikimedia\.org\/wikipedia\/commons\//,
+        `${track.id} photo is not linked from Commons`);
       assert.ok(cover.author?.length, `${track.id} photo has no author`);
       assert.match(cover.licence, /^(CC |Public domain)/, `${track.id} photo has no free licence`);
-      assert.match(cover.href, /^https:\/\/commons\.wikimedia\.org\//, `${track.id} photo has no source`);
+      assert.match(cover.href, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/,
+        `${track.id} photo has no source page`);
     } else {
-      // A thumbnail is pointed at, never copied, so it must stay remote.
       assert.match(cover.src, /^https:\/\/i\.ytimg\.com\/vi\//);
-      assert.match(cover.fallback, /^https:\/\/i\.ytimg\.com\/vi\//);
     }
+
+    // Whatever the cover is, something has to take over when it 404s.
+    assert.match(cover.fallback, /^https:\/\/i\.ytimg\.com\/vi\//, `${track.id} has no fallback`);
   }
 });
 
-test('no remote image is copied into the repo, and no local one lacks a credit', async () => {
-  const hosted = TRACKS.filter((track) => coverFor(track).kind === 'photo');
-  assert.equal(hosted.length, 2, 'only the freely-licensed photos may be hosted');
+test('no cover image is copied into the repo', async () => {
   const js = await readFile(new URL('../js/data/tracks.js', import.meta.url), 'utf8');
-  assert.doesNotMatch(js, /photo:\s*{[^}]*src:\s*'https?:/, 'a hosted photo must be a local file');
+  assert.doesNotMatch(js, /src:\s*[`'"]assets\//, 'covers are linked, never hosted');
+  await assert.rejects(
+    access(new URL('../assets/composers', import.meta.url)),
+    'assets/composers should be gone: nothing is hosted any more',
+  );
+});
+
+test('the page only ever cues tracks that exist', async () => {
+  const html = await page();
+  const ids = new Set(TRACKS.map((track) => track.id));
+  for (const attr of ['data-play', 'data-track']) {
+    const found = [...html.matchAll(new RegExp(`${attr}="([^"]+)"`, 'g'))].map((m) => m[1]);
+    assert.ok(found.length, `no ${attr} in the page`);
+    for (const id of found) assert.ok(ids.has(id), `${attr}="${id}" matches no track`);
+  }
+});
+
+test('no two rows play the same recording', () => {
+  const ids = TRACKS.map(videoIdFor);
+  assert.equal(new Set(ids).size, ids.length, 'a video id is used twice');
 });
 
 test('the embed uses the privacy-enhanced host and is only built on demand', async () => {

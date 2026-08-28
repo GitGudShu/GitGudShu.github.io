@@ -1,17 +1,22 @@
 /**
  * The music the page talks about, played through YouTube's own embedded player.
  *
- * ── VIDEO IDS ─────────────────────────────────────────────────────────────
+ * ── PICKING A TRACK ───────────────────────────────────────────────────────
  * The id is the 11 characters after v= :
  *     https://www.youtube.com/watch?v=dQw4w9WgXcQ  ->  'dQw4w9WgXcQ'
- * A whole pasted link works too, in any of YouTube's shapes, so it does not
- * matter which one you happen to have on the clipboard.
+ * A whole pasted link works too, in any of YouTube's shapes.
  *
- * Use an official upload: the label, the composer's own channel, or the
- * auto-generated "Topic" channel. Embedding a fan re-upload is the one case
- * where it stops being protected, because you are knowingly framing an
- * unauthorised copy. A track left empty renders as "link not set" and stays
- * silent rather than breaking the page.
+ * Two things are worth checking before adding one, because neither is
+ * visible from the link:
+ *
+ *   1. It must be the rightsholder's own upload. A fan re-upload is the one
+ *      case where embedding stops being protected, and "- Topic" channels
+ *      carrying "Originally Performed By" in the title are karaoke covers,
+ *      not the record they appear to be.
+ *   2. It must allow off-site playback. Many labels switch this off, and the
+ *      embed then fails with error 150 no matter what we do. There is no way
+ *      around it that is not a circumvention, so the answer is another
+ *      upload, not another player.
  * ──────────────────────────────────────────────────────────────────────────
  */
 
@@ -68,32 +73,50 @@ function borrowedArt() {
 
 const ART = { melody: melodyArt, pedal: pedalArt, borrowed: borrowedArt };
 
+const COMMONS = 'https://upload.wikimedia.org/wikipedia/commons/thumb';
+const FILE = 'https://commons.wikimedia.org/wiki/File';
+
 export const TRACKS = [
-  { id: 'goodnight-sweet-possums', videoId: 'lx-DZk19byY', art: 'melody' },
-  { id: 'song-for-the-beyond', videoId: 'GaO-5XB285E', art: 'pedal' },
+  {
+    id: 'film-suite', videoId: '8wiibGgXmVU', art: 'melody',
+    photo: {
+      src: `${COMMONS}/a/ac/John_Powell_with_his_Score_%28cropped%2C_denoised%29.jpg/960px-John_Powell_with_his_Score_%28cropped%2C_denoised%29.jpg`,
+      author: 'MCSBasPJF',
+      licence: 'CC BY-SA 4.0',
+      href: `${FILE}:John_Powell_with_his_Score_(cropped,_denoised).jpg`,
+    },
+  },
+  {
+    id: 'violet-evergarden', videoId: '8QrpzphrQ7s', art: 'pedal',
+    photo: {
+      src: `${COMMONS}/4/47/Evan_Call_at_MCM_Comic_Con_London_22_May_2026_01_%28cropped%29.jpg/960px-Evan_Call_at_MCM_Comic_Con_London_22_May_2026_01_%28cropped%29.jpg`,
+      author: 'DavidPMaynard',
+      licence: 'CC BY-SA 4.0',
+      href: `${FILE}:Evan_Call_at_MCM_Comic_Con_London_22_May_2026_01_(cropped).jpg`,
+    },
+  },
   { id: 'blessings', videoId: '2lmPm_yZ9Ow', art: 'borrowed' },
   // ロキシーからの贈り物
   { id: 'gift-from-roxy', videoId: 'CCLGUHut90A', art: 'melody' },
-  // Composed by Yuki Hayashi and Asami Tachibana
-  { id: 'above', videoId: 'QHRcpLQhE0Q', art: 'pedal' },
-  // Written by Pasek and Paul, sung by Grant Gustin
+  // 猫の爪
+  { id: 'cats-claw', videoId: 'ud6nGuolrAs', art: 'pedal' },
   {
-    id: 'running-home-to-you', videoId: 'f4a1vf7l-jI', art: 'melody',
+    id: 'you-will-be-found', videoId: 'mSfH2AuhXfw', art: 'melody',
     photo: {
-      src: 'assets/composers/pasek-paul.jpg',
+      src: `${COMMONS}/0/04/Pasek_and_Paul_-_Benj_Pasek_and_Justin_Paul.JPG/960px-Pasek_and_Paul_-_Benj_Pasek_and_Justin_Paul.JPG`,
       author: 'Kerry Long',
       licence: 'CC BY-SA 3.0',
-      href: 'https://commons.wikimedia.org/wiki/File:Pasek_and_Paul_-_Benj_Pasek_and_Justin_Paul.JPG',
+      href: `${FILE}:Pasek_and_Paul_-_Benj_Pasek_and_Justin_Paul.JPG`,
     },
   },
-  // Composed by Yuki Kajiura
+  // 彼方
   {
-    id: 'in-the-city-of-flowers', videoId: 'ugKa1EibcEQ', art: 'borrowed',
+    id: 'kanata', videoId: 'BDUItFbK_U4', art: 'borrowed',
     photo: {
-      src: 'assets/composers/kajiura.jpg',
+      src: `${COMMONS}/8/81/Yuki_Kajiura_at_Anime_Expo_2012.jpg/960px-Yuki_Kajiura_at_Anime_Expo_2012.jpg`,
       author: 'Erika Rodriguez',
       licence: 'CC BY-SA 2.0',
-      href: 'https://commons.wikimedia.org/wiki/File:Yuki_Kajiura_at_Anime_Expo_2012.jpg',
+      href: `${FILE}:Yuki_Kajiura_at_Anime_Expo_2012.jpg`,
     },
   },
 ];
@@ -101,21 +124,18 @@ export const TRACKS = [
 /**
  * The cover shown before anyone presses play.
  *
- * A freely-licensed photograph of the composer where one exists, since that is
- * the only kind we are allowed to host. Otherwise YouTube's own thumbnail,
- * hotlinked so the copy stays on their servers rather than ours. The SVG motif
- * is the last resort, for a track with no id at all.
+ * A photograph of the composer where Wikimedia Commons has a freely-licensed
+ * one, linked from Commons rather than copied here, with the credit its
+ * licence asks for. Otherwise the video's own thumbnail. Either way the file
+ * stays on somebody else's server and we only point at it.
  */
 export function coverFor(track) {
-  if (track?.photo) return { kind: 'photo', ...track.photo };
   const id = videoIdFor(track);
-  if (id) {
-    return {
-      kind: 'thumb',
-      src: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
-      fallback: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
-    };
-  }
+  const thumb = id ? `https://i.ytimg.com/vi/${id}/maxresdefault.jpg` : '';
+  const backup = id ? `https://i.ytimg.com/vi/${id}/hqdefault.jpg` : '';
+
+  if (track?.photo) return { kind: 'photo', ...track.photo, fallback: thumb || backup };
+  if (id) return { kind: 'thumb', src: thumb, fallback: backup };
   return { kind: 'motif' };
 }
 

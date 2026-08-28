@@ -188,7 +188,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-3);
-  padding: var(--space-5);
+  padding: var(--space-4);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -261,8 +261,48 @@
 /* Music page */
 .music .block--prose .block__text { max-width: 66ch; }
 
+.music__aside { min-inline-size: 0; }
+.music__aside__title { font-size: var(--fs-h3); }
+.music__aside__lead {
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+  margin-block: var(--space-2) var(--space-4);
+}
+
+/* Wide enough for two columns: the essay scrolls, the player does not. */
+@media (min-width: 1024px) {
+  .music .project__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(19rem, 26vw, 22.5rem);
+    column-gap: clamp(2rem, 1rem + 3vw, 4rem);
+    row-gap: var(--section-gap);
+  }
+  .music .project__body > .block { grid-column: 1; align-self: start; }
+
+  /* Spans every row so the sticky child has the whole essay to travel down. */
+  .music__aside { grid-column: 2; grid-row: 1 / span 50; align-self: stretch; }
+
+  /* Sits under the header. The player stays put and the tracklist takes
+     whatever height is left, scrolling on its own if seven rows do not fit. */
+  .music__sticky {
+    position: sticky;
+    inset-block-start: calc(var(--nav-h) + var(--space-4));
+    max-block-size: calc(100dvh - var(--nav-h) - var(--space-6));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .music__sticky .tracklist {
+    flex: 1 1 auto;
+    min-block-size: 5rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+}
+
 /* A hairline stave that draws itself in as each section arrives. */
-.music .block + .block::before {
+.music .project__body > .block:not(:first-child)::before {
   content: "";
   display: block;
   block-size: 1px;
@@ -279,12 +319,10 @@
 }
 
 /* Player */
-.block--player { gap: var(--space-5); }
-
 .player {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-5);
+  gap: var(--space-4);
   padding: var(--space-5);
   background: var(--surface);
   border: 1px solid var(--border);
@@ -297,15 +335,15 @@
   box-shadow: var(--shadow-card-hover);
 }
 
-@media (min-width: 700px) {
-  .player { grid-template-columns: minmax(280px, 40%) minmax(0, 1fr); align-items: center; }
-}
-
 /* The stage holds our cover art until the visitor presses play, and YouTube's
    own player after that. Their player is never hidden or resized away. */
 .player__stage {
   position: relative;
   aspect-ratio: 16 / 9;
+  /* Their player wants 200px of height. Left to itself the ratio would then
+     work backwards and demand 356px of width, which no phone has, so the
+     width is stated outright and only the height is allowed to give. */
+  inline-size: 100%;
   min-block-size: 200px;
   border-radius: var(--radius-md);
   background: color-mix(in oklab, var(--accent) 10%, var(--surface-raised));
@@ -326,17 +364,26 @@
   place-items: center;
   inline-size: 100%;
   block-size: 100%;
-  padding: var(--space-4);
   color: var(--accent);
 }
 .player__facade[hidden] { display: none; }
-.player__art { display: block; inline-size: 100%; block-size: 100%; }
-.player__art .art { inline-size: 100%; block-size: 100%; }
+.player__art {
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+.player__art .art {
+  inline-size: 100%;
+  block-size: 100%;
+  padding: var(--space-4);
+  box-sizing: border-box;
+}
+/* The stage already rounds and clips, so the image just fills it. */
 .player__art img {
+  display: block;
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
-  border-radius: calc(var(--radius-md) - 2px);
 }
 
 .player__badge {
@@ -387,13 +434,13 @@
 .player__attrib a { color: inherit; }
 .player__attrib a:hover { color: var(--accent); }
 
-.player__body { display: flex; flex-direction: column; gap: var(--space-3); min-inline-size: 0; }
+.player__body { display: flex; flex-direction: column; gap: var(--space-2); min-inline-size: 0; }
 .player__title { font-size: var(--fs-h3); }
 .player__credit { color: var(--text-muted); font-size: var(--fs-small); max-width: 52ch; }
 
 .player__transport {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--space-3);
   margin-block-start: var(--space-2);
@@ -403,8 +450,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 52px;
-  block-size: 52px;
+  inline-size: 48px;
+  block-size: 48px;
   flex: none;
   border-radius: var(--radius-full);
   background: var(--accent);
@@ -426,11 +473,18 @@
   font-variant-numeric: tabular-nums;
 }
 
-.player__vol { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text-faint); }
+/* The volume takes the whole second row rather than fighting for space. */
+.player__vol {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-faint);
+}
 .player__vol svg { inline-size: 18px; block-size: 18px; flex: none; }
 
-.player__seek { flex: 1 1 160px; min-inline-size: 120px; }
-.player__volume { inline-size: 84px; flex: none; }
+.player__seek { min-inline-size: 0; }
+.player__volume { flex: 1 1 auto; min-inline-size: 0; }
 
 /* One slider style for both, drawn from tokens. */
 .player input[type="range"] {
@@ -474,12 +528,12 @@
 .tracklist { display: flex; flex-direction: column; gap: 2px; }
 .tracklist button {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: var(--space-4);
+  gap: 0 var(--space-3);
   inline-size: 100%;
   min-block-size: 44px;
-  padding: var(--space-3) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-sm);
   text-align: start;
   color: var(--text-muted);
@@ -492,6 +546,14 @@
 .tracklist button.is-current {
   color: var(--accent);
   background: color-mix(in oklab, var(--accent) 12%, transparent);
+}
+.tracklist__n { grid-row: 1 / span 2; }
+.tracklist__t,
+.tracklist__c { grid-column: 2; }
+.tracklist__c {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .tracklist__n,
 .tracklist__c {
@@ -511,7 +573,7 @@
 .player__disclaimer {
   font-family: var(--font-mono);
   font-size: var(--fs-mono);
-  line-height: 1.6;
+  line-height: 1.5;
   color: var(--text-faint);
   max-width: 60ch;
 }

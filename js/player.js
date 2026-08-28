@@ -5,8 +5,9 @@ import { TRACKS, hasVideo, videoIdFor, coverFor, renderTrackArt } from './data/t
 export const VOLUME_KEY = 'tc-volume';
 
 /**
- * Privacy-enhanced host, and nothing at all is requested from Google until the
- * visitor presses play. Until then the stage shows our own cover art.
+ * Privacy-enhanced host. The player itself is only built on a click; before
+ * that the stage is a still cover, and the only thing already fetched is that
+ * image.
  */
 const HOST = 'https://www.youtube-nocookie.com';
 const API = 'https://www.youtube.com/iframe_api';
@@ -88,7 +89,7 @@ export function initPlayer({ root, dict, getLang }) {
     img.alt = '';
     img.loading = 'lazy';
     if (cover.fallback) {
-      // maxresdefault does not exist for every video.
+      // Commons can rate-limit, and maxresdefault is missing for some videos.
       img.addEventListener('error', () => { img.src = cover.fallback; }, { once: true });
     }
     artSlot.replaceChildren(img);
@@ -103,7 +104,9 @@ export function initPlayer({ root, dict, getLang }) {
     paintCover(current);
     titleSlot.textContent = t(`track.${current.id}.title`);
     creditSlot.textContent = t(`track.${current.id}.credit`);
-    status.textContent = hasVideo(current) ? t('player.consent') : t('player.empty');
+    // Once their player exists there is nothing left to consent to.
+    if (!hasVideo(current)) status.textContent = t('player.empty');
+    else status.textContent = yt ? '' : t('player.consent');
     root.classList.toggle('is-unset', !hasVideo(current));
     playBtn.disabled = !hasVideo(current);
     seek.value = '0';
@@ -176,7 +179,10 @@ export function initPlayer({ root, dict, getLang }) {
       videoId,
       playerVars: { rel: 0, modestbranding: 1, playsinline: 1, autoplay: autoplay ? 1 : 0 },
       events: {
-        onReady: () => {
+        // onReady fires while the constructor is still running, so `yt` is not
+        // assigned yet: the player to talk to is the one on the event.
+        onReady: (event) => {
+          yt = event.target;
           yt.setVolume(Math.round(level * 100));
           status.textContent = '';
           if (autoplay) yt.playVideo();
