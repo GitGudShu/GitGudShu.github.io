@@ -77,10 +77,47 @@ export const TRACKS = [
   // Composed by Yuki Hayashi and Asami Tachibana
   { id: 'above', videoId: 'QHRcpLQhE0Q', art: 'pedal' },
   // Written by Pasek and Paul, sung by Grant Gustin
-  { id: 'running-home-to-you', videoId: 'f4a1vf7l-jI', art: 'melody' },
+  {
+    id: 'running-home-to-you', videoId: 'f4a1vf7l-jI', art: 'melody',
+    photo: {
+      src: 'assets/composers/pasek-paul.jpg',
+      author: 'Kerry Long',
+      licence: 'CC BY-SA 3.0',
+      href: 'https://commons.wikimedia.org/wiki/File:Pasek_and_Paul_-_Benj_Pasek_and_Justin_Paul.JPG',
+    },
+  },
   // Composed by Yuki Kajiura
-  { id: 'in-the-city-of-flowers', videoId: 'ugKa1EibcEQ', art: 'borrowed' },
+  {
+    id: 'in-the-city-of-flowers', videoId: 'ugKa1EibcEQ', art: 'borrowed',
+    photo: {
+      src: 'assets/composers/kajiura.jpg',
+      author: 'Erika Rodriguez',
+      licence: 'CC BY-SA 2.0',
+      href: 'https://commons.wikimedia.org/wiki/File:Yuki_Kajiura_at_Anime_Expo_2012.jpg',
+    },
+  },
 ];
+
+/**
+ * The cover shown before anyone presses play.
+ *
+ * A freely-licensed photograph of the composer where one exists, since that is
+ * the only kind we are allowed to host. Otherwise YouTube's own thumbnail,
+ * hotlinked so the copy stays on their servers rather than ours. The SVG motif
+ * is the last resort, for a track with no id at all.
+ */
+export function coverFor(track) {
+  if (track?.photo) return { kind: 'photo', ...track.photo };
+  const id = videoIdFor(track);
+  if (id) {
+    return {
+      kind: 'thumb',
+      src: `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`,
+      fallback: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`,
+    };
+  }
+  return { kind: 'motif' };
+}
 
 /** The id a track will actually play, or '' when it is missing or unparseable. */
 export function videoIdFor(track) {

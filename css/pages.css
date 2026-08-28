@@ -332,6 +332,12 @@
 .player__facade[hidden] { display: none; }
 .player__art { display: block; inline-size: 100%; block-size: 100%; }
 .player__art .art { inline-size: 100%; block-size: 100%; }
+.player__art img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--radius-md) - 2px);
+}
 
 .player__badge {
   position: absolute;
@@ -371,6 +377,15 @@
   min-block-size: 1.4em;
 }
 .player.is-unset .player__status { color: var(--accent); }
+
+.player__attrib {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  color: var(--text-faint);
+}
+.player__attrib:empty { display: none; }
+.player__attrib a { color: inherit; }
+.player__attrib a:hover { color: var(--accent); }
 
 .player__body { display: flex; flex-direction: column; gap: var(--space-3); min-inline-size: 0; }
 .player__title { font-size: var(--fs-h3); }

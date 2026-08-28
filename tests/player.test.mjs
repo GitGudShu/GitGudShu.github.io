@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, access } from 'node:fs/promises';
 import { formatTime, clampVolume, nextIndex, VOLUME_KEY } from '../js/player.js';
-import { TRACKS, hasVideo, videoIdFor, parseVideoId, renderTrackArt } from '../js/data/tracks.js';
+import { TRACKS, hasVideo, videoIdFor, parseVideoId, coverFor, renderTrackArt } from '../js/data/tracks.js';
 import { music } from '../js/i18n/music.js';
 import { LANGS, translate } from '../js/i18n/index.js';
 
@@ -109,12 +109,37 @@ test('the page wires the player, the tracklist and the cue buttons', async () =>
   }
 });
 
-test('no third-party audio or video is embedded until the visitor asks for it', async () => {
+test('the video player is never embedded until the visitor asks for it', async () => {
   const html = await page();
   assert.doesNotMatch(html, /<iframe/, 'the page must ship without an iframe');
   assert.doesNotMatch(html, /<audio/, 'no audio element');
-  assert.doesNotMatch(html, /youtube\.com|youtu\.be|ytimg\.com/,
-    'nothing may reference Google before a click');
+  assert.doesNotMatch(html, /youtube\.com|youtu\.be/, 'no player embed before a click');
+});
+
+test('cover art is either a photo we may host or a thumbnail we only point at', async () => {
+  for (const track of TRACKS) {
+    const cover = coverFor(track);
+    assert.ok(['photo', 'thumb'].includes(cover.kind), `${track.id} has no cover`);
+
+    if (cover.kind === 'photo') {
+      // Hosting somebody's photograph needs a licence and an attribution.
+      await access(new URL(`../${cover.src}`, import.meta.url));
+      assert.ok(cover.author?.length, `${track.id} photo has no author`);
+      assert.match(cover.licence, /^(CC |Public domain)/, `${track.id} photo has no free licence`);
+      assert.match(cover.href, /^https:\/\/commons\.wikimedia\.org\//, `${track.id} photo has no source`);
+    } else {
+      // A thumbnail is pointed at, never copied, so it must stay remote.
+      assert.match(cover.src, /^https:\/\/i\.ytimg\.com\/vi\//);
+      assert.match(cover.fallback, /^https:\/\/i\.ytimg\.com\/vi\//);
+    }
+  }
+});
+
+test('no remote image is copied into the repo, and no local one lacks a credit', async () => {
+  const hosted = TRACKS.filter((track) => coverFor(track).kind === 'photo');
+  assert.equal(hosted.length, 2, 'only the freely-licensed photos may be hosted');
+  const js = await readFile(new URL('../js/data/tracks.js', import.meta.url), 'utf8');
+  assert.doesNotMatch(js, /photo:\s*{[^}]*src:\s*'https?:/, 'a hosted photo must be a local file');
 });
 
 test('the embed uses the privacy-enhanced host and is only built on demand', async () => {

@@ -30,7 +30,7 @@ export const music = {
 
     'm.player.title': 'The music itself',
     'm.player.lead': 'Seven pieces that between them explain the whole argument. They play here, so you do not have to go anywhere.',
-    'm.player.disclaimer': "Every one of these is somebody else's work, played through YouTube's own player and credited to the people who wrote it. Nothing is requested from YouTube until you press play.",
+    'm.player.disclaimer': "Every one of these is somebody else's work, played through YouTube's own player and credited to the people who wrote it. Cover art is a freely-licensed photograph where one exists, and YouTube's own thumbnail otherwise. The player itself only loads when you press play.",
 
     'track.goodnight-sweet-possums.title': 'Goodnight Sweet Possums',
     'track.goodnight-sweet-possums.credit': 'John Powell, Ice Age: The Meltdown',
@@ -56,6 +56,7 @@ export const music = {
     'player.loading': 'Loading the player.',
     'player.blocked': 'YouTube did not load. A blocker is probably in the way.',
     'player.empty': 'No link set for this one yet.',
+    'player.photo': 'Photo:',
 
     'm.list.title': 'The listening list',
     'm.list.lead': 'The actual people. Go and hear them properly, on something better than laptop speakers.',
@@ -100,7 +101,7 @@ export const music = {
 
     'm.player.title': 'La musique elle-même',
     'm.player.lead': "Sept morceaux qui, à eux seuls, résument tout ce qui précède. Ils se lisent ici, vous n'avez nulle part où aller.",
-    'm.player.disclaimer': "Rien de tout ça n'est de moi. Ces morceaux passent par le lecteur de YouTube et sont crédités à ceux qui les ont écrits. Rien n'est demandé à YouTube tant que vous n'appuyez pas sur lecture.",
+    'm.player.disclaimer': "Rien de tout ça n'est de moi. Ces morceaux passent par le lecteur de YouTube et sont crédités à ceux qui les ont écrits. La pochette est une photo sous licence libre quand il en existe une, et la vignette de YouTube sinon. Le lecteur, lui, ne se charge qu'au moment où vous appuyez sur lecture.",
 
     'track.goodnight-sweet-possums.title': 'Goodnight Sweet Possums',
     'track.goodnight-sweet-possums.credit': "John Powell, L'Âge de glace 2",
@@ -126,6 +127,7 @@ export const music = {
     'player.loading': 'Chargement du lecteur.',
     'player.blocked': "YouTube ne s'est pas chargé. Un bloqueur doit être passé par là.",
     'player.empty': 'Pas encore de lien pour celui-ci.',
+    'player.photo': 'Photo :',
 
     'm.list.title': "La liste d'écoute",
     'm.list.lead': "Les vrais gens. Allez les écouter correctement, sur autre chose que des haut-parleurs de portable.",

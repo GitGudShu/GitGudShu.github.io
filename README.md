@@ -38,6 +38,7 @@ archive.html          Curated bachelor coursework
 music.html            What I listen to, and a YouTube-backed player
 404.html              Not found
 assets/screens/       Published screenshots, already redacted
+assets/composers/     Freely-licensed composer photos, with attribution on the page
 css/
   tokens.css          All colour, type, space and motion tokens. Both themes.
                       The ONLY file allowed to contain a colour literal.
@@ -55,7 +56,8 @@ js/
   player.js           Audio player for the music page
   data/projects.js    Project card metadata
   data/tracks.js      The tracks, their cover art, and the YouTube links to fill in
-tools/                Checkers, the portrait crop, and the screenshot redactor
+tools/                Checkers, the portrait crop, the screenshot redactor,
+                      and the composer photo crop
 tests/                Unit tests for the pure modules
 ```
 
@@ -80,9 +82,13 @@ tests/                Unit tests for the pure modules
   only ever embed an **official** upload, since *GS Media* removes that
   protection for a known-unauthorised copy, and never hide or replace the
   YouTube player. Extracting the audio stream would break both.
-- **Nothing loads from YouTube until a click.** The player shows local cover art
-  and only builds the iframe, against `youtube-nocookie.com`, when the visitor
-  presses play.
+- **The player only loads on a click.** The iframe is built against
+  `youtube-nocookie.com` when the visitor presses play, never before.
+- **Cover art is either licensed or pointed at, never copied.** A composer photo
+  may be hosted only if its licence allows it, and then the author and licence
+  must appear next to the player. Everything else uses YouTube's own thumbnail
+  by URL, so the copy stays on their servers. Saving a thumbnail or a press
+  photo into `assets/` is the line not to cross.
 
 ## Adding a project
 

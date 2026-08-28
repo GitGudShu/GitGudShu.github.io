@@ -6,3 +6,6 @@ Thumbs.db
 # Raw screen captures: sources for tools/build-screens.py, never published
 # because they still carry client identity.
 assets/images/but/
+
+# Source photos for tools/build-composers.py, not committed.
+tools/_photos/

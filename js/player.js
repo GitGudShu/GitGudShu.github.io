@@ -1,6 +1,6 @@
 import { readStored, writeStored } from './storage.js';
 import { translate } from './i18n/index.js';
-import { TRACKS, hasVideo, videoIdFor, renderTrackArt } from './data/tracks.js';
+import { TRACKS, hasVideo, videoIdFor, coverFor, renderTrackArt } from './data/tracks.js';
 
 export const VOLUME_KEY = 'tc-volume';
 
@@ -61,6 +61,7 @@ export function initPlayer({ root, dict, getLang }) {
   const time = el('time');
   const volume = el('volume');
   const status = el('status');
+  const attrib = el('attrib');
   const list = document.querySelector('[data-tracklist]');
 
   let index = 0;
@@ -74,9 +75,32 @@ export function initPlayer({ root, dict, getLang }) {
   let level = clampVolume(parseFloat(readStored(VOLUME_KEY)) || 0.8);
   volume.value = String(Math.round(level * 100));
 
+  function paintCover(current) {
+    const cover = coverFor(current);
+    if (cover.kind === 'motif') {
+      artSlot.innerHTML = renderTrackArt(current.id);
+      attrib.innerHTML = '';
+      return;
+    }
+
+    const img = document.createElement('img');
+    img.src = cover.src;
+    img.alt = '';
+    img.loading = 'lazy';
+    if (cover.fallback) {
+      // maxresdefault does not exist for every video.
+      img.addEventListener('error', () => { img.src = cover.fallback; }, { once: true });
+    }
+    artSlot.replaceChildren(img);
+
+    attrib.innerHTML = cover.kind === 'photo'
+      ? `${t('player.photo')} <a href="${cover.href}" rel="noopener">${cover.author}</a>, ${cover.licence}`
+      : '';
+  }
+
   function paintTrack() {
     const current = track();
-    artSlot.innerHTML = renderTrackArt(current.id);
+    paintCover(current);
     titleSlot.textContent = t(`track.${current.id}.title`);
     creditSlot.textContent = t(`track.${current.id}.credit`);
     status.textContent = hasVideo(current) ? t('player.consent') : t('player.empty');
