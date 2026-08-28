@@ -4909,7 +4909,7 @@ The six curated entries and the reports each links to:
 | Network services | `sae204_n°11.pdf` |
 | Project management | `11_Gantt.pdf`, `11_PERT.pdf`, `11_Rapport_Economique.pdf` |
 
-- [ ] **Step 1: Confirm every report file actually exists before linking it**
+- [x] **Step 1: Confirm every report file actually exists before linking it**
 
 Run:
 
@@ -4919,7 +4919,7 @@ cd pages/BUT/rapports && ls -1 && cd -
 
 Cross-check each filename in the table above against the listing. If a name differs (accents, case, spacing), use the real filename — a link to a file that does not exist is worse than no link. `sae204_n°11.pdf` contains a non-ASCII character; URL-encode it in the `href` as `sae204_n%C2%B011.pdf` and verify it resolves in the browser.
 
-- [ ] **Step 2: Write the failing archive test**
+- [x] **Step 2: Write the failing archive test**
 
 `tests/archive.test.mjs`:
 
@@ -4976,12 +4976,12 @@ test('every PDF the page links to exists on disk', async () => {
 });
 ```
 
-- [ ] **Step 3: Run the test to verify it fails**
+- [x] **Step 3: Run the test to verify it fails**
 
 Run: `node --test tests/archive.test.mjs`
 Expected: FAIL — `Cannot find module '../js/i18n/archive.js'`.
 
-- [ ] **Step 4: Write `js/i18n/archive.js`**
+- [x] **Step 4: Write `js/i18n/archive.js`**
 
 The framing is honest and unapologetic: this is coursework, shown because some of it is interesting, not because it is headline work.
 
@@ -5050,7 +5050,7 @@ export const archive = {
 };
 ```
 
-- [ ] **Step 5: Write `archive.html`**
+- [x] **Step 5: Write `archive.html`**
 
 Copy the shell from `index.html` (paths stay at the root level — no `../` prefix), set `<body data-page="archive">`, replace the anchor nav with a single back link, and use this `<main>`:
 
@@ -5134,7 +5134,7 @@ Copy the shell from `index.html` (paths stay at the root level — no `../` pref
 </main>
 ```
 
-- [ ] **Step 6: Append archive styles to `css/pages.css`**
+- [x] **Step 6: Append archive styles to `css/pages.css`**
 
 ```css
 /* ---- Archive ---- */
@@ -5162,7 +5162,7 @@ Copy the shell from `index.html` (paths stay at the root level — no `../` pref
 .archive-entry__links a { font-family: var(--font-mono); font-size: var(--fs-mono); }
 ```
 
-- [ ] **Step 7: Run the tests to verify they pass**
+- [x] **Step 7: Run the tests to verify they pass**
 
 Run: `node --test tests/archive.test.mjs`
 Expected: PASS, 5/5.
@@ -5170,7 +5170,7 @@ Expected: PASS, 5/5.
 Run: `npm run verify`
 Expected: all PASS; `archive` no longer reports SKIP.
 
-- [ ] **Step 8: Verify in the browser**
+- [x] **Step 8: Verify in the browser**
 
 Open `http://localhost:8000/archive.html`. Confirm:
 1. The archive rule at the bottom of the homepage's work section reaches it.
@@ -5179,7 +5179,7 @@ Open `http://localhost:8000/archive.html`. Confirm:
 4. Reading it, nothing sounds like coursework prose — no competency codes, no semester numbers.
 5. `document.documentElement.scrollWidth <= window.innerWidth` at 320, 768 and 1440px.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add js/i18n/archive.js archive.html css/pages.css tests/archive.test.mjs

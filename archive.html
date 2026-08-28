@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- The only inline script in the project: prevents a flash of the wrong theme. -->
+<script>
+  try {
+    var t = localStorage.getItem('tc-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = t;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+</script>
+
+<title>Bachelor coursework — Thomas Chu</title>
+<meta name="description" content="A short selection of academic projects from a computer science bachelor, 2021–2024, with the original reports.">
+<meta name="theme-color" content="#100D16">
+<link rel="canonical" href="https://gitgudshu.github.io/archive.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700&display=swap">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+
+<!-- Reveal starts at opacity 0 and is switched on by js/reveal.js. Without
+     scripting nothing would ever switch it on, so the page must start visible. -->
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+</head>
+
+<body data-page="archive">
+<a class="skip-link" href="#content" data-i18n="skip.link">Skip to content</a>
+
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<header class="site-header" id="top">
+  <div class="rail site-header__inner">
+    <a class="brand" href="index.html" data-i18n-attr="aria-label:nav.home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="none" stroke="currentColor">
+        <rect x="1" y="1" width="30" height="30" rx="9" stroke-width="1.5"/>
+        <path d="M8 11h8M12 11v11" stroke-width="2" stroke-linecap="round"/>
+        <path d="M24 12.5a4.5 4.5 0 1 0 0 7" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Thomas Chu</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="index.html#work" data-i18n="nav.back">Back to work</a>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" data-i18n="lang.en" data-i18n-attr="title:lang.toEn">EN</button>
+        <button type="button" data-lang="fr" data-i18n="lang.fr" data-i18n-attr="title:lang.toFr">FR</button>
+      </div>
+
+      <button type="button" class="icon-btn" id="theme-btn" data-i18n-attr="aria-label:theme.toDark">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <article class="project">
+    <div class="rail rail--prose">
+      <header class="project__head reveal">
+        <p class="eyebrow" data-i18n="arch.eyebrow">2021 &mdash; 2024 &middot; Bachelor coursework</p>
+        <h1 class="project__title" data-i18n="arch.title">Academic projects</h1>
+        <p class="project__lead" data-i18n="arch.lead">These are university projects from my computer science bachelor.</p>
+      </header>
+
+      <ol class="archive-list">
+        <li class="archive-entry reveal">
+          <h2 class="archive-entry__title" data-i18n="arch.kamisado.title">Kamisado &mdash; a board game and its AI</h2>
+          <p class="archive-entry__text" data-i18n="arch.kamisado.text">A full implementation of Kamisado in Java and JavaFX.</p>
+          <p class="archive-entry__links">
+            <span class="eyebrow" data-i18n="arch.reports">Reports</span>
+            <a href="pages/BUT/rapports/descriptionAlgo.pdf">descriptionAlgo.pdf</a>
+            <a href="pages/BUT/rapports/SAE2.126final.gan">SAE2.126final.gan</a>
+          </p>
+        </li>
+
+        <li class="archive-entry reveal">
+          <h2 class="archive-entry__title" data-i18n="arch.covid.title">Covid-19 surveillance dashboard</h2>
+          <p class="archive-entry__text" data-i18n="arch.covid.text">A dashboard pulling epidemiological data from a European API.</p>
+          <p class="archive-entry__links">
+            <span class="eyebrow" data-i18n="arch.reports">Reports</span>
+            <a href="pages/BUT/rapports/General_Report_CHU_Thomas_S4C1.pdf">General report</a>
+            <a href="pages/BUT/rapports/Technical_Report_CHU_Thomas_S4C1.pdf">Technical report</a>
+          </p>
+        </li>
+
+        <li class="archive-entry reveal">
+          <h2 class="archive-entry__title" data-i18n="arch.ecommerce.title">E-commerce platform &mdash; from requirements to database</h2>
+          <p class="archive-entry__text" data-i18n="arch.ecommerce.text">From a client brief through to a working Flask application.</p>
+          <p class="archive-entry__links">
+            <span class="eyebrow" data-i18n="arch.reports">Reports</span>
+            <a href="pages/BUT/rapports/11_CDC.pdf">11_CDC.pdf</a>
+            <a href="pages/BUT/rapports/21_Analyse.pdf">21_Analyse.pdf</a>
+            <a href="pages/BUT/rapports/21_Architecture.pdf">21_Architecture.pdf</a>
+          </p>
+        </li>
+
+        <li class="archive-entry reveal">
+          <h2 class="archive-entry__title" data-i18n="arch.token.title">The missing-token game</h2>
+          <p class="archive-entry__text" data-i18n="arch.token.text">A terminal game with a unit-tested core and two AI algorithms.</p>
+          <p class="archive-entry__links">
+            <span class="eyebrow" data-i18n="arch.reports">Reports</span>
+            <a href="pages/BUT/rapports/descriptionAlgo.pdf">descriptionAlgo.pdf</a>
+          </p>
+        </li>
+
+        <li class="archive-entry reveal">
+          <h2 class="archive-entry__title" data-i18n="arch.network.title">Network services and deployment</h2>
+          <p class="archive-entry__text" data-i18n="arch.network.text">Provisioning the services needed to deploy and host a web application.</p>
+          <p class="archive-entry__links">
+            <span class="eyebrow" data-i18n="arch.reports">Reports</span>
+            <a href="pages/BUT/rapports/sae204_n%C2%B011.pdf">sae204_n&deg;11.pdf</a>
+          </p>
+        </li>
+
+        <li class="archive-entry reveal">
+          <h2 class="archive-entry__title" data-i18n="arch.management.title">Project management for the e-commerce build</h2>
+          <p class="archive-entry__text" data-i18n="arch.management.text">Specification, cost analysis, Gantt and PERT scheduling.</p>
+          <p class="archive-entry__links">
+            <span class="eyebrow" data-i18n="arch.reports">Reports</span>
+            <a href="pages/BUT/rapports/11_Gantt.pdf">11_Gantt.pdf</a>
+            <a href="pages/BUT/rapports/11_PERT.pdf">11_PERT.pdf</a>
+            <a href="pages/BUT/rapports/11_Rapport_Economique.pdf">11_Rapport_Economique.pdf</a>
+          </p>
+        </li>
+      </ol>
+
+      <nav class="project__nav" aria-label="Page navigation">
+        <a href="index.html#work" data-i18n="arch.back">Back to work</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="rail site-footer__inner">
+    <p data-i18n="footer.built">Built from scratch — no framework, no tracking.</p>
+    <a href="https://github.com/GitGudShu/GitGudShu.github.io" data-i18n="footer.source">Source on GitHub</a>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

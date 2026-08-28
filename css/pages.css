@@ -182,3 +182,27 @@
 /* Wide content inside prose must scroll itself, never the page. */
 .project__body pre,
 .project__body table { display: block; overflow-x: auto; max-width: 100%; }
+
+/* ---- Archive ---- */
+.archive-list { display: flex; flex-direction: column; gap: var(--space-6); }
+
+.archive-entry {
+  max-width: none;
+  padding-block-end: var(--space-6);
+  border-block-end: 1px solid var(--border);
+}
+.archive-entry:last-child { border-block-end: 0; padding-block-end: 0; }
+
+.archive-entry__title { font-size: var(--fs-h3); margin-block-end: var(--space-3); }
+.archive-entry__text { color: var(--text-muted); }
+
+.archive-entry__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-4);
+  margin-block-start: var(--space-4);
+  max-width: none;
+  font-size: var(--fs-small);
+}
+.archive-entry__links a { font-family: var(--font-mono); font-size: var(--fs-mono); }
