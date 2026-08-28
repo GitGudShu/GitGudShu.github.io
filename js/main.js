@@ -51,6 +51,7 @@ async function pageDict() {
   const page = document.body.dataset.page;
   if (page === 'home') return (await import('./i18n/home.js')).home;
   if (page === 'archive') return (await import('./i18n/archive.js')).archive;
+  if (page === 'music') return (await import('./i18n/music.js')).music;
   if (page === 'project') {
     const { projects } = await import('./i18n/projects.js');
     return projects[document.body.dataset.project] ?? null;
@@ -76,6 +77,12 @@ async function boot() {
 
   initReveal();
   initParticles({ canvas: document.getElementById('particles') });
+
+  const player = document.getElementById('player');
+  if (player) {
+    const { initPlayer } = await import('./player.js');
+    initPlayer({ root: player, dict, getLang: i18n.getLang });
+  }
 
   const header = document.querySelector('.site-header');
   if (header) {

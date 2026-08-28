@@ -10,6 +10,7 @@ const DICTS = [
   ['home', () => import('../js/i18n/home.js').then((m) => m.home).catch(() => null)],
   ['projects', () => import('../js/i18n/projects.js').then((m) => m.projects).catch(() => null)],
   ['archive', () => import('../js/i18n/archive.js').then((m) => m.archive).catch(() => null)],
+  ['music', () => import('../js/i18n/music.js').then((m) => m.music).catch(() => null)],
 ];
 
 /**

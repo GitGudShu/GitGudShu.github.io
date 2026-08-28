@@ -35,8 +35,10 @@ npm run check:contrast # WCAG AA on every token pair, both themes
 index.html            Hero · About · Work · Beyond the work · Résumé · Contact
 projects/*.html       One page per flagship project
 archive.html          Curated bachelor coursework
+music.html            What I listen to, and an audio player for three sketches
 404.html              Not found
 assets/screens/       Published screenshots, already redacted
+assets/audio/         The three demo sketches, rendered by tools/build-audio.py
 css/
   tokens.css          All colour, type, space and motion tokens. Both themes.
                       The ONLY file allowed to contain a colour literal.
@@ -51,8 +53,11 @@ js/
   nav.js reveal.js particles.js
   covers.js icons.js  Inline SVG, all currentColor
   diagrams.js         Inline SVG diagrams
+  player.js           Audio player for the music page
   data/projects.js    Project card metadata
-tools/                Checkers, the portrait crop, and the screenshot redactor
+  data/tracks.js      Demo sketches and their cover art
+tools/                Checkers, the portrait crop, the screenshot redactor,
+                      and the audio renderer
 tests/                Unit tests for the pure modules
 ```
 
@@ -71,6 +76,9 @@ tests/                Unit tests for the pure modules
   masks station and department names, the client crest and colleagues' names.
   The raw captures are gitignored and must never be committed.
 - **No em dashes in copy.** Rephrase instead.
+- **No third-party audio.** `assets/audio/` holds original sketches rendered by
+  `tools/build-audio.py`, written only to demonstrate one device each. Replace
+  them with real recordings, never with someone else's track.
 
 ## Adding a project
 

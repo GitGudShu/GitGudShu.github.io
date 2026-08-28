@@ -57,8 +57,9 @@ export const home = {
 
     'beyond.title': 'Beyond the work',
     'beyond.lead': 'Three things I keep coming back to when the laptop closes.',
-    'beyond.music.title': 'Composing',
-    'beyond.music.text': 'I write and arrange music, mostly for classical guitar and small ensembles. Nothing I write has a deadline, which after a week of sprint planning is a genuine relief.',
+    'beyond.music.title': 'Music',
+    'beyond.music.text': 'I write and arrange music, mostly for classical guitar and small ensembles. My taste is harder to explain than it should be, so I wrote a whole page about it rather than keep losing the argument at dinner parties.',
+    'beyond.music.cta': 'What I listen to, and why',
     'beyond.games.title': 'Game development',
     'beyond.games.text': 'I build small games in my own time. It is where I get to do the parts of engineering that production work leaves no room for: physics, procedural generation, and tuning something until it feels right rather than until it scales.',
     'beyond.martial.title': 'Martial arts',
@@ -153,8 +154,9 @@ export const home = {
 
     'beyond.title': 'En dehors du travail',
     'beyond.lead': "Trois choses vers lesquelles je reviens toujours, une fois l'ordinateur fermé.",
-    'beyond.music.title': 'Composition',
-    'beyond.music.text': "J'écris et j'arrange de la musique, surtout pour guitare classique et petites formations. Rien de ce que j'écris n'a de date de rendu, et après une semaine de sprints ça fait des vacances.",
+    'beyond.music.title': 'Musique',
+    'beyond.music.text': "J'écris et j'arrange de la musique, surtout pour guitare classique et petites formations. Mes goûts sont plus difficiles à expliquer qu'ils ne devraient l'être, alors j'ai fini par y consacrer une page plutôt que de perdre le débat à chaque dîner.",
+    'beyond.music.cta': "Ce que j'écoute, et pourquoi",
     'beyond.games.title': 'Développement de jeux',
     'beyond.games.text': "Je fais de petits jeux sur mon temps libre. C'est là que je touche aux parties du métier que la production ne laisse jamais faire : la physique, la génération procédurale, et le fait de régler une mécanique jusqu'à ce qu'elle soit agréable plutôt que jusqu'à ce qu'elle passe à l'échelle.",
     'beyond.martial.title': 'Arts martiaux',

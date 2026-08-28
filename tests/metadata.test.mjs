@@ -5,6 +5,7 @@ import { readFile } from 'node:fs/promises';
 const PAGES = [
   'index.html',
   'archive.html',
+  'music.html',
   '404.html',
   'projects/optimops.html',
   'projects/emotion-recognition.html',
