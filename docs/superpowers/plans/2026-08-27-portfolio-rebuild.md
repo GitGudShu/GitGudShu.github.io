@@ -512,7 +512,7 @@ git commit -m "feat: add design token system with AA contrast verification"
   - `js/storage.js` exports `readStored(key: string): string | null` and `writeStored(key: string, value: string): boolean`. Both swallow every exception; `readStored` returns `null` on failure, `writeStored` returns `false`.
   - `js/theme.js` exports `THEMES: ['light','dark']`, `STORAGE_KEY: 'tc-theme'`, `resolveTheme(stored: string|null, prefersDark: boolean): 'light'|'dark'`, `nextTheme(current: string): 'light'|'dark'`, `applyTheme(theme: string, root?: HTMLElement): void`, and `initTheme({ button }: { button: HTMLElement }): { getTheme(): string, setTheme(t: string): void, toggle(): void }`.
 
-- [ ] **Step 1: Write the failing theme test**
+- [x] **Step 1: Write the failing theme test**
 
 `tests/theme.test.mjs`:
 
@@ -551,12 +551,12 @@ test('nextTheme flips, and treats anything unknown as light so the first click g
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/theme.test.mjs`
 Expected: FAIL — `Cannot find module '../js/theme.js'`.
 
-- [ ] **Step 3: Implement safe storage**
+- [x] **Step 3: Implement safe storage**
 
 `js/storage.js`:
 
@@ -587,7 +587,7 @@ export function writeStored(key, value) {
 }
 ```
 
-- [ ] **Step 4: Implement the theme module**
+- [x] **Step 4: Implement the theme module**
 
 `js/theme.js`:
 
@@ -694,12 +694,12 @@ export function initTheme({ button }) {
 }
 ```
 
-- [ ] **Step 5: Run the test to verify it passes**
+- [x] **Step 5: Run the test to verify it passes**
 
 Run: `node --test tests/theme.test.mjs`
 Expected: PASS, 6/6.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add js/storage.js js/theme.js tests/theme.test.mjs
