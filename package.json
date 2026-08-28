@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Personal portfolio of Thomas Chu. No build step, no runtime dependencies.",
   "scripts": {
-    "test": "node --test tests/",
+    "test": "node --test \"tests/*.test.mjs\"",
     "check:i18n": "node tools/check-i18n.mjs",
     "check:contrast": "node tools/check-contrast.mjs",
     "check": "npm run check:contrast && npm run check:i18n",

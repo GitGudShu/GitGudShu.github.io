@@ -1084,7 +1084,7 @@ git commit -m "feat: add i18n engine, shared dictionary and parity checker"
   - `index.html` provides the shell later tasks append into: `header#top`, `main#content`, `footer`, and `<section>` landmarks with ids `about`, `work`, `beyond`, `resume`, `contact`. `<body data-page="home">`.
   - CSS class contract used by later tasks: `.rail`, `.rail--prose`, `.section`, `.section__head`, `.section__title`, `.eyebrow`, `.btn`, `.btn--primary`, `.btn--ghost`, `.chip`, `.chip-row`, `.icon-btn`, `.reveal`.
 
-- [ ] **Step 1: Write the failing nav test**
+- [x] **Step 1: Write the failing nav test**
 
 `tests/nav.test.mjs`:
 
@@ -1124,12 +1124,12 @@ test('an empty section list never throws', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/nav.test.mjs`
 Expected: FAIL — `Cannot find module '../js/nav.js'`.
 
-- [ ] **Step 3: Implement the nav module**
+- [x] **Step 3: Implement the nav module**
 
 `js/nav.js`:
 
@@ -1253,12 +1253,12 @@ export function initNav({ header, toggle, panel, links, sections, threshold = 24
 }
 ```
 
-- [ ] **Step 4: Run the test to verify it passes**
+- [x] **Step 4: Run the test to verify it passes**
 
 Run: `node --test tests/nav.test.mjs`
 Expected: PASS, 5/5.
 
-- [ ] **Step 5: Write `css/base.css`**
+- [x] **Step 5: Write `css/base.css`**
 
 ```css
 /* ==========================================================================
@@ -1370,7 +1370,7 @@ main.is-swapping { opacity: 0; filter: blur(4px); }
 }
 ```
 
-- [ ] **Step 6: Write `css/layout.css`**
+- [x] **Step 6: Write `css/layout.css`**
 
 ```css
 /* ==========================================================================
@@ -1538,7 +1538,7 @@ body.has-panel-open { overflow: hidden; }
 }
 ```
 
-- [ ] **Step 7: Write `css/components.css`**
+- [x] **Step 7: Write `css/components.css`**
 
 Cards, timeline and hobby panels are appended by Tasks 7–9. This step creates the file with buttons, chips, icon buttons, the language toggle and the reveal primitive.
 
@@ -1642,7 +1642,7 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
 }
 ```
 
-- [ ] **Step 8: Create `css/pages.css` as a stub**
+- [x] **Step 8: Create `css/pages.css` as a stub**
 
 ```css
 /* ==========================================================================
@@ -1651,7 +1651,7 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
    ========================================================================== */
 ```
 
-- [ ] **Step 9: Write the `index.html` shell**
+- [x] **Step 9: Write the `index.html` shell**
 
 Section bodies are appended by later tasks; the landmarks and headings exist now so the nav has something to track.
 
@@ -1782,7 +1782,7 @@ Section bodies are appended by later tasks; the landmarks and headings exist now
 </html>
 ```
 
-- [ ] **Step 10: Write `js/main.js`**
+- [x] **Step 10: Write `js/main.js`**
 
 Later tasks extend this file; reveal and particle wiring arrives in Task 10.
 
@@ -1824,7 +1824,7 @@ async function boot() {
 boot();
 ```
 
-- [ ] **Step 11: Write the initial home dictionary**
+- [x] **Step 11: Write the initial home dictionary**
 
 `js/i18n/home.js` — created now so `main.js` resolves; extended by Tasks 5, 7, 8, 9.
 
@@ -1851,7 +1851,7 @@ export const home = {
 };
 ```
 
-- [ ] **Step 12: Verify in the browser**
+- [x] **Step 12: Verify in the browser**
 
 Run: `python -m http.server 8000`, open `http://localhost:8000/`.
 
@@ -1864,7 +1864,7 @@ Confirm, in order:
 6. `EN|FR` swaps the five section headings and `<html lang>`; the choice survives a reload.
 7. Clicking a nav anchor does not leave the heading hidden under the header.
 
-- [ ] **Step 13: Verify no horizontal overflow**
+- [x] **Step 13: Verify no horizontal overflow**
 
 In the console, with the viewport at 320px:
 
@@ -1874,12 +1874,12 @@ document.documentElement.scrollWidth <= window.innerWidth
 
 Expected: `true`.
 
-- [ ] **Step 14: Run the full check suite**
+- [x] **Step 14: Run the full check suite**
 
 Run: `npm run verify`
 Expected: contrast PASS, i18n PASS (`common` and `home` at parity, `projects`/`archive` SKIP), all unit tests PASS.
 
-- [ ] **Step 15: Commit**
+- [x] **Step 15: Commit**
 
 ```bash
 git add css/base.css css/layout.css css/components.css css/pages.css \

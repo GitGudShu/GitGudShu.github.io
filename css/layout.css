@@ -1,0 +1,171 @@
+/* ==========================================================================
+   layout.css — rail, sections, header, footer, background canvas.
+   ========================================================================== */
+
+.rail {
+  width: 100%;
+  max-width: var(--rail);
+  margin-inline: auto;
+  padding-inline: max(var(--rail-pad), env(safe-area-inset-left));
+}
+.rail--prose { max-width: var(--rail-prose); }
+
+.section { padding-block: var(--section-gap); }
+.section + .section { padding-block-start: 0; }
+.section__head { margin-block-end: var(--space-6); }
+.section__title { font-size: var(--fs-h2); margin-block-start: var(--space-2); }
+
+/* ---- Header ---- */
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: var(--z-nav);
+  block-size: var(--nav-h);
+  padding-block-start: env(safe-area-inset-top);
+  display: flex;
+  align-items: center;
+  background: var(--nav-bg);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-block-end: 1px solid transparent;
+  transition: background-color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease);
+}
+.site-header.is-scrolled {
+  background: var(--nav-bg-scrolled);
+  border-block-end-color: var(--border);
+  box-shadow: var(--shadow-nav);
+}
+
+/* Without backdrop-filter the bar must be opaque, never unreadable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header { background: color-mix(in oklab, var(--bg) 97%, transparent); }
+  .site-header.is-scrolled { background: var(--bg); }
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  inline-size: 100%;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 40, "WONK" 0;
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: -.01em;
+  margin-inline-end: auto;
+}
+.brand__mark { inline-size: 26px; block-size: 26px; color: var(--accent); flex: none; }
+
+.nav-links { display: flex; align-items: center; gap: var(--space-1); }
+.nav-links a {
+  position: relative;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: var(--fs-small);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
+}
+.nav-links a:hover { color: var(--text); background: color-mix(in oklab, var(--accent) 10%, transparent); }
+.nav-links a.is-active { color: var(--accent); }
+.nav-links a.is-active::after {
+  content: "";
+  position: absolute;
+  inset-inline: var(--space-3);
+  inset-block-end: 2px;
+  block-size: 2px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+}
+
+.nav-tools { display: flex; align-items: center; gap: var(--space-2); flex: none; }
+
+/* ---- Collapsed panel ---- */
+.nav-toggle { display: none; }
+
+.nav-panel {
+  position: fixed;
+  inset-block-start: calc(var(--nav-h) + env(safe-area-inset-top));
+  inset-inline: 0;
+  z-index: var(--z-panel);
+  padding: var(--space-4) max(var(--rail-pad), env(safe-area-inset-left)) var(--space-6);
+  background: var(--surface-raised);
+  border-block-end: 1px solid var(--border);
+  box-shadow: var(--shadow-nav);
+  animation: panel-in var(--dur) var(--ease);
+}
+.nav-panel[hidden] { display: none; }
+.nav-panel a {
+  display: flex;
+  align-items: center;
+  min-block-size: 44px;
+  padding: var(--space-3) var(--space-2);
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-block-end: 1px solid var(--border);
+}
+.nav-panel a:last-child { border-block-end: 0; }
+
+@keyframes panel-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+body.has-panel-open { overflow: hidden; }
+
+@media (max-width: 859px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: inline-flex; }
+}
+@media (min-width: 860px) {
+  .nav-panel { display: none !important; }
+}
+
+/* On the narrowest phones the wordmark, the language pair and the two icon
+   buttons cannot all fit. The mark keeps the brand recognisable and the link
+   keeps its accessible name, so the word is what gives way — never a control. */
+@media (max-width: 399px) {
+  .brand span { display: none; }
+  .nav-tools { gap: var(--space-1); }
+}
+
+/* Anchored sections must clear the sticky header. */
+:target, section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
+
+/* ---- Footer ---- */
+.site-footer {
+  margin-block-start: var(--section-gap);
+  padding-block: var(--space-6);
+  padding-block-end: max(var(--space-6), env(safe-area-inset-bottom));
+  border-block-start: 1px solid var(--border);
+  color: var(--text-faint);
+  font-size: var(--fs-small);
+}
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ---- Background canvas ---- */
+#particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}

@@ -1,416 +1,124 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-    <!-- Meta tags -->
-    <title>Thomas Chu - Portfolio</title>
-    <meta name="title" content="Thomas Chu - Portfolio">
-    <meta name="description" content="This is a personal portfolio made by Shu the takodachi">
+<!-- The only inline script in the project: prevents a flash of the wrong theme. -->
+<script>
+  try {
+    var t = localStorage.getItem('tc-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = t;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+</script>
 
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+<title>Thomas Chu — Data Scientist &amp; AI Engineer</title>
+<meta name="description" content="Data scientist and AI engineer building decision-support systems. Apprentice at UTBM, working in the AIMOS team at FEMTO-ST.">
+<meta name="theme-color" content="#100D16">
+<link rel="canonical" href="https://gitgudshu.github.io/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-    <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link  rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&family=Open+Sans:wght@400;500&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700&display=swap">
 
-    <!-- Material icon link -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
-
-    <!-- Custom CSS link -->
-    <link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
 </head>
 
-<body>
-    <!-- Top bar -->
-    <header class="topbar">
-
-        <a href="#" class="logo">
-            <img src="./assets/images/Logo_dark.png" alt="Porfolio" class="dark" width="145" height="32">
-            <img src="./assets/images/Logo_light.png" alt="Porfolio" class="light" width="145" height="32">
-        </a>
-
-        <button class="icon-btn theme-btn">
-            <span class="material-symbols-outlined dark" aria-hidden="true"> dark_mode </span>
-            <span class="material-symbols-outlined light" aria-hidden="true"> light_mode </span>
-            <div class="state-layer"></div>
-        </button>
-
-    </header>
-
-    <main>
-        <article>
-            <!-- Hero section -->
-            <section class="section hero">
-                <div class="container">
-
-                    <figure class="hero-banner img-holder" style="--width: 240; --height:240;">
-                        <img src="./assets/images/profile.png" width="240" height="240" alt="Thomas Chu" class="img-cover">
-                    </figure>
-
-                    <div class="hero-content">
-                        <span class="label-large section-subtitle">Data Scientist</span>
-                        <h1 class="display-small">Thomas Chu</h1>
-                        <p class="body-large section-text">
-                            I'm a data science apprentice at the FEMTO-ST lab in the AND Team.
-                            Off-duty, I'm also an aspiring music composer during rare downtimes.
-                        </p>
-
-                        <div class="btn-wrapper">
-                            <a href="mailto:ml.thomaschu@gmail.com" class="chip">
-                                <span class="material-symbols-outlined" aria-hidden="true"> mail </span>
-                                <span class="label-large">ml.thomaschu@gmail.com</span>
-                                <div class="state-layer"></div>
-                            </a>
-
-                            <a href="tel:+33628561781" class="chip">
-                                <span class="material-symbols-outlined" aria-hidden="true"> call </span>
-                                <span class="label-large">+33628561781</span>
-                                <div class="state-layer"></div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Main content -->
-            <div class="article">
-                <div class="about-card">
-                    <h2 class="card-title title-medium">About</h2>
-                    <p class="body-medium card-text">
-                        Hello! I'm a data scientist currently developing an optimization software for firefighters in France, aimed at enhancing their operational efficiency. 
-                        I will very soon get my Bachelor in computer science at the IUT Nord Franche-Comté in Belfort.
-                        <br><br>
-                        Data is the field that drives me the most at the moment, it seems to me that it is at the heart of the technology of the future. 
-                        I am currently interested in expanding my expertise in large language models (LLMs) through Langchain courses. 
-                        If you're interested in collaborating or think we could work well together, feel free to reach out!
-                    </p>
-                    <ul class="about-list">
-                        <li class="list-item">
-                            <span class="material-symbols-outlined" aria-hidden="true"> location_on </span>
-                            <span class="label-medium">Franche-Comté, France</span>
-                        </li>
-                        <li class="list-item">
-                            <span class="material-symbols-outlined" aria-hidden="true"> work </span>
-                            <span class="label-medium">FEMTO-ST DISC AND</span>
-                        </li>
-                    </ul>
-
-                    <p class="body-medium card-text">
-                        <a href="CV-FR.pdf" class="btn">Download CV</a>
-                    </p>
-                </div>
-
-                <div>
-                    <!-- Primary tabs -->
-                    <div class="primary-tabs">
-                        <button class="tab-btn active" data-tab-btn="project">
-                            <span class="tab-text title-small">Projects</span>
-                            <div class="state-layer"></div>
-                        </button>
-
-                        <button class="tab-btn" data-tab-btn="resume">
-                            <span class="tab-text title-small">Resume</span>
-                            <div class="state-layer"></div>
-                        </button>
-
-                        <button class="tab-btn" data-tab-btn="contact">
-                            <span class="tab-text title-small">Contact</span>
-                            <div class="state-layer"></div>
-                        </button>
-                    </div>
-
-                    <!-- Projects -->
-                    <section class="section tab-content active" data-tab-content="project">
-                        <div class="container">
-                            <div class="project-list">
-
-                                <div class="card">
-                                    <figure class="card-banner img-holder" style="--width: 334; --height: 180;">
-                                        <img src="./assets/images/IUT NFC.jpg" alt="" class="img-cover">
-                                    </figure>
-
-                                    <div class="card-content">
-                                        <span class="label-large card-subtitle">Data Science Student</span>
-                                        <h3 class="title-large card-title">Bachelor Projects [FR]</h3>
-                                    </div>
-
-                                    <a href="./pages/BUT/home.html" class="state-layer"></a>
-                                </div>
-
-                                <div class="card">
-                                    <figure class="card-banner img-holder" style="--width: 334; --height: 180;">
-                                        <img src="./assets/images/tako-progress.png" alt="" class="img-cover">
-                                    </figure>
-
-                                    <div class="card-content">
-                                        <span class="label-large card-subtitle">---</span>
-                                        <h3 class="title-large card-title">Writing in progress</h3>
-                                    </div>
-
-                                    <a href="#" class="state-layer"></a>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </section>
-
-                    <!-- Resume -->
-                    <section class="section tab-content resume-tab" data-tab-content="resume">
-                        <div class="container">
-
-                            <h2 class="section-title title-small">Experience</h2>
-
-                            <ul class="list">
-                                <li class="resume-item">
-                                    <div class="resume-card">
-                                        <p class="body-large">Data Scientist, FEMTO-ST</p>
-                                        <span class="label-medium card-subtitle">2023 - Present</span>
-                                        <span class="body-medium card-text">
-                                            Led the development of an intervention optimizer software for the 
-                                            firefighters of France resulting in improved efficiency and streamlined processes.
-                                        </span>
-                                    </div>
-                                </li>
-
-                                <li class="resume-item">
-                                    <div class="resume-card">
-                                        <p class="body-large">Research Assistant Intern, Portsmouth University</p>
-                                        <span class="label-medium card-subtitle">2023</span>
-                                        <span class="body-medium card-text">
-                                            Assisted in the development of a machine learning model for predicting the emotions of students in England.
-                                        </span>
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <h2 class="section-title title-small">Education</h2>
-
-                            <ul class="list">
-
-                                <li class="resume-item">
-                                    <div class="resume-card">
-
-                                        <p class="body-large">
-                                            Engineering Degree in Computer Science, UTBM (Belfort, France)
-                                        </p>
-
-                                        <span class="label-medium card-subtitle">2024 - Present</span>
-
-                                    </div>
-                                </li>
-
-                                <li class="resume-item">
-                                    <div class="resume-card">
-
-                                        <p class="body-large">
-                                            Bachelor of Computer Science (BUT), IUT Nord France-Comté (Belfort, France)
-                                        </p>
-
-                                        <span class="label-medium card-subtitle">2021 - 2024</span>
-
-                                    </div>
-                                </li>
-
-                                <li class="resume-item">
-                                    <div class="resume-card">
-
-                                        <p class="body-large">
-                                            Preparatory courses for <i>Grandes Ecoles</i> (CPGE), Victor Hugo High School (Besançon, France)
-                                        </p>
-
-                                        <span class="label-medium card-subtitle">2019 - 2021</span>
-
-                                    </div>
-                                </li>
-
-                                <li class="resume-item">
-                                    <div class="resume-card">
-
-                                        <p class="body-large">
-                                            Scientific Baccalaureate, Georges Colomb High School (Lure, France)
-                                        </p>
-
-                                        <span class="label-medium card-subtitle">2016 - 2019</span>
-
-                                    </div>
-                                </li>
-                            </ul>
-
-                            <h2 class="section-title title-small">Skills and Technologies</h2>
-
-                            <ul class="resume-bottom-list">
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/python.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">Python</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/jupyter.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">Jupyter</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/node.js.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">Node.js</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/vue.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">Vue.js</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/javascript.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">JavaScript</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/github.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">GitHub</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/VS_code.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">VSCode</span>
-                                </li>
-
-                                <li class="resume-bottom-item">
-                                    <img src="./assets/images/mongoDB.svg" width="28" height="28" loading="lazy" alt="HTML5" class="icon">
-
-                                    <span class="label-medium">Mongo DB</span>
-                                </li>
-
-                            </ul>
-
-                        </div>
-                    </section>
-
-                    <!-- Contact -->
-                    <section class="section tab-content contact-tab" data-tab-content="contact">
-                        <div class="container">
-
-                            <div class="contact-info">
-
-                                <h4 class="section-title title-small">Contact Info</h4>
-
-                                <ul class="contact-info-list">
-
-                                    <li class="contact-info-item">
-
-                                        <div class="icon-box">
-                                            <span class="material-symbols-outlined" aria-hidden="true">mail </span>
-                                        </div>
-
-                                        <div class="info-content">
-                                            <p class="label-small info-title">Mail me</p>
-                                            <a href="mailto:ml.thomaschu@gmail.com" class="label-small info-text">ml.thomaschu@gmail.com</a>
-                                            <a href="mailto:thomas.chu@edu.univ-fcomte.fr" class="label-small info-text">thomas.chu@edu.univ-fcomte.fr</a>
-                                        </div>
-
-                                    </li>
-
-                                    <li class="contact-info-item">
-
-                                        <div class="icon-box">
-                                            <span class="material-symbols-outlined" aria-hidden="true">call </span>
-                                        </div>
-
-                                        <div class="info-content">
-                                            <p class="label-small info-title">Call me</p>
-                                            <a href="tel:+33628561781" class="label-small info-text">+33628561781</a>
-                                        </div>
-
-                                    </li>
-
-                                    <li class="contact-info-item">
-
-                                        <div class="icon-box">
-                                            <span class="material-symbols-outlined" aria-hidden="true">location_on </span>
-                                        </div>
-
-                                        <div class="info-content">
-                                            <p class="label-small info-title">Address</p>
-                                            <a href="https://www.google.fr/maps/place/6+Imp.+Marie+Richard,+70200+Lure/@47.6800389,6.4963156,17z/data=!3m1!4b1!4m6!3m5!1s0x47925b3899b6b1c5:0xd5e3992fd09cade!8m2!3d47.6800353!4d6.4988905!16s%2Fg%2F11c2b973g8?entry=ttu" class="label-small info-text">6 Impasse Marie Richard, 70200 LURE, France</a>
-                                        </div>
-
-                                    </li>
-
-                                </ul>
-
-                                <h4 class="title-small">Social Info</h4>
-
-                                <div class="social-list">
-
-                                    <a href="https://github.com/GitGudShu" class="social-item">
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <g clip-path="url(#clip0_66_1649)">
-                                            <path d="M0.184072 10.462C-0.594929 15.368 1.58507 21.285 8.30707 23.468C8.42707 23.49 8.53807 23.5 8.64207 23.5C9.42407 23.5 9.96207 22.918 9.96207 22.2C9.86507 21.677 10.3451 19.558 9.04207 19.843C6.52307 20.379 6.22107 18.972 5.83707 18.236C6.92307 19.63 8.55507 19.595 9.78607 19.055C10.4691 18.755 10.1121 17.991 10.4361 17.712C10.5468 17.6167 10.6273 17.4911 10.6677 17.3507C10.7081 17.2103 10.7065 17.0611 10.6633 16.9216C10.6201 16.782 10.537 16.6581 10.4244 16.5651C10.3117 16.4721 10.1743 16.414 10.0291 16.398C7.71507 16.143 5.57207 15.397 5.57207 11.696C5.57207 9.52797 7.07707 9.33397 6.66207 8.42697C6.64707 8.39397 6.32907 7.67297 6.61707 6.57797C8.03607 6.83997 8.68907 7.85797 9.37007 7.67497C11.0571 7.21497 12.9141 7.21497 14.6001 7.67497C15.3041 7.86397 15.8071 6.87397 17.3381 6.57197C17.7791 8.22597 16.8651 8.62997 17.4411 9.24897C18.0731 9.92897 18.3941 10.752 18.3941 11.696C18.3941 17.26 13.6771 15.653 13.2931 16.916C13.2501 17.0565 13.2495 17.2065 13.2913 17.3474C13.3331 17.4882 13.4155 17.6136 13.5281 17.708C14.1381 18.221 14.0581 19.538 13.9931 20.597C13.9261 21.695 13.8681 22.642 14.4751 23.176C14.6891 23.366 15.0701 23.569 15.7591 23.429C22.3931 21.298 24.5891 15.407 23.8221 10.512C21.7261 -2.85603 2.29607 -2.84003 0.184072 10.462ZM8.45407 21.44L8.45807 21.945C7.95288 21.7709 7.46008 21.5628 6.98307 21.322C7.40807 21.431 7.89607 21.478 8.45407 21.44ZM8.82407 17.74L8.80907 17.82C7.95607 18.072 7.30007 17.821 6.85207 17.068L6.85107 17.066C7.53107 17.43 8.23207 17.626 8.82407 17.74ZM12.0001 1.99997C23.8331 1.99997 26.5021 18.267 15.4691 21.941C15.4311 21.644 15.4661 21.084 15.4901 20.689C15.5481 19.738 15.6161 18.63 15.2771 17.704C20.3651 16.645 20.7901 11.058 18.8311 8.56897C19.0741 7.61697 18.9761 5.37997 18.1021 5.10597C17.8961 5.04097 16.7971 4.80197 14.6651 6.14297C12.9023 5.72648 11.0668 5.72648 9.30407 6.14297C8.24007 5.47597 5.84207 4.39097 5.38207 5.54297C4.84807 6.88497 4.97507 7.96997 5.13407 8.57297C3.39507 10.777 3.91607 14.467 5.66807 16.199C4.67507 15.724 3.30707 15.562 3.01207 16.513C2.68907 17.55 3.92407 17.424 4.69107 19.317C4.76407 19.553 4.89907 19.83 5.10607 20.105C-1.70493 14.54 1.58107 1.99997 12.0001 1.99997Z" style="fill: var(--on-surface-variant)"/>
-                                            </g>
-                                            <defs>
-                                            <clipPath id="clip0_66_1649">
-                                            <rect width="24" height="24" fill="white"/>
-                                            </clipPath>
-                                            </defs>
-                                        </svg>
-                                            
-                                    </a>
-
-                                    <a href="https://www.linkedin.com/in/thomas-chu-259702235/" class="social-item">
-                                        <svg class="svg-icon" height="24" width="24" style="vertical-align: middle;fill: currentColor;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M624.238215 382.738035c-21.642438 0-37.685227 5.456592-50.233345 12.364188-2.002794-7.152836-8.624277-12.384625-16.410649-10.831437l-95.296212 0c-9.421307-1.573624-17.044186 6.069692-14.142179 15.961043l0 351.265557c-2.902008 8.951263 4.720872 16.615016 14.142179 15.961043l95.296212 0c9.421307 0.633537 17.044186-7.030216 17.044186-16.451523l-0.040873-212.275735c-0.040873-0.102183-0.388297-10.25921 6.028819-17.248553 5.150042-5.558775 13.978685-8.399473 26.220253-8.399473 20.375364 0 29.449248 8.338163 32.821299 26.97641l0 210.947352c-3.351615 9.421307 4.271265 17.08506 13.692572 16.451523l100.425817 0c9.421307 0.633537 17.044186-7.030216 13.672135-16.451523l0-218.038878c3.351615-110.868958-75.615695-150.250429-143.24065-150.250429zM736.742107 735.536343l-66.296571 0 0-195.456353c0-37.705664-24.360516-61.085219-63.53762-61.085219-22.153355 0-39.401908 6.519299-51.275616 19.353531-16.512833 17.88209-15.225322 40.546362-11.689778 45.59422l0 191.593821-64.559454 0 0-318.689498 61.187403 0 0 10.729254c0 6.478426 3.678601 12.445935 9.52349 15.286632s12.772921 2.145851 17.9434-1.777991l4.475632-3.453798c12.936415-10.177464 26.322436-20.763661 51.786533-20.763661 26.383746 0 112.503892 8.399473 112.503892 116.14162l0 202.507005zM352.348701 223.515906c-35.82549 0-64.947751 29.122261-64.947751 64.947751s29.122261 64.947751 64.947751 64.947751 64.947751-29.122261 64.947751-64.947751-29.122261-64.947751-64.947751-64.947751zM352.348701 319.323035c-16.982876 0-30.838941-13.856065-30.838941-30.838941s13.856065-30.838941 30.838941-30.838941 30.838941 13.856065 30.838941 30.838941-13.856065 30.838941-30.838941 30.838941zM397.942921 382.697162l-94.785295 0c-9.421307 0-17.044186 7.622879-14.693969 17.534667l0 351.265557c-2.370654 8.951263 5.272662 16.615016 14.693969 15.961043l94.785295 0c9.421307 0.633537 17.044186-7.030216 17.044186-16.451523l0-351.265557c0-9.421307-7.622879-17.044186-17.044186-17.044186zM384.270786 735.536343l-64.048537 0 0-318.689498 64.048537 0 0 318.689498zM512 0c-282.353091 0-512 229.667345-512 512s229.667345 512 512 512 512-229.667345 512-512-229.667345-512-512-512zM512 989.891191c-263.510478 0-477.891191-214.40115-477.891191-477.891191s214.40115-477.891191 477.891191-477.891191 477.891191 214.40115 477.891191 477.891191-214.40115 477.891191-477.891191 477.891191"  />
-                                        </svg>
-                                    </a>
-
-                                </div>
-
-                            </div>
-
-                            <!-- <form action="" method="post" class="contact-form">
-                                <h3 class="title-large">Let's Work Together</h3>
-
-                                <div class="input-wrapper">
-                                    <input type="text" name="name" placeholder="Name*" required class="input-field">
-                                    <input type="email" name="email" placeholder="Email*" required class="input-field">
-                                    <input type="text" name="subject" placeholder="Subject" required class="input-field">
-                                    <textarea name="message" placeholder="Message*" required class="textarea"></textarea>
-
-                                    <button class="btn" type="submit">
-                                        <span class="label-large">Send Message</span>
-                                        <div class="state-layer"></div>
-                                    </button>
-                                </div>
-                            </form> -->
-
-                        </div>
-                    </section>
-
-                </div>
-            </div>
-
-        </article>
-    </main>
-
-    <footer class="footer">
-        <div class="container">
-            <p class="body-medium"></p>
-        </div>
-    </footer>
-
-    <!-- Custom JS link -->
-    <script src="./js/script.js"></script>
+<body data-page="home">
+<a class="skip-link" href="#content" data-i18n="skip.link">Skip to content</a>
+
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<header class="site-header" id="top">
+  <div class="rail site-header__inner">
+    <a class="brand" href="#top" data-i18n-attr="aria-label:nav.home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="none" stroke="currentColor">
+        <rect x="1" y="1" width="30" height="30" rx="9" stroke-width="1.5"/>
+        <path d="M8 11h8M12 11v11" stroke-width="2" stroke-linecap="round"/>
+        <path d="M24 12.5a4.5 4.5 0 1 0 0 7" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Thomas Chu</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#work" data-i18n="nav.work">Work</a>
+      <a href="#beyond" data-i18n="nav.beyond">Beyond the work</a>
+      <a href="#resume" data-i18n="nav.resume">Résumé</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" data-i18n="lang.en" data-i18n-attr="title:lang.toEn">EN</button>
+        <button type="button" data-lang="fr" data-i18n="lang.fr" data-i18n-attr="title:lang.toFr">FR</button>
+      </div>
+
+      <button type="button" class="icon-btn" id="theme-btn" data-i18n-attr="aria-label:theme.toDark">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/>
+        </svg>
+      </button>
+
+      <button type="button" class="icon-btn nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="nav-panel" data-i18n-attr="aria-label:nav.menu.open">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-panel" id="nav-panel" aria-label="Primary mobile" hidden>
+  <a href="#about" data-i18n="nav.about">About</a>
+  <a href="#work" data-i18n="nav.work">Work</a>
+  <a href="#beyond" data-i18n="nav.beyond">Beyond the work</a>
+  <a href="#resume" data-i18n="nav.resume">Résumé</a>
+  <a href="#contact" data-i18n="nav.contact">Contact</a>
+</nav>
+
+<main id="content">
+  <!-- Task 5 inserts the hero here -->
+
+  <section class="section" id="about" aria-labelledby="about-title">
+    <div class="rail"><h2 class="section__title" id="about-title" data-i18n="about.title">About</h2></div>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="rail"><h2 class="section__title" id="work-title" data-i18n="work.title">Selected work</h2></div>
+  </section>
+
+  <section class="section" id="beyond" aria-labelledby="beyond-title">
+    <div class="rail"><h2 class="section__title" id="beyond-title" data-i18n="beyond.title">Beyond the work</h2></div>
+  </section>
+
+  <section class="section" id="resume" aria-labelledby="resume-title">
+    <div class="rail"><h2 class="section__title" id="resume-title" data-i18n="resume.title">Résumé</h2></div>
+  </section>
+
+  <section class="section" id="contact" aria-labelledby="contact-title">
+    <div class="rail"><h2 class="section__title" id="contact-title" data-i18n="contact.title">Contact</h2></div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="rail site-footer__inner">
+    <p data-i18n="footer.built">Built from scratch — no framework, no tracking.</p>
+    <a href="https://github.com/GitGudShu/GitGudShu.github.io" data-i18n="footer.source">Source on GitHub</a>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
 </body>
 </html>

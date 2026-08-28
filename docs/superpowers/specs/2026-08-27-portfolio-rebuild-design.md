@@ -64,7 +64,7 @@ before JS runs and the explicit toggle wins in both directions.
 | `--border-strong` | `#3D3350` | hover/focus borders |
 | `--text` | `#E8E3F0` | body |
 | `--text-muted` | `#A79FB8` | secondary |
-| `--text-faint` | `#7A7189` | eyebrows, meta |
+| `--text-faint` | `#857C95` | eyebrows, meta |
 | `--accent` | `#B9A5FF` | links, accents |
 | `--accent-strong` | `#CDBCFF` | hover |
 | `--accent-contrast` | `#1B1330` | text on accent fills |
@@ -80,7 +80,7 @@ before JS runs and the explicit toggle wins in both directions.
 | `--border-strong` | `#BCAFCE` | hover/focus borders |
 | `--text` | `#262029` | body |
 | `--text-muted` | `#5B5366` | secondary |
-| `--text-faint` | `#776E84` | eyebrows, meta |
+| `--text-faint` | `#6B6379` | eyebrows, meta |
 | `--accent` | `#5F4EB8` | links, accents |
 | `--accent-strong` | `#4B3B9E` | hover |
 | `--accent-contrast` | `#FFFFFF` | text on accent fills |
