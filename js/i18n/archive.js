@@ -39,29 +39,29 @@ export const archive = {
 
     'arch.eyebrow': '2021-2024 · Projets académiques du BUT',
     'arch.title': 'Projets universitaires',
-    'arch.lead': "Des projets universitaires issus de mon BUT informatique. Ils répondaient à un sujet imposé plutôt qu'à un besoin, et je n'ai gardé que ceux qui m'intéressent encore. Les rapports d'origine sont joints lorsqu'ils existent.",
+    'arch.lead': "Des projets de BUT informatique. Ils répondaient à un sujet imposé et non à un besoin réel, et je n'ai gardé que ceux qui m'intéressent encore aujourd'hui. Les rapports d'origine sont joints quand ils existent.",
 
     'arch.kamisado.title': 'Kamisado, un jeu de plateau et son IA',
-    'arch.kamisado.text': "Une implémentation complète du jeu Kamisado en Java et JavaFX sur une structure MVC, jouable à deux ou contre l'ordinateur. L'intérêt était l'adversaire : deux stratégies distinctes, l'une gloutonne et l'autre anticipant davantage, ce qui a rendu concret plutôt que théorique le rapport entre profondeur de recherche et niveau de jeu.",
+    'arch.kamisado.text': "Le jeu de plateau Kamisado, écrit entièrement en Java et JavaFX sur une architecture MVC, jouable à deux ou contre l'ordinateur. Le morceau intéressant, c'était l'adversaire : deux stratégies, une gloutonne et une qui anticipe davantage. De quoi rendre très concret le rapport entre profondeur de recherche et niveau de jeu.",
 
     'arch.covid.title': 'Tableau de bord de veille Covid-19',
-    'arch.covid.text': "Un tableau de bord récupérant des données épidémiologiques depuis une API européenne, les traitant en Python et les restituant dans une interface Vue avec filtrage, recherche et graphiques. Ma première rencontre avec le problème qui me suit depuis : la visualisation est rapide, et c'est le nettoyage des données qui constitue le projet.",
+    'arch.covid.text': "Un tableau de bord qui va chercher des données épidémiologiques sur une API européenne, les traite en Python et les affiche dans une interface Vue avec filtres, recherche et graphiques. Ma première rencontre avec le problème qui me poursuit depuis : la visualisation prend une soirée, le nettoyage des données prend le reste du projet.",
 
     'arch.ecommerce.title': "Plateforme e-commerce, du besoin à la base de données",
-    'arch.ecommerce.text': "Partant d'un cahier des charges client, passer par l'analyse des besoins, un modèle conceptuel de données, puis le SQL, puis une application Flask fonctionnelle. Dérouler toute la chaîne dans l'ordre, plutôt que concevoir un schéma en espérant qu'il corresponde au besoin, est une discipline que j'applique encore.",
+    'arch.ecommerce.text': "Partir d'un cahier des charges client, passer par l'analyse des besoins, un modèle conceptuel de données, puis le SQL, puis une application Flask qui tourne. Dérouler toute la chaîne dans l'ordre au lieu de dessiner un schéma en espérant qu'il colle au besoin : c'est une discipline que j'applique encore.",
 
     'arch.token.title': 'Le jeu du jeton manquant',
-    'arch.token.text': "Un jeu en terminal avec un cœur couvert par des tests unitaires et deux algorithmes d'IA, accompagnés d'une comparaison de performances. Modeste, mais c'est là que j'ai appris que « quel algorithme est le plus rapide » est une question qui se mesure plutôt qu'elle ne se discute.",
+    'arch.token.text': "Un jeu en terminal, avec un cœur couvert par des tests unitaires, deux algorithmes d'IA et une comparaison de performances entre les deux. Modeste, mais c'est là que j'ai compris que « quel algorithme est le plus rapide » est une question qui se mesure, pas une question qui se débat.",
 
     'arch.network.title': 'Services réseau et déploiement',
-    'arch.network.text': "Installation et configuration des services réseau nécessaires au déploiement et à l'hébergement d'une application web, jusqu'à une mise en production réelle. Ingrat, et première occasion de comprendre à quel point la livraison logicielle se joue après l'écriture du code.",
+    'arch.network.text': "Installer et configurer les services réseau nécessaires pour déployer et héberger une application web, jusqu'à une vraie mise en production. Ingrat, et c'est là que j'ai compris à quel point la livraison d'un logiciel se joue après l'écriture du code.",
 
     'arch.management.title': "Gestion du projet e-commerce",
-    'arch.management.text': "Le volet planification du même projet e-commerce : cahier des charges, analyse des coûts, planning Gantt et PERT. Ce n'est pas de l'ingénierie, mais cela m'a rendu bien meilleur pour estimer à quel point mes estimations sont fausses.",
+    'arch.management.text': "Le volet planification du même projet e-commerce : cahier des charges, analyse des coûts, planning Gantt et PERT. Ce n'est pas de l'ingénierie, mais ça m'a rendu bien meilleur pour estimer à quel point mes estimations sont fausses.",
 
-    'arch.shot.kamisado': 'Le plateau de Kamisado en cours de partie, la contrainte de couleur dictant le coup suivant.',
-    'arch.shot.token': 'La pyramide de jetons, avec deux joueurs qui placent leurs pièces.',
-    'arch.shot.ecommerce': "La boutique : liste des articles avec prix, stock et notes par produit.",
+    'arch.shot.kamisado': "Le plateau de Kamisado en pleine partie : la couleur de la case impose le coup suivant.",
+    'arch.shot.token': 'La pyramide de jetons, avec deux joueurs qui posent leurs pièces.',
+    'arch.shot.ecommerce': "La boutique : les articles avec leur prix, leur stock et leur note.",
     'arch.shot.cart': "Le panier et le panneau de filtres à facettes bâti sur le schéma SQL.",
 
     'arch.reports': 'Rapports',

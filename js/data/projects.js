@@ -13,7 +13,7 @@ export const PROJECTS = [
     id: 'optimops',
     href: 'projects/optimops.html',
     cover: 'optimops',
-    shot: { src: 'assets/screens/optimops-coverage.jpg', w: 1098, h: 531, alt: 'work.shot.optimops' },
+    shot: { src: 'assets/screens/optimops-unavailability.jpg', w: 759, h: 323, alt: 'work.shot.optimops' },
     tags: ['Python', 'FastAPI', 'Vue 3', 'Quasar', 'Parquet'],
   },
   {

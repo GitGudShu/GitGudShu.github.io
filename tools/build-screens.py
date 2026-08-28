@@ -33,30 +33,18 @@ def pixelate(im, box, block=14):
 
 
 SCREENS = [
+    {"src": "synthese-heatmap.png", "out": "optimops-overview.jpg", "redact": []},
+    {"src": "indispo-time-series.png", "out": "optimops-unavailability.jpg", "redact": []},
+    {"src": "armement-editeur.png", "out": "optimops-arming.jpg", "redact": []},
     {
-        "src": "cumul_s6.png",
+        "src": "coverage-real-example.png",
         "out": "optimops-coverage.jpg",
         "redact": [
-            (265, 25, 345, 62),      # "du Doubs" in the map title
-            (735, 33, 830, 70),      # station name in the panel title
-            (568, 140, 832, 392),    # station name column
+            (553, 26, 795, 64),      # company name in the title
+            (462, 610, 655, 646),    # three town labels on the map
+            (486, 718, 845, 754),
+            (718, 808, 930, 844),
         ],
-    },
-    {
-        "src": "maquette_s6.jpg",
-        "out": "optimops-charts.jpg",
-        "crop": (52, 918, 1170, 1300),
-        "redact": [
-            (446, 36, 624, 76),      # station name and year in the panel title
-            (82, 170, 292, 198),     # three chart titles
-            (484, 170, 637, 198),
-            (812, 170, 1022, 198),
-        ],
-    },
-    {
-        "src": "Optimops_DBv1.png",
-        "out": "optimops-model.png",
-        "redact": [],
     },
     {
         "src": "meteo_s6.png",
@@ -107,6 +95,9 @@ def build(spec):
 def main():
     DST.mkdir(parents=True, exist_ok=True)
     for spec in SCREENS:
+        if not (SRC / spec["src"]).exists():
+            print(f"skip {spec['out']}: {spec['src']} not present")
+            continue
         out, size = build(spec)
         print(f"{out.relative_to(ROOT)}  {size[0]}x{size[1]}  {out.stat().st_size // 1024} KB")
 

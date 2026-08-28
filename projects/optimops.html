@@ -16,18 +16,18 @@
   }
 </script>
 
-<title>OptimOps Neo, Thomas Chu</title>
-<meta name="description" content="A full-stack decision-support platform for a French fire and rescue service: coverage analysis, scenario simulation, resource optimization, and the indicator engine underneath it.">
+<title>OptimOps, Thomas Chu</title>
+<meta name="description" content="A decision-support platform for a French fire and rescue service: coverage analysis, crew availability, regulatory compliance, scenario simulation, and the star-schema indicator engine underneath it.">
 <meta name="theme-color" content="#E9E4F0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1E1A26" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Thomas Chu">
-<meta property="og:title" content="OptimOps Neo, Thomas Chu">
-<meta property="og:description" content="A full-stack decision-support platform for a French fire and rescue service: coverage analysis, scenario simulation, resource optimization, and the indicator engine underneath it.">
+<meta property="og:title" content="OptimOps, Thomas Chu">
+<meta property="og:description" content="A decision-support platform for a French fire and rescue service: coverage analysis, crew availability, regulatory compliance, scenario simulation, and the star-schema indicator engine underneath it.">
 <meta property="og:url" content="https://gitgudshu.github.io/projects/optimops.html">
-<meta property="og:image" content="https://gitgudshu.github.io/assets/screens/optimops-coverage.jpg">
-<meta property="og:image:alt" content="The OptimOps coverage view">
+<meta property="og:image" content="https://gitgudshu.github.io/assets/screens/optimops-overview.jpg">
+<meta property="og:image:alt" content="The OptimOps overview map">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://gitgudshu.github.io/projects/optimops.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -86,8 +86,8 @@
     <div class="rail">
       <header class="project__head reveal">
         <p class="eyebrow" data-i18n="p.eyebrow">Full-stack &middot; decision support &middot; since 2023</p>
-        <h1 class="project__title" data-i18n="p.title">OptimOps Neo</h1>
-        <p class="project__lead" data-i18n="p.lead">A platform that lets a fire and rescue service ask what would happen if it moved a vehicle, changed a shift pattern, or lost a station for a day.</p>
+        <h1 class="project__title" data-i18n="p.title">OptimOps</h1>
+        <p class="project__lead" data-i18n="p.lead">A platform that answers structural questions about a fire and rescue service: which areas are genuinely covered, and which stations cannot crew a vehicle right now.</p>
       </header>
 
 
@@ -117,26 +117,40 @@
           <div data-i18n-html="p.context.body"></div>
         </div>
           <figure class="figure block__aside">
-            <img src="../assets/screens/optimops-coverage.jpg" width="1098" height="531" alt="" loading="lazy">
-            <figcaption data-i18n="p.shot.coverage">p.shot.coverage</figcaption>
+            <img src="../assets/screens/optimops-overview.jpg" width="1110" height="620" alt="" loading="lazy">
+            <figcaption data-i18n="p.shot.overview">p.shot.overview</figcaption>
           </figure>
         </section>
 
         <section class="block block--prose reveal">
         <div class="block__text">
-          <h2 data-i18n="p.built.title">What I built</h2>
+          <h2 data-i18n="p.built.title">What it does now</h2>
           <div data-i18n-html="p.built.body"></div>
         </div>
         </section>
 
         <section class="block block--split is-flipped reveal">
         <div class="block__text">
-          <h2 data-i18n="p.dashboard.title">A dashboard people build themselves</h2>
-          <div data-i18n-html="p.dashboard.body"></div>
+          <h2 data-i18n="p.coverage.title">Coverage, computed rather than declared</h2>
+          <div data-i18n-html="p.coverage.body"></div>
         </div>
           <figure class="figure block__aside">
-            <img src="../assets/screens/optimops-charts.jpg" width="1118" height="382" alt="" loading="lazy">
-            <figcaption data-i18n="p.shot.charts">p.shot.charts</figcaption>
+            <img src="../assets/screens/optimops-coverage.jpg" width="1200" height="1020" alt="" loading="lazy">
+            <figcaption data-i18n="p.shot.coverage">p.shot.coverage</figcaption>
+          </figure>
+        </section>
+
+        <section class="block block--prose reveal">
+        <div class="block__text">
+          <h2 data-i18n="p.arming.title">Rules the service edits itself</h2>
+          <div data-i18n-html="p.arming.body"></div>
+        </div>
+        </section>
+
+        <section class="block block--figure reveal">
+          <figure class="figure">
+            <img src="../assets/screens/optimops-arming.jpg" width="1200" height="205" alt="" loading="lazy">
+            <figcaption data-i18n="p.shot.arming">p.shot.arming</figcaption>
           </figure>
         </section>
 
@@ -148,9 +162,9 @@
         </section>
 
         <section class="block block--figure reveal">
-          <figure class="figure">
-            <img src="../assets/screens/optimops-model.png" width="1200" height="701" alt="" loading="lazy">
-            <figcaption data-i18n="p.shot.model">p.shot.model</figcaption>
+          <figure class="figure figure--diagram">
+            <div class="diagram" data-diagram="optimopsStar" aria-hidden="true"></div>
+            <figcaption data-i18n="p.diagram.star">p.diagram.star</figcaption>
           </figure>
         </section>
 
