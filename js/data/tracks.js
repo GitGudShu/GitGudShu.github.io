@@ -1,12 +1,11 @@
 /**
  * The music the page talks about, played through YouTube's own embedded player.
  *
- * ── PASTE YOUTUBE LINKS HERE ──────────────────────────────────────────────
- * Paste the whole link. Any of these work, and so does the bare id:
- *     https://www.youtube.com/watch?v=dQw4w9WgXcQ
- *     https://youtu.be/dQw4w9WgXcQ?si=whatever
- *     https://music.youtube.com/watch?v=dQw4w9WgXcQ&t=42
- *     dQw4w9WgXcQ
+ * ── VIDEO IDS ─────────────────────────────────────────────────────────────
+ * The id is the 11 characters after v= :
+ *     https://www.youtube.com/watch?v=dQw4w9WgXcQ  ->  'dQw4w9WgXcQ'
+ * A whole pasted link works too, in any of YouTube's shapes, so it does not
+ * matter which one you happen to have on the clipboard.
  *
  * Use an official upload: the label, the composer's own channel, or the
  * auto-generated "Topic" channel. Embedding a fan re-upload is the one case
@@ -70,17 +69,22 @@ function borrowedArt() {
 const ART = { melody: melodyArt, pedal: pedalArt, borrowed: borrowedArt };
 
 export const TRACKS = [
-  { id: 'forbidden-friendship', link: '', art: 'melody' },
-  { id: 'violet-evergarden', link: '', art: 'pedal' },
-  { id: 'be-still-my-soul', link: '', art: 'borrowed' },
-  { id: 'land-of-the-lustrous', link: '', art: 'melody' },
-  { id: 'you-say-run', link: '', art: 'pedal' },
-  { id: 'waving-through-a-window', link: '', art: 'melody' },
+  { id: 'goodnight-sweet-possums', videoId: 'lx-DZk19byY', art: 'melody' },
+  { id: 'song-for-the-beyond', videoId: 'GaO-5XB285E', art: 'pedal' },
+  { id: 'blessings', videoId: '2lmPm_yZ9Ow', art: 'borrowed' },
+  // ロキシーからの贈り物
+  { id: 'gift-from-roxy', videoId: 'CCLGUHut90A', art: 'melody' },
+  // Composed by Yuki Hayashi and Asami Tachibana
+  { id: 'above', videoId: 'QHRcpLQhE0Q', art: 'pedal' },
+  // Written by Pasek and Paul, sung by Grant Gustin
+  { id: 'running-home-to-you', videoId: 'f4a1vf7l-jI', art: 'melody' },
+  // Composed by Yuki Kajiura
+  { id: 'in-the-city-of-flowers', videoId: 'ugKa1EibcEQ', art: 'borrowed' },
 ];
 
-/** The id a track will actually play, or '' when the link is missing or junk. */
+/** The id a track will actually play, or '' when it is missing or unparseable. */
 export function videoIdFor(track) {
-  return parseVideoId(track?.link ?? '');
+  return parseVideoId(track?.videoId ?? '');
 }
 
 export function hasVideo(track) {

@@ -63,16 +63,16 @@ test('parseVideoId refuses anything that is not a YouTube video', () => {
 });
 
 test('an unset or unparseable link leaves the track silent rather than broken', () => {
-  assert.equal(hasVideo({ link: 'https://youtu.be/dQw4w9WgXcQ' }), true);
-  assert.equal(videoIdFor({ link: 'https://youtu.be/dQw4w9WgXcQ' }), 'dQw4w9WgXcQ');
-  assert.equal(hasVideo({ link: '' }), false);
-  assert.equal(hasVideo({ link: 'https://example.com/nope' }), false);
+  assert.equal(hasVideo({ videoId: 'dQw4w9WgXcQ' }), true);
+  assert.equal(videoIdFor({ videoId: 'https://youtu.be/dQw4w9WgXcQ' }), 'dQw4w9WgXcQ');
+  assert.equal(hasVideo({ videoId: '' }), false);
+  assert.equal(hasVideo({ videoId: 'https://example.com/nope' }), false);
   assert.equal(hasVideo({}), false);
   assert.equal(hasVideo(undefined), false);
 });
 
 test('every track has art, a title and a credit in both languages', () => {
-  assert.equal(TRACKS.length, 6);
+  assert.equal(TRACKS.length, 7);
   for (const track of TRACKS) {
     const svg = renderTrackArt(track.id);
     assert.match(svg, /^<svg[\s>]/);
@@ -104,7 +104,7 @@ test('the page wires the player, the tracklist and the cue buttons', async () =>
   for (const track of TRACKS) {
     assert.match(html, new RegExp(`data-track="${track.id}"`), `${track.id} missing from the tracklist`);
   }
-  for (const id of ['forbidden-friendship', 'violet-evergarden', 'be-still-my-soul']) {
+  for (const id of ['goodnight-sweet-possums', 'song-for-the-beyond', 'blessings']) {
     assert.match(html, new RegExp(`data-play="${id}"`), `${id} has no cue button`);
   }
 });
@@ -128,5 +128,12 @@ test('every track is credited to whoever wrote it', () => {
   for (const track of TRACKS) {
     const credit = translate(music, 'en', `track.${track.id}.credit`);
     assert.ok(credit.length > 3, `${track.id} has no real credit`);
+  }
+});
+
+test('every track has a playable id, so nothing renders as unset', () => {
+  for (const track of TRACKS) {
+    assert.ok(hasVideo(track), `${track.id} has no usable video id`);
+    assert.match(videoIdFor(track), /^[\w-]{11}$/, `${track.id} resolved to a bad id`);
   }
 });
