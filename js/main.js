@@ -4,6 +4,8 @@ import { common } from './i18n/common.js';
 import { initNav } from './nav.js';
 import { PROJECTS, renderProjectCard } from './data/projects.js';
 import { renderIcon } from './icons.js';
+import { initReveal } from './reveal.js';
+import { initParticles } from './particles.js';
 
 function renderWork(dict) {
   const grid = document.getElementById('work-grid');
@@ -13,9 +15,15 @@ function renderWork(dict) {
   if (arrowSlot) arrowSlot.innerHTML = renderIcon('arrow');
 
   const paint = (lang) => {
+    // A repaint replaces the cards wholesale. Card order is PROJECTS order, so
+    // index maps one-to-one: carry the revealed state over, or a language swap
+    // would fade already-seen cards back out.
+    const wasVisible = [...grid.children].map((card) => card.classList.contains('is-visible'));
+
     grid.innerHTML = PROJECTS.map((project) => renderProjectCard(project, dict, lang)).join('');
     grid.querySelectorAll('.card').forEach((card, i) => {
       card.classList.add('reveal');
+      if (wasVisible[i]) card.classList.add('is-visible');
       card.style.setProperty('--i', String(i % 3));
     });
     document.dispatchEvent(new CustomEvent('content:rendered'));
@@ -57,6 +65,9 @@ async function boot() {
 
   renderWork(dict);
   paintIcons();
+
+  initReveal();
+  initParticles({ canvas: document.getElementById('particles') });
 
   const header = document.querySelector('.site-header');
   if (header) {

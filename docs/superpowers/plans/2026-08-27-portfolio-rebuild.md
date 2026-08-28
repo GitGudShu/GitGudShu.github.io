@@ -3665,7 +3665,7 @@ git commit -m "feat: add resume timeline and contact section"
   - `js/reveal.js` exports `initReveal({ selector?, root? }): { observe(el): void, destroy(): void }`.
   - `js/particles.js` exports the pure helpers `particleCount(width: number, base?: number): number`, `wrapPosition(value: number, max: number): number`, `repulsion(px, py, mx, my, radius): { dx: number, dy: number, strength: number }`, and `initParticles({ canvas }): { destroy(): void }`.
 
-- [ ] **Step 1: Write the failing particles test**
+- [x] **Step 1: Write the failing particles test**
 
 `tests/particles.test.mjs`:
 
@@ -3721,12 +3721,12 @@ test('a pointer exactly on the particle does not produce NaN', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/particles.test.mjs`
 Expected: FAIL — `Cannot find module '../js/particles.js'`.
 
-- [ ] **Step 3: Implement `js/particles.js`**
+- [x] **Step 3: Implement `js/particles.js`**
 
 ```js
 /**
@@ -3899,12 +3899,12 @@ export function initParticles({ canvas }) {
 }
 ```
 
-- [ ] **Step 4: Run the test to verify it passes**
+- [x] **Step 4: Run the test to verify it passes**
 
 Run: `node --test tests/particles.test.mjs`
 Expected: PASS, 7/7.
 
-- [ ] **Step 5: Implement `js/reveal.js`**
+- [x] **Step 5: Implement `js/reveal.js`**
 
 ```js
 /**
@@ -3951,7 +3951,7 @@ export function initReveal({ selector = '.reveal', root = document } = {}) {
 }
 ```
 
-- [ ] **Step 6: Wire both into `js/main.js`**
+- [x] **Step 6: Wire both into `js/main.js`**
 
 Add the imports:
 
@@ -3967,7 +3967,7 @@ Add these two lines at the end of `boot()`, after `paintIcons()`:
   initParticles({ canvas: document.getElementById('particles') });
 ```
 
-- [ ] **Step 7: Verify the motion in the browser**
+- [x] **Step 7: Verify the motion in the browser**
 
 Confirm:
 1. Sections fade and rise once as you scroll; scrolling back up does **not** replay them.
@@ -3978,7 +3978,7 @@ Confirm:
 6. Switching to another browser tab and back does not produce a visible jump (the loop stopped while hidden).
 7. Resizing the window re-seeds the field without stretching or blurring it.
 
-- [ ] **Step 8: Verify the reduced-motion and touch paths**
+- [x] **Step 8: Verify the reduced-motion and touch paths**
 
 In DevTools, emulate `prefers-reduced-motion: reduce` and reload. Confirm:
 - `document.getElementById('particles')` returns `null` — the canvas was removed, not merely paused.
@@ -3986,16 +3986,16 @@ In DevTools, emulate `prefers-reduced-motion: reduce` and reload. Confirm:
 
 In device emulation (a touch profile, coarse pointer), reload and confirm `document.getElementById('particles')` is `null`.
 
-- [ ] **Step 9: Verify there is no layout shift**
+- [x] **Step 9: Verify there is no layout shift**
 
 With the Performance panel recording a full scroll of the homepage, confirm Cumulative Layout Shift is `0`. The canvas is `position: fixed` and reveals animate only `opacity`/`transform`, so any non-zero CLS means something else is wrong — fix it before committing.
 
-- [ ] **Step 10: Run the check suite**
+- [x] **Step 10: Run the check suite**
 
 Run: `npm run verify`
 Expected: all PASS.
 
-- [ ] **Step 11: Commit**
+- [x] **Step 11: Commit**
 
 ```bash
 git add js/reveal.js js/particles.js js/main.js tests/particles.test.mjs
