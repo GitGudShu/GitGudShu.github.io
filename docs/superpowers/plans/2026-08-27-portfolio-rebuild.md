@@ -2163,7 +2163,7 @@ git commit -m "feat: add hero section with cropped portrait"
   - `js/icons.js` exports `ICONS: Record<string,string>` (keys `github`, `linkedin`, `mail`, `location`, `arrow`, `external`) and `renderIcon(name: string): string`. Unknown names throw `Unknown icon: <name>`.
   - Every returned SVG is 16:9 `viewBox="0 0 480 270"` (covers) or `0 0 24 24` (icons), uses `currentColor` only, and carries `aria-hidden="true" focusable="false"`.
 
-- [ ] **Step 1: Write the failing test**
+- [x] **Step 1: Write the failing test**
 
 `tests/covers.test.mjs`:
 
@@ -2231,12 +2231,12 @@ test('an unknown icon name throws', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/covers.test.mjs`
 Expected: FAIL — `Cannot find module '../js/covers.js'`.
 
-- [ ] **Step 3: Implement `js/covers.js`**
+- [x] **Step 3: Implement `js/covers.js`**
 
 Each motif is 480×270, stroked in `currentColor` so the card controls the hue. The `cover__pulse` class is animated by CSS in Task 7; `--d` staggers each cell's phase.
 
@@ -2392,7 +2392,7 @@ export function renderCover(id) {
 }
 ```
 
-- [ ] **Step 4: Implement `js/icons.js`**
+- [x] **Step 4: Implement `js/icons.js`**
 
 ```js
 /** Icons defined once. All decorative, all currentColor. */
@@ -2425,12 +2425,12 @@ export function renderIcon(name) {
 }
 ```
 
-- [ ] **Step 5: Run the test to verify it passes**
+- [x] **Step 5: Run the test to verify it passes**
 
 Run: `node --test tests/covers.test.mjs`
 Expected: PASS, 8/8.
 
-- [ ] **Step 6: Eyeball every motif before trusting it**
+- [x] **Step 6: Eyeball every motif before trusting it**
 
 The tests prove the markup is well-formed, not that the drawing looks right. Write a throwaway preview at `tools/preview-covers.html`, open it, confirm all six motifs read clearly at card size (roughly 380×214) in both themes, then **delete the file** — it is not part of the site.
 
@@ -2461,7 +2461,7 @@ The tests prove the markup is well-formed, not that the drawing looks right. Wri
 
 Toggle `data-theme="light"` on the `<html>` element and confirm the motifs still read.
 
-- [ ] **Step 7: Delete the preview and commit**
+- [x] **Step 7: Delete the preview and commit**
 
 ```bash
 rm tools/preview-covers.html
