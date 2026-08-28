@@ -139,4 +139,205 @@ export const projects = {
       'p.nav.next': 'Suivant : Reconnaissance multimodale des émotions',
     },
   },
+
+  'emotion-recognition': {
+    en: {
+      'meta.title': 'Multimodal Emotion Recognition — Thomas Chu',
+      'meta.description': 'A research internship at the University of Portsmouth: recognising emotion across video, text, audio and images by fine-tuning transformer models.',
+
+      'p.eyebrow': 'Research internship · 2023',
+      'p.title': 'Multimodal Emotion Recognition',
+      'p.lead': 'A research internship at the University of Portsmouth, working on models that infer emotional state from whichever signals are available — what someone wrote, how they said it, and how they looked while saying it.',
+
+      'p.facts.role.label': 'Role',
+      'p.facts.role.value': 'Research assistant intern',
+      'p.facts.stack.label': 'Stack',
+      'p.facts.stack.value': 'Python · PyTorch · Transformers · DeBERTa · OpenAI fine-tuning · Weights & Biases',
+      'p.facts.scope.label': 'Scope',
+      'p.facts.scope.value': 'Model fine-tuning, experiment tracking, a real-time transcription tool',
+      'p.facts.status.label': 'Status',
+      'p.facts.status.value': 'Completed — internship, 2023',
+
+      'p.context.title': 'Context',
+      'p.context.body': '<p>The research group was studying how emotional state could be inferred from recordings of students, with the eventual aim of spotting disengagement early enough to do something about it. Emotion is a genuinely multimodal signal: text carries the content, audio carries the delivery, and video carries the expression, and each of the three is unreliable on its own.</p><p>The practical problem was less about model architecture than about iteration. Runs were being launched, tuned and compared informally, which made it hard to say whether a change had helped or whether the difference was noise.</p>',
+
+      'p.built.title': 'What I built',
+      'p.built.body': '<p>I worked on the text branch, fine-tuning a DeBERTa model on the group\'s labelled data, and separately fine-tuned an OpenAI model as a comparison point so the team had a reference for what a general-purpose model achieved on the same task without domain training.</p><p>To fix the iteration problem I introduced Weights &amp; Biases across the group\'s experiments — every run logging its hyperparameters, metrics and artefacts automatically. Comparing two runs became reading a chart instead of reconstructing what had been changed from memory.</p><p>I also built a live transcription tool that captured audio, transcribed it as it arrived, and pushed each segment through the emotion model, so the pipeline could be demonstrated end to end on a live speaker rather than only on a prepared dataset.</p>',
+
+      'p.decisions.title': 'Engineering decisions',
+      'p.decisions.body': '<p><strong>Track experiments before tuning them.</strong> Adding experiment tracking was not the assignment, but without it no result was reproducible and no comparison was trustworthy. Fixing that first made every subsequent measurement meaningful — an early lesson that infrastructure debt shows up as unreliable conclusions, not just as slow work.</p><p><strong>Fine-tune a general model as a baseline, not as a competitor.</strong> The OpenAI fine-tune existed to answer "how much does domain-specific training actually buy us here?". A specialised model that cannot beat a general one is worth knowing about early.</p><p><strong>Demonstrate on live input.</strong> A model that only ever runs on a clean, pre-segmented dataset hides its practical failure modes. Wiring the pipeline to live audio surfaced latency and segmentation problems that offline evaluation never would have shown.</p>',
+
+      'p.outcome.title': 'Outcome',
+      'p.outcome.body': '<p>The group came away with a tracked, reproducible experiment setup, a fine-tuned text model with a documented baseline to compare against, and a demonstrable live pipeline.</p><p>For me it was the project that shifted my interest from models toward the systems around them — a pattern that has held in everything I have worked on since.</p>',
+
+      'p.nav.prev': 'Previous: KPI Engine',
+      'p.nav.next': 'Next: Predictops',
+    },
+    fr: {
+      'meta.title': 'Reconnaissance multimodale des émotions — Thomas Chu',
+      'meta.description': "Un stage de recherche à l'université de Portsmouth : reconnaître l'émotion sur vidéo, texte, audio et images par ajustement fin de modèles transformeurs.",
+
+      'p.eyebrow': 'Stage de recherche · 2023',
+      'p.title': 'Reconnaissance multimodale des émotions',
+      'p.lead': "Un stage de recherche à l'université de Portsmouth, sur des modèles qui infèrent un état émotionnel à partir des signaux disponibles — ce qu'une personne a écrit, la façon dont elle l'a dit, et son expression au moment de le dire.",
+
+      'p.facts.role.label': 'Rôle',
+      'p.facts.role.value': 'Stagiaire assistant de recherche',
+      'p.facts.stack.label': 'Technologies',
+      'p.facts.stack.value': 'Python · PyTorch · Transformers · DeBERTa · ajustement fin OpenAI · Weights & Biases',
+      'p.facts.scope.label': 'Périmètre',
+      'p.facts.scope.value': "Ajustement fin de modèles, suivi d'expériences, outil de transcription temps réel",
+      'p.facts.status.label': 'Statut',
+      'p.facts.status.value': 'Terminé — stage, 2023',
+
+      'p.context.title': 'Contexte',
+      'p.context.body': "<p>L'équipe de recherche étudiait comment inférer un état émotionnel à partir d'enregistrements d'étudiants, avec pour objectif de repérer un décrochage assez tôt pour y répondre. L'émotion est un signal réellement multimodal : le texte porte le contenu, l'audio la manière, la vidéo l'expression — et aucun des trois n'est fiable isolément.</p><p>Le problème pratique tenait moins à l'architecture des modèles qu'à l'itération. Les entraînements étaient lancés, réglés et comparés de façon informelle, ce qui rendait difficile de dire si un changement avait aidé ou si l'écart relevait du bruit.</p>",
+
+      'p.built.title': "Ce que j'ai construit",
+      'p.built.body': "<p>J'ai travaillé sur la branche texte, en ajustant finement un modèle DeBERTa sur les données annotées de l'équipe, et j'ai par ailleurs ajusté un modèle OpenAI comme point de comparaison, afin que l'équipe dispose d'une référence sur ce qu'obtient un modèle généraliste sur la même tâche sans entraînement métier.</p><p>Pour régler le problème d'itération, j'ai introduit Weights &amp; Biases sur l'ensemble des expériences : chaque entraînement journalise automatiquement ses hyperparamètres, ses métriques et ses artefacts. Comparer deux entraînements est devenu lire un graphique au lieu de reconstituer de mémoire ce qui avait changé.</p><p>J'ai également développé un outil de transcription en direct qui capte l'audio, le transcrit au fil de l'eau et fait passer chaque segment dans le modèle d'émotion, afin de démontrer la chaîne de bout en bout sur un locuteur réel et non seulement sur un jeu de données préparé.</p>",
+
+      'p.decisions.title': 'Décisions techniques',
+      'p.decisions.body': "<p><strong>Tracer les expériences avant de les régler.</strong> Mettre en place le suivi d'expériences n'était pas la mission, mais sans lui aucun résultat n'était reproductible et aucune comparaison fiable. Corriger cela d'abord a donné du sens à toutes les mesures suivantes — une leçon précoce : la dette d'outillage se manifeste par des conclusions peu fiables, pas seulement par de la lenteur.</p><p><strong>Ajuster un modèle généraliste comme référence, pas comme concurrent.</strong> L'ajustement OpenAI existait pour répondre à « qu'apporte réellement un entraînement spécifique au domaine ? ». Un modèle spécialisé incapable de battre un généraliste, il vaut mieux le savoir tôt.</p><p><strong>Démontrer sur des entrées réelles.</strong> Un modèle qui ne tourne que sur un jeu de données propre et pré-segmenté masque ses vrais modes de défaillance. Brancher la chaîne sur de l'audio en direct a révélé des problèmes de latence et de segmentation qu'une évaluation hors ligne n'aurait jamais montrés.</p>",
+
+      'p.outcome.title': 'Résultat',
+      'p.outcome.body': "<p>L'équipe est repartie avec un dispositif d'expérimentation tracé et reproductible, un modèle texte ajusté accompagné d'une référence documentée, et une chaîne démontrable en direct.</p><p>Pour moi, c'est le projet qui a déplacé mon intérêt des modèles vers les systèmes qui les entourent — une constante dans tout ce sur quoi j'ai travaillé depuis.</p>",
+
+      'p.nav.prev': "Précédent : Moteur d'indicateurs",
+      'p.nav.next': 'Suivant : Predictops',
+    },
+  },
+
+  predictops: {
+    en: {
+      'meta.title': 'Predictops — Thomas Chu',
+      'meta.description': 'Geolocated forecasting of emergency interventions, combining historical operational data with weather signals in an operational dashboard.',
+
+      'p.eyebrow': 'Forecasting · dataviz · 2023 — 2024',
+      'p.title': 'Predictops',
+      'p.lead': 'Forecasting where and when emergency interventions are likely to occur, so that a service can position resources ahead of demand rather than reacting to it.',
+
+      'p.facts.role.label': 'Role',
+      'p.facts.role.value': 'Development support and integration with OptimOps',
+      'p.facts.stack.label': 'Stack',
+      'p.facts.stack.value': 'Python · scikit-learn · Pandas · Vue 3 · Quasar · ECharts',
+      'p.facts.scope.label': 'Scope',
+      'p.facts.scope.value': 'Feature engineering, forecast surfacing, dashboard integration',
+      'p.facts.status.label': 'Status',
+      'p.facts.status.value': 'Delivered — superseded by the OptimOps platform',
+
+      'p.context.title': 'Context',
+      'p.context.body': '<p>Emergency demand is not uniform. It clusters in space, in time, and around conditions — weather in particular moves several categories of intervention in ways that are visible in the historical record. A service that can anticipate that shift, even roughly, can pre-position crews instead of dispatching from wherever they happen to be.</p><p>The forecast on its own is not the deliverable. A prediction that lives in a notebook changes nothing; it has to arrive where the decision is actually made.</p>',
+
+      'p.built.title': 'What I built',
+      'p.built.body': '<p>I contributed to the forecasting side — assembling features from historical intervention records and joining them against weather data so the model could learn the relationship between conditions and demand, geographically resolved rather than aggregated over a whole territory.</p><p>The larger part of my contribution was surfacing: building the views that put forecasts in front of operators, and connecting Predictops to OptimOps so that a projection could feed the same interface where coverage and resource decisions were already being made.</p>',
+
+      'p.decisions.title': 'Engineering decisions',
+      'p.decisions.body': '<p><strong>Forecast at a geographic grain, not a territorial average.</strong> A single number for a whole territory is accurate and useless — demand concentrates, and the value of the forecast is entirely in knowing where. Keeping the geographic resolution cost accuracy per cell but made the output actionable.</p><p><strong>Treat weather as an input signal, not a special case.</strong> Weather was joined into the same feature pipeline as everything else rather than bolted on as a separate correction. It made the model easier to reason about and made it straightforward to add further external signals later.</p><p><strong>Integrate rather than stand alone.</strong> Connecting Predictops to OptimOps mattered more than any accuracy gain: operators already had a tool they opened daily, and a forecast that appears there gets used, while one behind a separate login does not.</p>',
+
+      'p.outcome.title': 'Outcome',
+      'p.outcome.body': '<p>Predictops demonstrated that geolocated demand forecasting was viable on the available operational history, and the integration work established the pattern that OptimOps later generalised — predictions and indicators sharing one interface rather than living in separate tools.</p><p>The platform itself has since been superseded by OptimOps, which absorbed its role.</p>',
+
+      'p.nav.prev': 'Previous: Multimodal Emotion Recognition',
+      'p.nav.next': 'Next: ARS Health Dashboard',
+    },
+    fr: {
+      'meta.title': 'Predictops — Thomas Chu',
+      'meta.description': "Prévision géolocalisée des interventions de secours, combinant données opérationnelles historiques et signaux météo dans un tableau de bord opérationnel.",
+
+      'p.eyebrow': 'Prévision · dataviz · 2023 — 2024',
+      'p.title': 'Predictops',
+      'p.lead': "Prévoir où et quand les interventions de secours sont susceptibles de survenir, pour qu'un service puisse positionner ses moyens en amont de la demande plutôt que d'y réagir.",
+
+      'p.facts.role.label': 'Rôle',
+      'p.facts.role.value': "Appui au développement et intégration avec OptimOps",
+      'p.facts.stack.label': 'Technologies',
+      'p.facts.stack.value': 'Python · scikit-learn · Pandas · Vue 3 · Quasar · ECharts',
+      'p.facts.scope.label': 'Périmètre',
+      'p.facts.scope.value': "Ingénierie des variables, restitution des prévisions, intégration au tableau de bord",
+      'p.facts.status.label': 'Statut',
+      'p.facts.status.value': 'Livré — remplacé par la plateforme OptimOps',
+
+      'p.context.title': 'Contexte',
+      'p.context.body': "<p>La demande de secours n'est pas uniforme. Elle se concentre dans l'espace, dans le temps, et autour de certaines conditions — la météo en particulier déplace plusieurs catégories d'intervention de façon visible dans l'historique. Un service capable d'anticiper ce déplacement, même grossièrement, peut prépositionner ses équipes au lieu de les engager depuis là où elles se trouvent.</p><p>La prévision seule n'est pas le livrable. Une prédiction qui reste dans un carnet de calcul ne change rien : elle doit arriver là où la décision se prend.</p>",
+
+      'p.built.title': "Ce que j'ai construit",
+      'p.built.body': "<p>J'ai contribué au volet prévision — construction de variables à partir des historiques d'intervention et jointure avec les données météo, afin que le modèle apprenne la relation entre conditions et demande, à une résolution géographique plutôt qu'agrégée sur tout un territoire.</p><p>L'essentiel de ma contribution portait sur la restitution : construire les vues qui mettent les prévisions devant les opérateurs, et relier Predictops à OptimOps pour qu'une projection alimente l'interface où les décisions de couverture et de moyens se prenaient déjà.</p>",
+
+      'p.decisions.title': 'Décisions techniques',
+      'p.decisions.body': "<p><strong>Prévoir à une maille géographique, pas en moyenne territoriale.</strong> Un chiffre unique pour tout un territoire est exact et inutile : la demande se concentre, et toute la valeur de la prévision tient à savoir où. Conserver la résolution géographique a coûté en précision par maille mais a rendu le résultat exploitable.</p><p><strong>Traiter la météo comme un signal d'entrée, pas comme un cas particulier.</strong> La météo a été jointe dans la même chaîne de variables que le reste plutôt qu'ajoutée en correction séparée. Le modèle en est plus lisible, et l'ajout ultérieur d'autres signaux externes en devient direct.</p><p><strong>Intégrer plutôt qu'exister à côté.</strong> Relier Predictops à OptimOps comptait davantage que n'importe quel gain de précision : les opérateurs disposaient déjà d'un outil ouvert quotidiennement, et une prévision qui y apparaît est utilisée, contrairement à une prévision derrière une autre authentification.</p>",
+
+      'p.outcome.title': 'Résultat',
+      'p.outcome.body': "<p>Predictops a démontré que la prévision géolocalisée de la demande était viable sur l'historique opérationnel disponible, et le travail d'intégration a établi le motif qu'OptimOps a ensuite généralisé : prévisions et indicateurs partageant une même interface plutôt que vivant dans des outils séparés.</p><p>La plateforme a depuis été remplacée par OptimOps, qui en a absorbé le rôle.</p>",
+
+      'p.nav.prev': 'Précédent : Reconnaissance multimodale des émotions',
+      'p.nav.next': 'Suivant : Tableau de bord santé ARS',
+    },
+  },
+
+  ars: {
+    en: {
+      'meta.title': 'ARS Health Dashboard — Thomas Chu',
+      'meta.description': 'A proof-of-concept regional health-surveillance dashboard: emergency and hospitalisation indicators on an interactive map, built on a configurable widget architecture.',
+
+      'p.eyebrow': 'Proof of concept · 2024',
+      'p.title': 'ARS Health Dashboard',
+      'p.lead': 'A proof of concept for regional health surveillance — and a deliberate test of whether the dashboard architecture built for emergency services would transfer to an entirely different domain.',
+
+      'p.facts.role.label': 'Role',
+      'p.facts.role.value': 'Full-stack — API, authentication, dashboard system',
+      'p.facts.stack.label': 'Stack',
+      'p.facts.stack.value': 'Python · Flask · MongoDB · JWT · Vue 3 · Quasar · Leaflet',
+      'p.facts.scope.label': 'Scope',
+      'p.facts.scope.value': 'Backend API, access control, map and indicator widgets, layout builder',
+      'p.facts.status.label': 'Status',
+      'p.facts.status.value': 'Proof of concept — not deployed to production',
+
+      'p.context.title': 'Context',
+      'p.context.body': '<p>Regional health authorities monitor indicators that behave much like operational emergency data: counts that vary by geography, by time and by population band, watched for the moment they depart from normal. The surface is different — emergency-room attendance and hospital admissions rather than vehicle dispatches — but the shape of the question is the same.</p><p>That similarity was the actual point of the project. The widget architecture built for OptimOps was a substantial investment, and an architecture is only worth what it is worth on the second problem.</p>',
+
+      'p.built.title': 'What I built',
+      'p.built.body': '<p>A Flask API backed by MongoDB, with token-based authentication, an administration layer for managing users, and transactional email for account flows. Indicator endpoints serve emergency attendance, hospital admissions and age-band breakdowns, with an external weather API joined in as a correlating signal.</p><p>On the frontend, a Vue 3 / Quasar application with Leaflet maps showing regional contours and per-area indicators, and the same three-part widget system as OptimOps: a registry of widget types and presets, per-widget data sources declaring how to fetch and transform their own payload, and a layout builder letting a user assemble a dashboard from the catalogue.</p>',
+
+      'p.decisions.title': 'Engineering decisions',
+      'p.decisions.body': '<p><strong>Port the architecture, not the code.</strong> Copying OptimOps\' implementation would have proved nothing except that copying works. Rebuilding on the same three-part pattern — registry, data sources, layout builder — against a different backend and a different domain vocabulary tested whether the <em>pattern</em> was sound, which is the only thing worth knowing.</p><p><strong>A different backend on purpose.</strong> OptimOps serves precomputed columnar files; this needed document storage and per-user state, so it uses Flask and MongoDB. Keeping the frontend architecture constant while changing the backend isolated the thing under test.</p><p><strong>Real authentication from the start.</strong> Unlike the interim role layer in OptimOps, health data justified token-based authentication and an admin layer up front, even in a proof of concept — the cost of adding it later is always higher than it looks.</p><p><strong>Stop at proof of concept.</strong> The project answered its question. Carrying it further would have meant committing to a product nobody had asked for, so it is presented as what it is.</p>',
+
+      'p.outcome.title': 'Outcome',
+      'p.outcome.body': '<p>The widget architecture transferred cleanly. Building a second dashboard on it took a fraction of the time the first had, and the friction that did appear was in domain vocabulary rather than in the pattern itself — which is the result I was hoping for.</p><p>It remains a proof of concept and was never deployed to production. Its value was the confirmation that the architecture generalises, which directly informed how the OptimOps widget system was structured afterwards.</p>',
+
+      'p.nav.prev': 'Previous: Predictops',
+      'p.nav.next': 'Back to work',
+    },
+    fr: {
+      'meta.title': 'Tableau de bord santé ARS — Thomas Chu',
+      'meta.description': "Une preuve de concept de veille sanitaire régionale : indicateurs d'urgences et d'hospitalisations sur une carte interactive, sur une architecture de composants configurables.",
+
+      'p.eyebrow': 'Preuve de concept · 2024',
+      'p.title': 'Tableau de bord santé ARS',
+      'p.lead': "Une preuve de concept pour la veille sanitaire régionale — et un test délibéré : l'architecture de tableau de bord conçue pour les services de secours se transpose-t-elle à un domaine entièrement différent ?",
+
+      'p.facts.role.label': 'Rôle',
+      'p.facts.role.value': 'Full-stack — API, authentification, système de tableau de bord',
+      'p.facts.stack.label': 'Technologies',
+      'p.facts.stack.value': 'Python · Flask · MongoDB · JWT · Vue 3 · Quasar · Leaflet',
+      'p.facts.scope.label': 'Périmètre',
+      'p.facts.scope.value': "API backend, contrôle d'accès, composants carte et indicateurs, éditeur de disposition",
+      'p.facts.status.label': 'Statut',
+      'p.facts.status.value': 'Preuve de concept — non déployé en production',
+
+      'p.context.title': 'Contexte',
+      'p.context.body': "<p>Les agences régionales de santé suivent des indicateurs qui se comportent comme des données opérationnelles de secours : des effectifs qui varient selon la géographie, le temps et la tranche d'âge, surveillés pour le moment où ils s'écartent de la normale. La surface diffère — passages aux urgences et hospitalisations plutôt qu'engagements d'engins — mais la forme de la question est la même.</p><p>Cette similarité était le véritable objet du projet. Le registre de composants bâti pour OptimOps représentait un investissement conséquent, et une architecture ne vaut que ce qu'elle vaut sur le deuxième problème.</p>",
+
+      'p.built.title': "Ce que j'ai construit",
+      'p.built.body': "<p>Une API Flask adossée à MongoDB, avec authentification par jeton, une couche d'administration pour la gestion des comptes et l'envoi d'e-mails transactionnels. Les points d'entrée servent les passages aux urgences, les hospitalisations et les répartitions par tranche d'âge, avec une API météo externe jointe comme signal de corrélation.</p><p>Côté frontend, une application Vue 3 / Quasar avec des cartes Leaflet affichant les contours régionaux et les indicateurs par zone, et le même système de composants en trois parties qu'OptimOps : un registre des types et préréglages, des sources de données déclarant chacune comment récupérer et transformer sa charge utile, et un éditeur de disposition permettant à l'utilisateur de composer son tableau de bord à partir du catalogue.</p>",
+
+      'p.decisions.title': 'Décisions techniques',
+      'p.decisions.body': "<p><strong>Transposer l'architecture, pas le code.</strong> Copier l'implémentation d'OptimOps n'aurait prouvé que l'efficacité du copier-coller. Reconstruire sur le même motif en trois parties — registre, sources de données, éditeur de disposition — face à un autre backend et à un autre vocabulaire métier testait la solidité du <em>motif</em>, seule chose qu'il valait la peine de savoir.</p><p><strong>Un backend différent, volontairement.</strong> OptimOps sert des fichiers colonnaires précalculés ; ce projet demandait un stockage documentaire et un état par utilisateur, d'où Flask et MongoDB. Garder l'architecture frontend constante en changeant le backend isolait l'objet du test.</p><p><strong>Une vraie authentification dès le départ.</strong> Contrairement à la couche de rôles provisoire d'OptimOps, des données de santé justifiaient une authentification par jeton et une couche d'administration d'emblée, même en preuve de concept — le coût de l'ajouter plus tard est toujours plus élevé qu'il n'y paraît.</p><p><strong>S'arrêter à la preuve de concept.</strong> Le projet a répondu à sa question. Aller plus loin aurait signifié s'engager sur un produit que personne n'avait demandé : il est donc présenté pour ce qu'il est.</p>",
+
+      'p.outcome.title': 'Résultat',
+      'p.outcome.body': "<p>L'architecture de composants s'est transposée sans heurt. Construire un second tableau de bord dessus a demandé une fraction du temps du premier, et les frictions rencontrées venaient du vocabulaire métier et non du motif lui-même — c'est le résultat que j'espérais.</p><p>Le projet reste une preuve de concept et n'a jamais été déployé en production. Sa valeur tient à la confirmation que l'architecture se généralise, ce qui a directement orienté la structuration ultérieure du système de composants d'OptimOps.</p>",
+
+      'p.nav.prev': 'Précédent : Predictops',
+      'p.nav.next': 'Retour aux projets',
+    },
+  },
 };

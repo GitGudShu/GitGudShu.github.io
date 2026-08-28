@@ -5,8 +5,7 @@ import { projects } from '../js/i18n/projects.js';
 import { PROJECTS } from '../js/data/projects.js';
 import { parityReport, LANGS, translate } from '../js/i18n/index.js';
 
-/** Slugs whose pages exist at this point. Task 12 extends this list. */
-const BUILT = ['optimops', 'kpi-engine'];
+const BUILT = ['optimops', 'kpi-engine', 'emotion-recognition', 'predictops', 'ars'];
 
 const REQUIRED_KEYS = [
   'meta.title', 'meta.description',
@@ -100,5 +99,24 @@ test('no built page contains an inline style attribute except reveal stagger', a
     for (const style of styles) {
       assert.match(style, /^style="--i:\d+"$/, `${slug}: disallowed inline style ${style}`);
     }
+  }
+});
+
+test('the prev/next chain is complete and every target exists', async () => {
+  const chain = ['optimops', 'kpi-engine', 'emotion-recognition', 'predictops', 'ars'];
+  for (const [i, slug] of chain.entries()) {
+    const html = await readFile(new URL(`../projects/${slug}.html`, import.meta.url), 'utf8');
+    const prev = i === 0 ? '../index.html#work' : `${chain[i - 1]}.html`;
+    const next = i === chain.length - 1 ? '../index.html#work' : `${chain[i + 1]}.html`;
+    assert.match(html, new RegExp(`href="${prev.replace(/[.#/]/g, '\\$&')}"`), `${slug}: bad prev link`);
+    assert.match(html, new RegExp(`href="${next.replace(/[.#/]/g, '\\$&')}"`), `${slug}: bad next link`);
+  }
+});
+
+test('every project card on the homepage has a page that exists', async () => {
+  for (const project of PROJECTS) {
+    if (project.placeholder) continue;
+    const html = await readFile(new URL(`../${project.href}`, import.meta.url), 'utf8');
+    assert.ok(html.length > 0, `${project.href} is empty`);
   }
 });

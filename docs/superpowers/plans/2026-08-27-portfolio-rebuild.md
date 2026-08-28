@@ -4591,7 +4591,7 @@ The prev/next chain, once this task is done:
 optimops  ->  kpi-engine  ->  emotion-recognition  ->  predictops  ->  ars  ->  (back to work)
 ```
 
-- [ ] **Step 1: Extend the test to cover all five pages**
+- [x] **Step 1: Extend the test to cover all five pages**
 
 In `tests/project-pages.test.mjs`, change the `BUILT` constant:
 
@@ -4622,12 +4622,12 @@ test('every project card on the homepage has a page that exists', async () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/project-pages.test.mjs`
 Expected: FAIL — `no dictionary for emotion-recognition`.
 
-- [ ] **Step 3: Add the Emotion Recognition dictionary**
+- [x] **Step 3: Add the Emotion Recognition dictionary**
 
 Append inside the exported `projects` object in `js/i18n/projects.js`:
 
@@ -4700,7 +4700,7 @@ Append inside the exported `projects` object in `js/i18n/projects.js`:
   },
 ```
 
-- [ ] **Step 4: Add the Predictops dictionary**
+- [x] **Step 4: Add the Predictops dictionary**
 
 ```js
   predictops: {
@@ -4771,7 +4771,7 @@ Append inside the exported `projects` object in `js/i18n/projects.js`:
   },
 ```
 
-- [ ] **Step 5: Add the ARS dictionary**
+- [x] **Step 5: Add the ARS dictionary**
 
 Note the status framing: this is a **proof of concept**, and the copy must not imply production use.
 
@@ -4844,7 +4844,7 @@ Note the status framing: this is a **proof of concept**, and the copy must not i
   },
 ```
 
-- [ ] **Step 6: Create the three HTML pages**
+- [x] **Step 6: Create the three HTML pages**
 
 For each of `emotion-recognition`, `predictops` and `ars`: copy `projects/optimops.html` and change exactly these seven things.
 
@@ -4856,7 +4856,7 @@ For each of `emotion-recognition`, `predictops` and `ars`: copy `projects/optimo
 
 Also, on every page, set `<meta name="description">` to that page's English `meta.description`, and replace the static fallback text inside each `data-i18n` element with that page's English string. The fallback text is what a visitor sees if the module fails to load — it must never read "OptimOps" on the Predictops page.
 
-- [ ] **Step 7: Run the tests to verify they pass**
+- [x] **Step 7: Run the tests to verify they pass**
 
 Run: `node --test tests/project-pages.test.mjs`
 Expected: PASS, 10/10.
@@ -4864,7 +4864,7 @@ Expected: PASS, 10/10.
 Run: `npm run verify`
 Expected: all PASS.
 
-- [ ] **Step 8: Walk the whole chain in the browser**
+- [x] **Step 8: Walk the whole chain in the browser**
 
 From the homepage, click into each of the five cards, then walk the chain forward from `optimops` through to `ars` and back. Confirm on every page:
 1. The cover motif matches the card that led there.
@@ -4873,11 +4873,11 @@ From the homepage, click into each of the five cards, then walk the chain forwar
 4. Static fallback text matches the page (disable JavaScript and reload one page to check this properly).
 5. `document.documentElement.scrollWidth <= window.innerWidth` at 320, 768 and 1440px.
 
-- [ ] **Step 9: Read all five pages in both languages**
+- [x] **Step 9: Read all five pages in both languages**
 
 The automated confidentiality test only catches known patterns. Read every page end to end in EN and FR and confirm: no client identity, no department or station name, no real operational figure, no academic voice, and no claim that ARS reached production.
 
-- [ ] **Step 10: Commit**
+- [x] **Step 10: Commit**
 
 ```bash
 git add js/i18n/projects.js projects/ tests/project-pages.test.mjs
