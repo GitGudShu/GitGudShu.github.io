@@ -156,12 +156,16 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
   transition: transform var(--dur-slow) var(--ease);
 }
 
-.card__cover--shot { background: var(--surface); }
+/* Screenshots are shown whole and centred. Cropping to fill the 16:9 box cut
+   legends and panels off mid-word, which read as a misaligned image. */
+.card__cover--shot {
+  background: var(--surface-raised);
+  padding: var(--space-3);
+}
 .card__cover--shot img {
   inline-size: 100%;
   block-size: 100%;
-  object-fit: cover;
-  object-position: top left;
+  object-fit: contain;
   transition: transform var(--dur-slow) var(--ease);
 }
 .card__cover--placeholder { color: var(--text-faint); }

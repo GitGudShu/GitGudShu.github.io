@@ -45,6 +45,7 @@ export const projects = {
       'p.outcome.title': 'Where it stands',
       'p.outcome.body': '<p>The platform is in production and in daily use. Questions that used to need a bespoke report now take a few clicks, and users build their own views instead of queuing for one. More usefully, it changed the kind of question being asked, from what happened last year to what would happen if we changed this.</p><p>The rebuilt engine runs beside the one it replaces while the regression harness works through the indicator set, which is the intended sequence: a replacement that cannot show where it differs is not ready to replace anything. What has already changed is that every indicator now has a traceable path from a validated input to a tested transformation, which is the property the original never had.</p>',
 
+      'p.shot.interventions': 'Monthly intervention volume by mission type, one of the 35 published indicator tables. The axis values are redacted.',
       'p.shot.overview': 'The overview map: one dot per station, coloured from quiet to hot spot across every published indicator.',
       'p.shot.coverage': 'Atomic coverage zones, coloured by how many stations are jointly responsible for each one. Place names are redacted.',
       'p.shot.arming': 'The crew requirement editor: per vehicle type, how many of each role a full or degraded response needs, and which qualification codes count.',
@@ -91,6 +92,7 @@ export const projects = {
       'p.outcome.title': 'Où ça en est',
       'p.outcome.body': "<p>La plateforme est en production et sert tous les jours. Des questions qui demandaient un rapport sur mesure se règlent en quelques clics, et les utilisateurs montent leurs vues eux-mêmes au lieu de les commander. Surtout, la nature des questions a changé : on est passé de « qu'est-ce qui s'est passé l'an dernier » à « qu'est-ce que ça donnerait si on changeait ça ».</p><p>Le moteur reconstruit tourne à côté de celui qu'il remplace, le temps que le harnais parcoure tous les indicateurs. C'est voulu : un remplaçant qui ne sait pas montrer en quoi il diffère n'est pas prêt à remplacer quoi que ce soit. Ce qui a déjà changé, c'est que chaque indicateur a maintenant un chemin traçable, d'une entrée validée jusqu'à une transformation testée. C'est exactement ce qui manquait avant.</p>",
 
+      'p.shot.interventions': "Le volume mensuel d'interventions par type de mission, l'une des 35 tables d'indicateurs publiées. Les valeurs de l'axe sont masquées.",
       'p.shot.overview': "La carte de synthèse : un point par centre, du calme au point chaud, tous indicateurs confondus.",
       'p.shot.coverage': "Les zones atomiques de couverture, colorées par le nombre de centres qui en répondent conjointement. Les noms de lieux sont masqués.",
       'p.shot.arming': "L'éditeur d'armement : par type d'engin, combien d'agents de chaque rôle exige un départ complet ou dégradé, et quels codes emploi font foi.",

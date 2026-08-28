@@ -51,7 +51,7 @@ export const home = {
     'work.wip.summary': "There is more work than there are finished pages. New write-ups land here as I get to them.",
     'work.archive.period': '2021-2024 · Bachelor coursework',
     'work.archive.label': 'Selected academic projects',
-    'work.shot.optimops': 'Monthly crew unavailability in OptimOps, broken down by the role that was missing',
+    'work.shot.optimops': 'Monthly intervention volume in OptimOps, split by mission type',
     'work.shot.emotion': 'A Weights & Biases sweep comparing hyperparameters against accuracy',
     'work.shot.predictops': 'The Predictops weather view: a hex-grid humidity map beside active weather warnings',
 
@@ -147,7 +147,7 @@ export const home = {
     'work.wip.summary': "J'ai plus de projets que de pages rédigées. La suite arrive au fil de l'eau.",
     'work.archive.period': '2021-2024 · Projets académiques du BUT',
     'work.archive.label': 'Une sélection de projets universitaires',
-    'work.shot.optimops': "L'indisponibilité mensuelle des équipes dans OptimOps, ventilée par le rôle qui manquait",
+    'work.shot.optimops': "Le volume mensuel d'interventions dans OptimOps, ventilé par type de mission",
     'work.shot.emotion': "Un balayage Weights & Biases : les hyperparamètres d'un côté, la précision obtenue de l'autre",
     'work.shot.predictops': "La vue météo de Predictops : une carte d'humidité en nid d'abeille, et les vigilances en cours à côté",
 

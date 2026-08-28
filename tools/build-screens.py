@@ -34,7 +34,11 @@ def pixelate(im, box, block=14):
 
 SCREENS = [
     {"src": "synthese-heatmap.png", "out": "optimops-overview.jpg", "redact": []},
-    {"src": "indispo-time-series.png", "out": "optimops-unavailability.jpg", "redact": []},
+    {
+        "src": "interventions-time-series.png",
+        "out": "optimops-interventions.jpg",
+        "redact": [(24, 92, 98, 320)],  # y-axis: real monthly intervention counts
+    },
     {"src": "armement-editeur.png", "out": "optimops-arming.jpg", "redact": []},
     {
         "src": "coverage-real-example.png",
