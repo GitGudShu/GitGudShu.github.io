@@ -1,0 +1,135 @@
+/* ==========================================================================
+   tokens.css — the single source of truth for colour, type, space and motion.
+   No other stylesheet may contain a colour literal.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---- Colour: dusk (light theme) ---- */
+  --bg: #E9E4F0;
+  --surface: #F2EEF7;
+  --surface-raised: #F8F5FB;
+  --border: #D3CADF;
+  --border-strong: #847A96;
+  --text: #262029;
+  --text-muted: #5B5366;
+  --text-faint: #6B6379;
+  --accent: #5F4EB8;
+  --accent-strong: #4B3B9E;
+  --accent-contrast: #FFFFFF;
+
+  /* ---- Derived surfaces ---- */
+  --nav-bg: color-mix(in oklab, var(--bg) 72%, transparent);
+  --nav-bg-scrolled: color-mix(in oklab, var(--bg) 88%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, var(--text) 8%, transparent),
+                 0 8px 24px color-mix(in oklab, var(--text) 6%, transparent);
+  --shadow-card-hover: 0 2px 4px color-mix(in oklab, var(--text) 10%, transparent),
+                       0 16px 40px color-mix(in oklab, var(--text) 10%, transparent);
+  --shadow-nav: 0 1px 24px color-mix(in oklab, var(--text) 8%, transparent);
+  --glow-accent: 0 0 60px color-mix(in oklab, var(--accent) 22%, transparent);
+  --particle-color: var(--accent);
+
+  /* ---- Typography ---- */
+  --font-display: Fraunces, "Iowan Old Style", Georgia, serif;
+  --font-body: Manrope, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+
+  --fs-display: clamp(2.6rem, 1.6rem + 4.4vw, 5rem);
+  --fs-h1: clamp(2.1rem, 1.5rem + 2.6vw, 3.4rem);
+  --fs-h2: clamp(1.6rem, 1.3rem + 1.4vw, 2.3rem);
+  --fs-h3: clamp(1.15rem, 1.05rem + .5vw, 1.45rem);
+  --fs-body: clamp(.95rem, .92rem + .18vw, 1.05rem);
+  --fs-small: .875rem;
+  --fs-mono: .78rem;
+
+  --lh-tight: 1.12;
+  --lh-body: 1.65;
+  --tracking-mono: .06em;
+  --measure: 65ch;
+
+  /* ---- Space ---- */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --section-gap: clamp(3.5rem, 2rem + 6vw, 6rem);
+  --rail: 1100px;
+  --rail-prose: 720px;
+  --rail-pad: clamp(1.15rem, .6rem + 2.4vw, 2.5rem);
+
+  /* ---- Radii ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+  --dur-slow: 520ms;
+
+  /* ---- Chrome ---- */
+  --nav-h: 60px;
+  --z-nav: 50;
+  --z-panel: 60;
+  --z-skip: 70;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #100D16;
+  --surface: #17131F;
+  --surface-raised: #1E1929;
+  --border: #2C2438;
+  --border-strong: #6B5F86;
+  --text: #E8E3F0;
+  --text-muted: #A79FB8;
+  --text-faint: #857C95;
+  --accent: #B9A5FF;
+  --accent-strong: #CDBCFF;
+  --accent-contrast: #1B1330;
+
+  --shadow-card: 0 1px 2px color-mix(in oklab, #000000 40%, transparent),
+                 0 8px 28px color-mix(in oklab, #000000 32%, transparent);
+  --shadow-card-hover: 0 2px 6px color-mix(in oklab, #000000 50%, transparent),
+                       0 18px 48px color-mix(in oklab, #000000 42%, transparent);
+  --shadow-nav: 0 1px 28px color-mix(in oklab, #000000 45%, transparent);
+  --glow-accent: 0 0 70px color-mix(in oklab, var(--accent) 18%, transparent);
+}
+
+/* System preference, honoured only when the visitor has not chosen explicitly. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg: #100D16;
+    --surface: #17131F;
+    --surface-raised: #1E1929;
+    --border: #2C2438;
+    --border-strong: #6B5F86;
+    --text: #E8E3F0;
+    --text-muted: #A79FB8;
+    --text-faint: #857C95;
+    --accent: #B9A5FF;
+    --accent-strong: #CDBCFF;
+    --accent-contrast: #1B1330;
+
+    --shadow-card: 0 1px 2px color-mix(in oklab, #000000 40%, transparent),
+                   0 8px 28px color-mix(in oklab, #000000 32%, transparent);
+    --shadow-card-hover: 0 2px 6px color-mix(in oklab, #000000 50%, transparent),
+                         0 18px 48px color-mix(in oklab, #000000 42%, transparent);
+    --shadow-nav: 0 1px 28px color-mix(in oklab, #000000 45%, transparent);
+    --glow-accent: 0 0 70px color-mix(in oklab, var(--accent) 18%, transparent);
+  }
+}
+
+@media (max-width: 599px) {
+  :root { --nav-h: 56px; }
+}

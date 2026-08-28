@@ -136,7 +136,7 @@ Use these renderings consistently across all French copy. French copy is a faith
   - `css/tokens.css` defines every token named in this plan on `:root` and under both dark selectors.
   - `npm test` runs `node --test tests/`; `npm run check` runs both checkers.
 
-- [ ] **Step 1: Create the package manifest**
+- [x] **Step 1: Create the package manifest**
 
 `package.json`:
 
@@ -167,7 +167,7 @@ Thumbs.db
 *.log
 ```
 
-- [ ] **Step 2: Write the failing contrast test**
+- [x] **Step 2: Write the failing contrast test**
 
 `tests/contrast.test.mjs`:
 
@@ -221,12 +221,12 @@ test('every required pair meets its AA threshold in both themes', async () => {
 });
 ```
 
-- [ ] **Step 3: Run the test to verify it fails**
+- [x] **Step 3: Run the test to verify it fails**
 
 Run: `node --test tests/contrast.test.mjs`
 Expected: FAIL — `Cannot find module '../tools/check-contrast.mjs'`.
 
-- [ ] **Step 4: Implement the contrast checker**
+- [x] **Step 4: Implement the contrast checker**
 
 `tools/check-contrast.mjs`:
 
@@ -335,7 +335,7 @@ if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith
 }
 ```
 
-- [ ] **Step 5: Write the token stylesheet**
+- [x] **Step 5: Write the token stylesheet**
 
 `css/tokens.css`. Note the two `--text-faint` values were derived to clear 4.5:1 against `--bg` (light `#6B6379` = 4.56:1, dark `#857C95` = 4.87:1). Do not "tidy" them back toward the greys in the spec's first draft.
 
@@ -477,7 +477,7 @@ if (import.meta.url === `file://${process.argv[1]}` || process.argv[1]?.endsWith
 }
 ```
 
-- [ ] **Step 6: Run the tests to verify they pass**
+- [x] **Step 6: Run the tests to verify they pass**
 
 Run: `node --test tests/contrast.test.mjs`
 Expected: PASS, 5/5.
@@ -485,12 +485,12 @@ Expected: PASS, 5/5.
 Run: `node tools/check-contrast.mjs`
 Expected: every line `PASS`, final line `All contrast pairs pass WCAG AA.`, exit 0.
 
-- [ ] **Step 7: Verify the colour-literal gate passes**
+- [x] **Step 7: Verify the colour-literal gate passes**
 
 Run: `grep -rEn '#[0-9a-fA-F]{3,8}\b|rgba?\(|hsla?\(' css/ --include='*.css' | grep -v '^css/tokens.css'`
 Expected: no output. (`css/style.css` still exists at this point and will match — that is expected; it is deleted in Task 15. Confirm the only matches are from `css/style.css`.)
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add package.json .gitignore tools/check-contrast.mjs tests/contrast.test.mjs css/tokens.css
