@@ -19,6 +19,11 @@ export const ICONS = {
   location: stroked('<path d="M12 21.2s6.6-5.2 6.6-10.2a6.6 6.6 0 1 0-13.2 0c0 5 6.6 10.2 6.6 10.2Z"/><circle cx="12" cy="11" r="2.4"/>'),
   arrow: stroked('<path d="M4.8 12h14.4M13.6 6.4 19.2 12l-5.6 5.6"/>'),
   external: stroked('<path d="M14 4.8h5.2V10M19.2 4.8 11 13M18 14v4.4a1.8 1.8 0 0 1-1.8 1.8H5.6a1.8 1.8 0 0 1-1.8-1.8V7.8A1.8 1.8 0 0 1 5.6 6H10"/>'),
+
+  // Hobby motifs — larger, more illustrative than the UI icons above.
+  note: stroked('<path d="M9 18.2V5.4l10-2v12.4"/><ellipse cx="6.6" cy="18.4" rx="2.6" ry="2.2"/><ellipse cx="16.6" cy="16.2" rx="2.6" ry="2.2"/>'),
+  controller: stroked('<rect x="2.4" y="7.4" width="19.2" height="10.4" rx="4.2"/><path d="M7 11v3.2M5.4 12.6h3.2"/><circle cx="16" cy="12" r=".9"/><circle cx="18.4" cy="14.2" r=".9"/>'),
+  kamae: stroked('<circle cx="12" cy="4.8" r="2.2"/><path d="M12 7.4v6.2M12 13.6 8 20M12 13.6 16 20M5.6 10.4 12 9.2l6.4 1.2"/>'),
 };
 
 export function renderIcon(name) {

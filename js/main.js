@@ -25,6 +25,12 @@ function renderWork(dict) {
   document.addEventListener('lang:changed', (event) => paint(event.detail.lang));
 }
 
+function paintIcons() {
+  document.querySelectorAll('[data-icon]').forEach((slot) => {
+    slot.innerHTML = renderIcon(slot.dataset.icon);
+  });
+}
+
 async function pageDict() {
   const page = document.body.dataset.page;
   if (page === 'home') return (await import('./i18n/home.js')).home;
@@ -50,6 +56,7 @@ async function boot() {
   document.addEventListener('nav:toggled', relabel);
 
   renderWork(dict);
+  paintIcons();
 
   const header = document.querySelector('.site-header');
   if (header) {

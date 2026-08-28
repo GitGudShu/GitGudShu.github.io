@@ -51,7 +51,10 @@ test('every icon renders decorative svg without colour literals', () => {
 });
 
 test('the icon set covers every use in the build', () => {
-  for (const name of ['github', 'linkedin', 'mail', 'location', 'arrow', 'external']) {
+  for (const name of [
+    'github', 'linkedin', 'mail', 'location', 'arrow', 'external',
+    'note', 'controller', 'kamae',
+  ]) {
     assert.ok(ICONS[name], `missing icon: ${name}`);
   }
 });

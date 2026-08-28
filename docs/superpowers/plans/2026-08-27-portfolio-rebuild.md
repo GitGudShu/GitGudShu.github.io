@@ -3012,7 +3012,7 @@ git commit -m "feat: add project metadata, work grid and archive rule"
 - Consumes: `.rail`, `.section__head`, `.eyebrow`, `.reveal`, `.chip` from Task 4; `renderIcon` from Task 6.
 - Produces: `ICONS.note`, `ICONS.controller`, `ICONS.kamae` added to `js/icons.js`; CSS classes `.about`, `.about__prose`, `.about__facts`, `.fact`, `.hobbies`, `.hobby`, `.hobby__motif`.
 
-- [ ] **Step 1: Extend the icon test to cover the three hobby motifs**
+- [x] **Step 1: Extend the icon test to cover the three hobby motifs**
 
 In `tests/covers.test.mjs`, replace the `'the icon set covers every use in the build'` test body with:
 
@@ -3027,12 +3027,12 @@ test('the icon set covers every use in the build', () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/covers.test.mjs`
 Expected: FAIL — `missing icon: note`.
 
-- [ ] **Step 3: Add the three hobby motifs to `js/icons.js`**
+- [x] **Step 3: Add the three hobby motifs to `js/icons.js`**
 
 Insert into the `ICONS` object, after `external`:
 
@@ -3043,12 +3043,12 @@ Insert into the `ICONS` object, after `external`:
   kamae: stroked('<circle cx="12" cy="4.8" r="2.2"/><path d="M12 7.4v6.2M12 13.6 8 20M12 13.6 16 20M5.6 10.4 12 9.2l6.4 1.2"/>'),
 ```
 
-- [ ] **Step 4: Run the test to verify it passes**
+- [x] **Step 4: Run the test to verify it passes**
 
 Run: `node --test tests/covers.test.mjs`
 Expected: PASS, 8/8.
 
-- [ ] **Step 5: Add the about and beyond keys to `js/i18n/home.js`**
+- [x] **Step 5: Add the about and beyond keys to `js/i18n/home.js`**
 
 Merge into `en`:
 
@@ -3100,7 +3100,7 @@ Merge into `fr`:
     'beyond.martial.text': "L'entraînement m'a plus appris sur la pratique délibérée que n'importe quel cours : décomposer un geste, répéter ce qu'on fait le moins bien, et accepter la lenteur des progrès.",
 ```
 
-- [ ] **Step 6: Replace the `#about` section body in `index.html`**
+- [x] **Step 6: Replace the `#about` section body in `index.html`**
 
 ```html
   <section class="section" id="about" aria-labelledby="about-title">
@@ -3140,7 +3140,7 @@ Merge into `fr`:
   </section>
 ```
 
-- [ ] **Step 7: Replace the `#beyond` section body in `index.html`**
+- [x] **Step 7: Replace the `#beyond` section body in `index.html`**
 
 ```html
   <section class="section" id="beyond" aria-labelledby="beyond-title">
@@ -3175,7 +3175,7 @@ Merge into `fr`:
   </section>
 ```
 
-- [ ] **Step 8: Paint the `data-icon` slots from `js/main.js`**
+- [x] **Step 8: Paint the `data-icon` slots from `js/main.js`**
 
 Add this function and call it from `boot()` after `renderWork(dict)`:
 
@@ -3187,7 +3187,7 @@ function paintIcons() {
 }
 ```
 
-- [ ] **Step 9: Append about and hobby styles to `css/components.css`**
+- [x] **Step 9: Append about and hobby styles to `css/components.css`**
 
 ```css
 /* ---- About ---- */
@@ -3269,7 +3269,7 @@ function paintIcons() {
 }
 ```
 
-- [ ] **Step 10: Verify in the browser**
+- [x] **Step 10: Verify in the browser**
 
 At 1440, 1024, 820, 819, 760, 759, 600, 414 and 320px confirm:
 1. About is two columns at ≥760px, stacked below; the facts card never squeezes the prose below a readable measure.
@@ -3279,12 +3279,12 @@ At 1440, 1024, 820, 819, 760, 759, 600, 414 and 320px confirm:
 5. `document.documentElement.scrollWidth <= window.innerWidth` is `true` at every width.
 6. Both themes: the facts card and hobby panels separate visibly from the page background.
 
-- [ ] **Step 11: Run the check suite**
+- [x] **Step 11: Run the check suite**
 
 Run: `npm run verify`
 Expected: all PASS.
 
-- [ ] **Step 12: Commit**
+- [x] **Step 12: Commit**
 
 ```bash
 git add index.html css/components.css js/i18n/home.js js/icons.js js/main.js tests/covers.test.mjs

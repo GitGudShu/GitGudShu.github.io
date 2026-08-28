@@ -126,7 +126,39 @@
   </section>
 
   <section class="section" id="about" aria-labelledby="about-title">
-    <div class="rail"><h2 class="section__title" id="about-title" data-i18n="about.title">About</h2></div>
+    <div class="rail">
+      <div class="section__head reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">About</p>
+        <h2 class="section__title" id="about-title" data-i18n="about.title">About</h2>
+      </div>
+
+      <div class="about">
+        <div class="about__prose reveal" style="--i:1">
+          <p data-i18n="about.p1">I work on systems that help people make operational decisions under pressure.</p>
+          <p data-i18n="about.p2">I'm finishing an engineering degree at UTBM as an apprentice.</p>
+          <p data-i18n="about.p3">I'm most interested in roles where data engineering, machine learning and decision-making meet.</p>
+        </div>
+
+        <dl class="about__facts reveal" style="--i:2">
+          <div class="fact">
+            <dt class="eyebrow" data-i18n="about.fact.role.label">Currently</dt>
+            <dd data-i18n="about.fact.role.value">Data science apprentice, AIMOS team &mdash; FEMTO-ST</dd>
+          </div>
+          <div class="fact">
+            <dt class="eyebrow" data-i18n="about.fact.school.label">Studying</dt>
+            <dd data-i18n="about.fact.school.value">Engineering degree in computer science, UTBM</dd>
+          </div>
+          <div class="fact">
+            <dt class="eyebrow" data-i18n="about.fact.where.label">Based in</dt>
+            <dd data-i18n="about.fact.where.value">Franche-Comt&eacute;, France &middot; open to relocation</dd>
+          </div>
+          <div class="fact">
+            <dt class="eyebrow" data-i18n="about.fact.focus.label">Focused on</dt>
+            <dd data-i18n="about.fact.focus.value">Data pipelines, applied ML, decision-support systems</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
   </section>
 
   <section class="section" id="work" aria-labelledby="work-title">
@@ -148,7 +180,34 @@
   </section>
 
   <section class="section" id="beyond" aria-labelledby="beyond-title">
-    <div class="rail"><h2 class="section__title" id="beyond-title" data-i18n="beyond.title">Beyond the work</h2></div>
+    <div class="rail">
+      <div class="section__head reveal">
+        <p class="eyebrow" data-i18n="nav.beyond">Beyond the work</p>
+        <h2 class="section__title" id="beyond-title" data-i18n="beyond.title">Beyond the work</h2>
+        <p class="section__lead" data-i18n="beyond.lead">Three things I keep coming back to.</p>
+      </div>
+
+      <ul class="hobbies">
+        <li class="hobby reveal" style="--i:0">
+          <span class="hobby__motif" data-icon="note" aria-hidden="true"></span>
+          <h3 class="hobby__title" data-i18n="beyond.music.title">Composing</h3>
+          <p class="hobby__text" data-i18n="beyond.music.text">I write and arrange music.</p>
+          <!-- Link slot: when a SoundCloud/Bandcamp page exists, add
+               <a class="hobby__link" href="..."></a> here. -->
+        </li>
+        <li class="hobby reveal" style="--i:1">
+          <span class="hobby__motif" data-icon="controller" aria-hidden="true"></span>
+          <h3 class="hobby__title" data-i18n="beyond.games.title">Game development</h3>
+          <p class="hobby__text" data-i18n="beyond.games.text">I build small games in my own time.</p>
+          <!-- Link slot: itch.io page goes here. -->
+        </li>
+        <li class="hobby reveal" style="--i:2">
+          <span class="hobby__motif" data-icon="kamae" aria-hidden="true"></span>
+          <h3 class="hobby__title" data-i18n="beyond.martial.title">Martial arts</h3>
+          <p class="hobby__text" data-i18n="beyond.martial.text">Training has taught me about deliberate practice.</p>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <section class="section" id="resume" aria-labelledby="resume-title">
