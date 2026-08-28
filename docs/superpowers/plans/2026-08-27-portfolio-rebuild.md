@@ -2488,7 +2488,7 @@ git commit -m "feat: add abstract SVG cover motifs and shared icon set"
   - Card i18n key convention: for a project with `id: "optimops"` the dictionary must define `work.optimops.role`, `work.optimops.year`, `work.optimops.title`, `work.optimops.summary`.
   - CSS classes `.work-grid`, `.card`, `.card__cover`, `.cover__art`, `.cover__pulse`, `.card__body`, `.card__meta`, `.card__title`, `.card__summary`, `.card__tags`, `.card--placeholder`, `.archive-rule`.
 
-- [ ] **Step 1: Write the failing projects test**
+- [x] **Step 1: Write the failing projects test**
 
 `tests/projects.test.mjs`:
 
@@ -2577,12 +2577,12 @@ test('rendering escapes nothing unexpected — no raw undefined leaks into marku
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/projects.test.mjs`
 Expected: FAIL — `Cannot find module '../js/data/projects.js'`.
 
-- [ ] **Step 3: Implement `js/data/projects.js`**
+- [x] **Step 3: Implement `js/data/projects.js`**
 
 ```js
 import { renderCover } from '../covers.js';
@@ -2674,7 +2674,7 @@ export function renderProjectCard(project, dict, lang) {
 }
 ```
 
-- [ ] **Step 4: Add the work keys to `js/i18n/home.js`**
+- [x] **Step 4: Add the work keys to `js/i18n/home.js`**
 
 Merge into `en`:
 
@@ -2740,7 +2740,7 @@ Merge into `fr`:
     'work.archive.label': 'Une sélection de projets universitaires',
 ```
 
-- [ ] **Step 5: Replace the `#work` section body in `index.html`**
+- [x] **Step 5: Replace the `#work` section body in `index.html`**
 
 ```html
   <section class="section" id="work" aria-labelledby="work-title">
@@ -2762,7 +2762,7 @@ Merge into `fr`:
   </section>
 ```
 
-- [ ] **Step 6: Render the grid from `js/main.js`**
+- [x] **Step 6: Render the grid from `js/main.js`**
 
 Add the imports at the top:
 
@@ -2797,7 +2797,7 @@ function renderWork(dict) {
 
 The `content:rendered` event is what Task 10's reveal observer listens for, so freshly injected cards get observed.
 
-- [ ] **Step 7: Append card and archive styles to `css/components.css`**
+- [x] **Step 7: Append card and archive styles to `css/components.css`**
 
 ```css
 /* ---- Section lead ---- */
@@ -2969,7 +2969,7 @@ The `content:rendered` event is what Task 10's reveal observer listens for, so f
 .archive-rule:hover .archive-rule__arrow { transform: translateX(4px); }
 ```
 
-- [ ] **Step 8: Run the tests to verify they pass**
+- [x] **Step 8: Run the tests to verify they pass**
 
 Run: `node --test tests/projects.test.mjs`
 Expected: PASS, 9/9.
@@ -2977,7 +2977,7 @@ Expected: PASS, 9/9.
 Run: `npm run verify`
 Expected: all PASS; `home` reports full parity with the new work keys.
 
-- [ ] **Step 9: Verify in the browser**
+- [x] **Step 9: Verify in the browser**
 
 At 1440, 1024, 900, 768, 600, 599, 414 and 320px confirm:
 1. The grid is 3 columns at ≥1024px, 2 at ≥600px, 1 below.
@@ -2989,7 +2989,7 @@ At 1440, 1024, 900, 768, 600, 599, 414 and 320px confirm:
 7. Emulate `prefers-reduced-motion: reduce`: the cover pulse stops.
 8. `document.documentElement.scrollWidth <= window.innerWidth` is `true` at every width.
 
-- [ ] **Step 10: Commit**
+- [x] **Step 10: Commit**
 
 ```bash
 git add js/data/projects.js js/main.js js/i18n/home.js css/components.css \

@@ -2,6 +2,28 @@ import { initTheme } from './theme.js';
 import { initI18n, mergeDicts, applyDict } from './i18n/index.js';
 import { common } from './i18n/common.js';
 import { initNav } from './nav.js';
+import { PROJECTS, renderProjectCard } from './data/projects.js';
+import { renderIcon } from './icons.js';
+
+function renderWork(dict) {
+  const grid = document.getElementById('work-grid');
+  if (!grid) return;
+
+  const arrowSlot = document.querySelector('.archive-rule__arrow');
+  if (arrowSlot) arrowSlot.innerHTML = renderIcon('arrow');
+
+  const paint = (lang) => {
+    grid.innerHTML = PROJECTS.map((project) => renderProjectCard(project, dict, lang)).join('');
+    grid.querySelectorAll('.card').forEach((card, i) => {
+      card.classList.add('reveal');
+      card.style.setProperty('--i', String(i % 3));
+    });
+    document.dispatchEvent(new CustomEvent('content:rendered'));
+  };
+
+  paint(document.documentElement.lang || 'en');
+  document.addEventListener('lang:changed', (event) => paint(event.detail.lang));
+}
 
 async function pageDict() {
   const page = document.body.dataset.page;
@@ -26,6 +48,8 @@ async function boot() {
   const relabel = () => applyDict(dict, i18n.getLang());
   document.addEventListener('theme:changed', relabel);
   document.addEventListener('nav:toggled', relabel);
+
+  renderWork(dict);
 
   const header = document.querySelector('.site-header');
   if (header) {
