@@ -1901,7 +1901,7 @@ git commit -m "feat: add base styles, frosted sticky header and site shell"
 - Consumes: `.rail`, `.eyebrow`, `.btn`, `.btn--primary`, `.btn--ghost`, `.chip`, `.chip-row`, `.reveal` from Task 4.
 - Produces: `.hero`, `.hero__inner`, `.hero__content`, `.hero__name`, `.hero__tagline`, `.hero__intro`, `.hero__actions`, `.hero__portrait`, `.hero__stack`, `.hero__stack-list`; home dictionary keys prefixed `hero.`; the file `assets/portrait.jpg` at 720×720.
 
-- [ ] **Step 1: Write the crop script**
+- [x] **Step 1: Write the crop script**
 
 `tools/crop-portrait.py`:
 
@@ -1941,14 +1941,14 @@ if __name__ == "__main__":
     main()
 ```
 
-- [ ] **Step 2: Run the crop and inspect the result**
+- [x] **Step 2: Run the crop and inspect the result**
 
 Run: `python tools/crop-portrait.py`
 Expected: `Wrote assets/portrait.jpg 720x720 (NN KB)` with NN ≤ 120, exit 0.
 
 Open `assets/portrait.jpg` and confirm the subject's face and the full guitar are in frame and the other two musicians are excluded. If the framing is off, adjust `BOX` and rerun — do not ship a bad crop.
 
-- [ ] **Step 3: Add the hero keys to `js/i18n/home.js`**
+- [x] **Step 3: Add the hero keys to `js/i18n/home.js`**
 
 Merge into the `en` object:
 
@@ -1978,7 +1978,7 @@ Merge into the `fr` object:
     'hero.stack.label': 'Je travaille avec',
 ```
 
-- [ ] **Step 4: Insert the hero markup into `index.html`**
+- [x] **Step 4: Insert the hero markup into `index.html`**
 
 Immediately after `<main id="content">` and before `<section class="section" id="about"…>`:
 
@@ -2020,7 +2020,7 @@ Immediately after `<main id="content">` and before `<section class="section" id=
   </section>
 ```
 
-- [ ] **Step 5: Append hero styles to `css/pages.css`**
+- [x] **Step 5: Append hero styles to `css/pages.css`**
 
 ```css
 /* ---- Hero ---- */
@@ -2126,7 +2126,7 @@ Immediately after `<main id="content">` and before `<section class="section" id=
 
 Note the `.hero__stack` border and the `.hero__stack-list li { max-width: none; }` override — `base.css` caps `li` at `--measure`, which would otherwise break the inline strip.
 
-- [ ] **Step 6: Verify in the browser**
+- [x] **Step 6: Verify in the browser**
 
 At 1920, 1440, 1024, 900, 899, 834, 768, 414, 360 and 320px confirm:
 1. Two columns at ≥900px, stacked at ≤899px.
@@ -2136,12 +2136,12 @@ At 1920, 1440, 1024, 900, 899, 834, 768, 414, 360 and 320px confirm:
 5. In landscape phone (740×360) the hero does not exceed one viewport height.
 6. `EN|FR` swaps the eyebrow, tagline, intro, both buttons, the location chip and the portrait `alt` (inspect the `alt` attribute directly).
 
-- [ ] **Step 7: Run the check suite**
+- [x] **Step 7: Run the check suite**
 
 Run: `npm run verify`
 Expected: all PASS, `home` reported at parity with the new key count.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add tools/crop-portrait.py assets/portrait.jpg index.html css/pages.css js/i18n/home.js

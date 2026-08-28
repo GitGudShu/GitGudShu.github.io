@@ -2,3 +2,121 @@
    pages.css — hero, project-detail and archive specifics.
    Populated by Tasks 5, 11 and 13.
    ========================================================================== */
+
+/* ---- Hero ---- */
+.hero { padding-block: clamp(2.5rem, 1.5rem + 5vw, 5.5rem) var(--section-gap); }
+
+.hero__inner {
+  display: grid;
+  gap: clamp(2rem, 1rem + 4vw, 4rem);
+  align-items: center;
+}
+
+.hero__name {
+  font-size: var(--fs-display);
+  font-weight: 600;
+  margin-block: var(--space-3) var(--space-4);
+}
+
+.hero__tagline {
+  font-family: var(--font-display);
+  font-variation-settings: "SOFT" 40, "WONK" 0;
+  font-size: var(--fs-h3);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  max-width: 34ch;
+  margin-block-end: var(--space-4);
+}
+
+.hero__intro { color: var(--text-muted); margin-block-end: var(--space-5); }
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-5);
+}
+
+.hero__portrait {
+  position: relative;
+  justify-self: center;
+  max-inline-size: 340px;
+  inline-size: 100%;
+}
+.hero__portrait img {
+  inline-size: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+/* Gradient ring, drawn as a masked border so it never clips the photo. */
+.hero__portrait::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  background: linear-gradient(150deg,
+    color-mix(in oklab, var(--accent) 70%, transparent),
+    transparent 55%,
+    color-mix(in oklab, var(--accent) 35%, transparent));
+  -webkit-mask: linear-gradient(black 0 0) content-box, linear-gradient(black 0 0);
+          mask: linear-gradient(black 0 0) content-box, linear-gradient(black 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+.hero__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glow-accent);
+  z-index: -1;
+}
+
+.hero__stack {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-block-start: clamp(2rem, 1rem + 3vw, 3.5rem);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--border);
+}
+.hero__stack-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  color: var(--text-muted);
+}
+.hero__stack-list li { max-width: none; }
+.hero__stack-list li::before { content: "· "; color: var(--text-faint); }
+.hero__stack-list li:first-child::before { content: none; }
+
+@media (min-width: 900px) {
+  .hero__inner { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
+  .hero__portrait { justify-self: end; max-inline-size: 380px; }
+}
+
+/* Landscape phones are wide but very short. Stacking the portrait under the
+   copy pushes the hero to nearly three screens, so it moves alongside and
+   shrinks, and the vertical rhythm tightens. */
+@media (max-width: 899px) and (max-height: 520px) and (orientation: landscape) {
+  .hero { padding-block: var(--space-5) var(--space-6); }
+  .hero__inner {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .hero__name { margin-block: var(--space-2) var(--space-3); }
+  .hero__tagline { margin-block-end: var(--space-3); }
+  .hero__intro { margin-block-end: var(--space-4); }
+  .hero__actions { margin-block-start: var(--space-4); }
+  .hero__portrait { justify-self: end; max-inline-size: 210px; }
+  .hero__stack { margin-block-start: var(--space-5); padding-block-start: var(--space-4); }
+}

@@ -92,7 +92,8 @@
 .nav-tools { display: flex; align-items: center; gap: var(--space-2); flex: none; }
 
 /* ---- Collapsed panel ---- */
-.nav-toggle { display: none; }
+/* Scoped past .icon-btn in components.css, which loads later at equal weight. */
+.nav-tools .nav-toggle { display: none; }
 
 .nav-panel {
   position: fixed;
@@ -128,7 +129,7 @@ body.has-panel-open { overflow: hidden; }
 
 @media (max-width: 859px) {
   .nav-links { display: none; }
-  .nav-toggle { display: inline-flex; }
+  .nav-tools .nav-toggle { display: inline-flex; }
 }
 @media (min-width: 860px) {
   .nav-panel { display: none !important; }

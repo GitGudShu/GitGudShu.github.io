@@ -89,7 +89,41 @@
 </nav>
 
 <main id="content">
-  <!-- Task 5 inserts the hero here -->
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="rail hero__inner">
+      <div class="hero__content">
+        <p class="eyebrow reveal" style="--i:0" data-i18n="hero.eyebrow">Data Scientist · AI Engineer</p>
+        <h1 class="hero__name reveal" id="hero-name" style="--i:1" data-i18n="hero.name">Thomas Chu</h1>
+        <p class="hero__tagline reveal" style="--i:2" data-i18n="hero.tagline">I build decision-support systems where the hard part is the data, not the dashboard.</p>
+        <p class="hero__intro reveal" style="--i:3" data-i18n="hero.intro">I'm a data science apprentice at UTBM, working in the AIMOS team at FEMTO-ST.</p>
+
+        <div class="chip-row reveal" style="--i:4">
+          <a class="chip" href="mailto:ml.thomaschu@gmail.com">ml.thomaschu@gmail.com</a>
+          <span class="chip" data-i18n="hero.chip.location">Franche-Comté, France</span>
+        </div>
+
+        <div class="hero__actions reveal" style="--i:5">
+          <a class="btn btn--primary" href="#work" data-i18n="hero.cta.work">View my work</a>
+          <a class="btn btn--ghost" href="CV-FR.pdf" download data-i18n="hero.cta.cv">Download CV</a>
+          <!-- When CV-EN.pdf exists, duplicate the line above with href="CV-EN.pdf". -->
+        </div>
+      </div>
+
+      <figure class="hero__portrait reveal" style="--i:2">
+        <img src="assets/portrait.jpg" width="720" height="720"
+             data-i18n-attr="alt:hero.portrait.alt"
+             alt="Thomas Chu playing classical guitar">
+      </figure>
+    </div>
+
+    <div class="rail hero__stack reveal" style="--i:6">
+      <span class="eyebrow" data-i18n="hero.stack.label">Working with</span>
+      <ul class="hero__stack-list">
+        <li>Python</li><li>FastAPI</li><li>Pandas</li><li>Parquet</li>
+        <li>PyTorch</li><li>Vue 3</li><li>Quasar</li><li>MongoDB</li><li>Docker</li>
+      </ul>
+    </div>
+  </section>
 
   <section class="section" id="about" aria-labelledby="about-title">
     <div class="rail"><h2 class="section__title" id="about-title" data-i18n="about.title">About</h2></div>
