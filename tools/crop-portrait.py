@@ -1,8 +1,8 @@
 """One-off: crop assets/hero.jpg to a square portrait.
 
 The source is 1024x683 and contains three musicians. The box below frames the
-subject on the left — face, hands and the full guitar including the headstock —
-and stops short of the second player, whose hair enters the frame around x=620.
+subject on the left (face, hands and the full guitar) and stops short of the
+second player, whose hair enters the frame around x=620.
 Run once; assets/hero.jpg is never modified.
 """
 from pathlib import Path

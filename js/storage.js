@@ -1,10 +1,4 @@
-/**
- * localStorage access that never throws.
- *
- * Private-mode Safari, blocked site data and quota errors all raise on access.
- * The site must render correctly with no stored preference, so every failure
- * degrades to "nothing stored" rather than propagating.
- */
+/** localStorage that never throws: blocked site data and quota errors both raise. */
 
 export function readStored(key) {
   try {

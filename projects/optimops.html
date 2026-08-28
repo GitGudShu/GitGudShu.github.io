@@ -16,19 +16,19 @@
   }
 </script>
 
-<title>OptimOps Neo — Thomas Chu</title>
-<meta name="description" content="A full-stack decision-support platform for a French fire &amp; rescue service: coverage analysis, scenario simulation and resource optimization.">
+<title>OptimOps Neo, Thomas Chu</title>
+<meta name="description" content="A full-stack decision-support platform for a French fire and rescue service: coverage analysis, scenario simulation, resource optimization, and the indicator engine underneath it.">
 <meta name="theme-color" content="#E9E4F0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#100D16" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Thomas Chu">
-<meta property="og:title" content="OptimOps Neo — Thomas Chu">
-<meta property="og:description" content="A full-stack decision-support platform for a French fire &amp; rescue service: coverage analysis, scenario simulation and resource optimization.">
+<meta property="og:title" content="OptimOps Neo, Thomas Chu">
+<meta property="og:description" content="A full-stack decision-support platform for a French fire and rescue service: coverage analysis, scenario simulation, resource optimization, and the indicator engine underneath it.">
 <meta property="og:url" content="https://gitgudshu.github.io/projects/optimops.html">
-<meta property="og:image" content="https://gitgudshu.github.io/assets/portrait.jpg">
-<meta property="og:image:alt" content="Thomas Chu">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://gitgudshu.github.io/assets/screens/optimops-coverage.jpg">
+<meta property="og:image:alt" content="The OptimOps coverage view">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://gitgudshu.github.io/projects/optimops.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 
@@ -83,56 +83,96 @@
 
 <main id="content">
   <article class="project">
-    <div class="rail rail--prose">
+    <div class="rail">
       <header class="project__head reveal">
-        <p class="eyebrow" data-i18n="p.eyebrow">Full-stack &middot; decision support &middot; 2023 &mdash; present</p>
+        <p class="eyebrow" data-i18n="p.eyebrow">Full-stack &middot; decision support &middot; since 2023</p>
         <h1 class="project__title" data-i18n="p.title">OptimOps Neo</h1>
-        <p class="project__lead" data-i18n="p.lead">A decision-support platform for a fire &amp; rescue service.</p>
+        <p class="project__lead" data-i18n="p.lead">A platform that lets a fire and rescue service ask what would happen if it moved a vehicle, changed a shift pattern, or lost a station for a day.</p>
       </header>
 
-      <div class="project__cover reveal" style="--i:1" data-cover="optimops" aria-hidden="true"></div>
 
-      <dl class="project__facts reveal" style="--i:1">
+      <dl class="project__facts reveal">
         <div>
           <dt class="eyebrow" data-i18n="p.facts.role.label">Role</dt>
-          <dd data-i18n="p.facts.role.value">Data scientist</dd>
+          <dd data-i18n="p.facts.role.value">Data scientist: data contract, computation engine, API, dashboard architecture</dd>
         </div>
         <div>
           <dt class="eyebrow" data-i18n="p.facts.stack.label">Stack</dt>
-          <dd data-i18n="p.facts.stack.value">Python &middot; FastAPI &middot; Vue 3</dd>
+          <dd data-i18n="p.facts.stack.value">Python &middot; FastAPI &middot; Pandas &middot; Parquet &middot; Vue 3</dd>
         </div>
         <div>
           <dt class="eyebrow" data-i18n="p.facts.scope.label">Scope</dt>
-          <dd data-i18n="p.facts.scope.value">Backend, frontend and the data layer</dd>
+          <dd data-i18n="p.facts.scope.value">Backend, frontend, and the whole data layer between them</dd>
         </div>
         <div>
           <dt class="eyebrow" data-i18n="p.facts.status.label">Status</dt>
-          <dd data-i18n="p.facts.status.value">In production</dd>
+          <dd data-i18n="p.facts.status.value">In production, actively developed</dd>
         </div>
       </dl>
 
       <div class="project__body">
-        <section class="reveal">
+        <section class="block block--split reveal">
+        <div class="block__text">
           <h2 data-i18n="p.context.title">Context</h2>
           <div data-i18n-html="p.context.body"></div>
+        </div>
+          <figure class="figure block__aside">
+            <img src="../assets/screens/optimops-coverage.jpg" width="1098" height="531" alt="" loading="lazy">
+            <figcaption data-i18n="p.shot.coverage">p.shot.coverage</figcaption>
+          </figure>
         </section>
-        <section class="reveal">
+
+        <section class="block block--prose reveal">
+        <div class="block__text">
           <h2 data-i18n="p.built.title">What I built</h2>
           <div data-i18n-html="p.built.body"></div>
+        </div>
         </section>
-        <section class="reveal">
+
+        <section class="block block--split is-flipped reveal">
+        <div class="block__text">
+          <h2 data-i18n="p.dashboard.title">A dashboard people build themselves</h2>
+          <div data-i18n-html="p.dashboard.body"></div>
+        </div>
+          <figure class="figure block__aside">
+            <img src="../assets/screens/optimops-charts.jpg" width="1118" height="382" alt="" loading="lazy">
+            <figcaption data-i18n="p.shot.charts">p.shot.charts</figcaption>
+          </figure>
+        </section>
+
+        <section class="block block--prose reveal">
+        <div class="block__text">
+          <h2 data-i18n="p.engine.title">Rebuilding the engine underneath</h2>
+          <div data-i18n-html="p.engine.body"></div>
+        </div>
+        </section>
+
+        <section class="block block--figure reveal">
+          <figure class="figure">
+            <img src="../assets/screens/optimops-model.png" width="1200" height="701" alt="" loading="lazy">
+            <figcaption data-i18n="p.shot.model">p.shot.model</figcaption>
+          </figure>
+        </section>
+
+        <section class="block block--prose reveal">
+        <div class="block__text">
           <h2 data-i18n="p.decisions.title">Engineering decisions</h2>
           <div data-i18n-html="p.decisions.body"></div>
+        </div>
         </section>
-        <section class="reveal">
-          <h2 data-i18n="p.outcome.title">Outcome</h2>
+
+        <section class="block block--prose reveal">
+        <div class="block__text">
+          <h2 data-i18n="p.outcome.title">Where it stands</h2>
           <div data-i18n-html="p.outcome.body"></div>
+        </div>
         </section>
+
       </div>
 
       <nav class="project__nav" aria-label="Project navigation">
         <a href="../index.html#work" data-i18n="p.nav.prev">Back to work</a>
-        <a href="kpi-engine.html" data-i18n="p.nav.next">Next: KPI Engine</a>
+        <a href="emotion-recognition.html" data-i18n="p.nav.next">Next: Multimodal Emotion Recognition</a>
       </nav>
     </div>
   </article>
@@ -140,7 +180,7 @@
 
 <footer class="site-footer">
   <div class="rail site-footer__inner">
-    <p data-i18n="footer.built">Built from scratch &mdash; no framework, no tracking.</p>
+    <p data-i18n="footer.built">Built from scratch. No framework, no tracking.</p>
     <a href="https://github.com/GitGudShu/GitGudShu.github.io" data-i18n="footer.source">Source on GitHub</a>
   </div>
 </footer>

@@ -7,7 +7,6 @@ const PAGES = [
   'archive.html',
   '404.html',
   'projects/optimops.html',
-  'projects/kpi-engine.html',
   'projects/emotion-recognition.html',
   'projects/predictops.html',
   'projects/ars.html',

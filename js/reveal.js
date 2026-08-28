@@ -1,7 +1,4 @@
-/**
- * Scroll reveal. Adds .is-visible once an element enters the viewport, then
- * stops observing it — reveals never replay, and never re-run on language swap.
- */
+/** Adds .is-visible on entry, then unobserves: reveals never replay. */
 export function initReveal({ selector = '.reveal', root = document } = {}) {
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -29,7 +26,6 @@ export function initReveal({ selector = '.reveal', root = document } = {}) {
   const observeAll = () => root.querySelectorAll(selector).forEach(observe);
 
   observeAll();
-  // Cards injected by renderWork() announce themselves.
   document.addEventListener('content:rendered', observeAll);
 
   return {

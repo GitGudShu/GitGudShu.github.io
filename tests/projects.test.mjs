@@ -5,15 +5,15 @@ import { COVER_IDS } from '../js/covers.js';
 import { home } from '../js/i18n/home.js';
 import { LANGS, translate } from '../js/i18n/index.js';
 
-test('ships exactly six cards: five flagships plus the placeholder', () => {
-  assert.equal(PROJECTS.length, 6);
+test('ships exactly five cards: four flagships plus the placeholder', () => {
+  assert.equal(PROJECTS.length, 5);
   assert.equal(PROJECTS.filter((p) => p.placeholder).length, 1);
 });
 
 test('the flagship order matches the intended narrative', () => {
   assert.deepEqual(
     PROJECTS.map((p) => p.id),
-    ['optimops', 'kpi-engine', 'emotion-recognition', 'predictops', 'ars', 'wip'],
+    ['optimops', 'emotion-recognition', 'predictops', 'ars', 'wip'],
   );
 });
 
@@ -72,7 +72,7 @@ test('the placeholder renders as a non-link article marked aria-disabled', () =>
   assert.doesNotMatch(html, /<a /, 'placeholder must not contain a link');
 });
 
-test('rendering escapes nothing unexpected — no raw undefined leaks into markup', () => {
+test('no raw undefined leaks into rendered markup', () => {
   for (const lang of LANGS) {
     for (const project of PROJECTS) {
       const html = renderProjectCard(project, home, lang);

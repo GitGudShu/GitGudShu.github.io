@@ -1,12 +1,9 @@
-/* ==========================================================================
-   tokens.css — the single source of truth for colour, type, space and motion.
-   No other stylesheet may contain a colour literal.
-   ========================================================================== */
+/* tokens.css: the single source of truth for colour, type, space and motion. */
 
 :root {
   color-scheme: light;
 
-  /* ---- Colour: dusk (light theme) ---- */
+  /* Colour: dusk (light theme) */
   --bg: #E9E4F0;
   --surface: #F2EEF7;
   --surface-raised: #F8F5FB;
@@ -19,7 +16,7 @@
   --accent-strong: #4B3B9E;
   --accent-contrast: #FFFFFF;
 
-  /* ---- Derived surfaces ---- */
+  /* Derived surfaces */
   --nav-bg: color-mix(in oklab, var(--bg) 72%, transparent);
   --nav-bg-scrolled: color-mix(in oklab, var(--bg) 88%, transparent);
   --shadow-card: 0 1px 2px color-mix(in oklab, var(--text) 8%, transparent),
@@ -30,7 +27,7 @@
   --glow-accent: 0 0 60px color-mix(in oklab, var(--accent) 22%, transparent);
   --particle-color: var(--accent);
 
-  /* ---- Typography ---- */
+  /* Typography */
   --font-display: Fraunces, "Iowan Old Style", Georgia, serif;
   --font-body: Manrope, "Segoe UI", system-ui, -apple-system, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
@@ -48,7 +45,7 @@
   --tracking-mono: .06em;
   --measure: 65ch;
 
-  /* ---- Space ---- */
+  /* Space */
   --space-1: .25rem;
   --space-2: .5rem;
   --space-3: .75rem;
@@ -62,19 +59,19 @@
   --rail-prose: 720px;
   --rail-pad: clamp(1.15rem, .6rem + 2.4vw, 2.5rem);
 
-  /* ---- Radii ---- */
+  /* Radii */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 22px;
   --radius-full: 999px;
 
-  /* ---- Motion ---- */
+  /* Motion */
   --ease: cubic-bezier(.22, 1, .36, 1);
   --dur-fast: 160ms;
   --dur: 320ms;
   --dur-slow: 520ms;
 
-  /* ---- Chrome ---- */
+  /* Chrome */
   --nav-h: 60px;
   --z-nav: 50;
   --z-panel: 60;

@@ -15,7 +15,7 @@ const DICTS = [
 /**
  * `projects` is keyed by slug, one {en, fr} pair per page, while every other
  * group is a single flat pair. Expanding the nested shape lets both be checked
- * the same way — and reports a failure against the page it belongs to.
+ * the same way, and reports a failure against the page it belongs to.
  */
 function expand(group, dict) {
   if (dict.en && dict.fr) return [[group, dict]];
@@ -53,7 +53,7 @@ for (const [group, load] of DICTS) {
 
     if (missingInEn.length === 0 && missingInFr.length === 0) {
       const count = Object.keys(dict.en ?? {}).length;
-      console.log(`PASS  ${name} — ${count} keys at full parity`);
+      console.log(`PASS  ${name}: ${count} keys at full parity`);
     }
   }
 }

@@ -2,3 +2,7 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+
+# Raw screen captures: sources for tools/build-screens.py, never published
+# because they still carry client identity.
+assets/images/but/

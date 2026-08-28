@@ -21,7 +21,7 @@ test('every cover renders a well-formed, decorative, 16:9 svg', () => {
   }
 });
 
-test('covers contain no colour literals — theme tokens only', () => {
+test('covers contain no colour literals, theme tokens only', () => {
   for (const id of COVER_IDS) {
     const svg = renderCover(id);
     assert.doesNotMatch(svg, /#[0-9a-fA-F]{3,8}\b/, `${id} contains a hex colour`);

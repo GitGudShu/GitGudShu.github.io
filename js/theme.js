@@ -3,10 +3,7 @@ import { readStored, writeStored } from './storage.js';
 export const THEMES = ['light', 'dark'];
 export const STORAGE_KEY = 'tc-theme';
 
-/**
- * An explicit stored choice wins. Otherwise follow the OS. An unrecognised
- * stored value is discarded rather than written to the DOM.
- */
+/** An explicit stored choice wins, otherwise follow the OS. */
 export function resolveTheme(stored, prefersDark) {
   if (THEMES.includes(stored)) return stored;
   return prefersDark ? 'dark' : 'light';
@@ -25,7 +22,6 @@ export function applyTheme(theme, root = document.documentElement) {
 }
 
 function labelFor(theme) {
-  // The button announces the action it performs, not the current state.
   return theme === 'dark' ? 'theme.toLight' : 'theme.toDark';
 }
 
@@ -44,10 +40,7 @@ export function initTheme({ button }) {
     document.dispatchEvent(new CustomEvent('theme:changed', { detail: { theme: current } }));
   }
 
-  /**
-   * `persist` is false when the OS preference changed under us: following the
-   * system is not the visitor making a choice, so it must not become one.
-   */
+  // persist is false when the OS changed under us: that is not a choice.
   function commit(theme, persist = true) {
     current = theme;
     applyTheme(current, root);
@@ -64,7 +57,6 @@ export function initTheme({ button }) {
       return;
     }
 
-    // Circular wipe originating at the toggle.
     const rect = button?.getBoundingClientRect();
     const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
     const y = rect ? rect.top + rect.height / 2 : 0;

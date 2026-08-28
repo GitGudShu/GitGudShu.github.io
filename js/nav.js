@@ -1,12 +1,4 @@
-/**
- * Sticky header behaviour: scrolled state, active-section tracking, and the
- * collapsed menu panel below 860px.
- */
-
-/**
- * Pure: which section is active for a given scroll position.
- * A section becomes active once its top passes `scrollY + offset`.
- */
+/** A section becomes active once its top passes scrollY + offset. */
 export function activeSectionId(entries, scrollY, offset) {
   const line = scrollY + offset;
   let active = null;
@@ -50,7 +42,6 @@ export function initNav({ header, toggle, panel, links, sections, threshold = 24
 
   const onResize = () => { measured = measure(); onScroll(); };
 
-  // ---- Collapsed panel ----
   let open = false;
   const focusableInPanel = () =>
     panel ? [...panel.querySelectorAll('a[href], button:not([disabled])')] : [];
@@ -62,7 +53,6 @@ export function initNav({ header, toggle, panel, links, sections, threshold = 24
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('data-i18n-attr', `aria-label:${open ? 'nav.menu.close' : 'nav.menu.open'}`);
     document.body.classList.toggle('has-panel-open', open);
-    // The label above is a key, not a string; main.js re-applies the dictionary.
     document.dispatchEvent(new CustomEvent('nav:toggled', { detail: { open } }));
     if (open) focusableInPanel()[0]?.focus();
   }
@@ -72,7 +62,6 @@ export function initNav({ header, toggle, panel, links, sections, threshold = 24
     if (event.key === 'Escape') { setOpen(false); toggle.focus(); return; }
     if (event.key !== 'Tab') return;
 
-    // Focus trap.
     const items = focusableInPanel();
     if (items.length === 0) return;
     const first = items[0];
@@ -101,7 +90,6 @@ export function initNav({ header, toggle, panel, links, sections, threshold = 24
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onResize);
 
-  // Close the panel if the viewport grows past the collapse breakpoint.
   const wide = window.matchMedia('(min-width: 860px)');
   wide.addEventListener('change', (event) => { if (event.matches) setOpen(false); });
 

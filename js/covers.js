@@ -1,7 +1,4 @@
-/**
- * Abstract cover motifs, one per project. Every motif is 16:9, drawn only in
- * currentColor, and decorative — the card's text carries all the meaning.
- */
+/** Abstract 16:9 motifs in currentColor. Decorative: the card text carries the meaning. */
 
 const wrap = (body) =>
   '<svg viewBox="0 0 480 270" class="cover__art" aria-hidden="true" focusable="false" ' +
@@ -9,7 +6,7 @@ const wrap = (body) =>
 
 const n = (value) => Number(value).toFixed(1);
 
-/** Hexagonal coverage grid — a few cells pulsing out of phase. */
+/** Hexagonal coverage grid. */
 function optimops() {
   const cells = [];
   const w = 46;
@@ -35,14 +32,13 @@ function optimops() {
   return wrap(cells.join(''));
 }
 
-/** Star schema — one fact table, radiating dimension tables. */
+/** Star schema: one fact table, radiating dimensions. */
 function kpiEngine() {
   const cx = 240;
   const cy = 135;
   const dims = [[90, 55], [390, 55], [70, 200], [410, 200], [240, 32], [240, 238]];
 
-  // Spokes start on the fact table's edge rather than its centre, so they do
-  // not draw an X through the box they are supposed to radiate from.
+  // Spokes start on the box edge, or they draw an X through it.
   const edge = (x, y) => {
     const dx = x - cx;
     const dy = y - cy;
@@ -141,7 +137,7 @@ function ars() {
   );
 }
 
-/** Writing in progress — a dotted frame; the takodachi image sits above it. */
+/** Writing in progress: a dotted frame behind the mascot. */
 function wip() {
   return wrap(
     '<rect x="24" y="20" width="432" height="230" rx="18" stroke-width="1.6" stroke-dasharray="6 9" opacity=".5"/>' +

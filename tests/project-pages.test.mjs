@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, access } from 'node:fs/promises';
 import { projects } from '../js/i18n/projects.js';
 import { PROJECTS } from '../js/data/projects.js';
 import { parityReport, LANGS, translate } from '../js/i18n/index.js';
 
-const BUILT = ['optimops', 'kpi-engine', 'emotion-recognition', 'predictops', 'ars'];
+const BUILT = ['optimops', 'emotion-recognition', 'predictops', 'ars'];
 
 const REQUIRED_KEYS = [
   'meta.title', 'meta.description',
@@ -103,7 +103,7 @@ test('no built page contains an inline style attribute except reveal stagger', a
 });
 
 test('the prev/next chain is complete and every target exists', async () => {
-  const chain = ['optimops', 'kpi-engine', 'emotion-recognition', 'predictops', 'ars'];
+  const chain = ['optimops', 'emotion-recognition', 'predictops', 'ars'];
   for (const [i, slug] of chain.entries()) {
     const html = await readFile(new URL(`../projects/${slug}.html`, import.meta.url), 'utf8');
     const prev = i === 0 ? '../index.html#work' : `${chain[i - 1]}.html`;
@@ -118,5 +118,28 @@ test('every project card on the homepage has a page that exists', async () => {
     if (project.placeholder) continue;
     const html = await readFile(new URL(`../${project.href}`, import.meta.url), 'utf8');
     assert.ok(html.length > 0, `${project.href} is empty`);
+  }
+});
+
+test('every figure has a caption and an image that exists', async () => {
+  for (const slug of BUILT) {
+    const html = await readFile(new URL(`../projects/${slug}.html`, import.meta.url), 'utf8');
+    const figures = html.match(/<figure[\s\S]*?<\/figure>/g) ?? [];
+    for (const figure of figures) {
+      assert.match(figure, /<figcaption data-i18n="[^"]+"/, `${slug}: figure without a caption`);
+      const src = figure.match(/<img src="\.\.\/([^"]+)"/)?.[1];
+      if (src) await access(new URL(`../${src}`, import.meta.url));
+    }
+  }
+});
+
+test('every project image declares intrinsic dimensions', async () => {
+  for (const slug of BUILT) {
+    const html = await readFile(new URL(`../projects/${slug}.html`, import.meta.url), 'utf8');
+    for (const img of html.match(/<img [^>]*>/g) ?? []) {
+      assert.match(img, /width="\d+"/, `${slug}: ${img} has no width`);
+      assert.match(img, /height="\d+"/, `${slug}: ${img} has no height`);
+      assert.match(img, /alt="/, `${slug}: ${img} has no alt`);
+    }
   }
 });

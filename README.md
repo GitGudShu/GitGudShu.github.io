@@ -1,6 +1,6 @@
 # GitGudShu.github.io
 
-Personal portfolio of Thomas Chu — data scientist and AI engineer.
+Personal portfolio of Thomas Chu, data scientist and AI engineer.
 
 Static site: HTML, CSS and vanilla JavaScript ES modules. No build step, no
 bundler, no runtime dependencies. Deploys by pushing to `main`.
@@ -8,7 +8,7 @@ bundler, no runtime dependencies. Deploys by pushing to `main`.
 ## Local preview
 
 ES modules do not load over `file://`, so **opening `index.html` by
-double-clicking will not work** — the page will render without styling or
+double-clicking will not work**. The page renders without styling or
 behaviour. Serve it over HTTP instead:
 
 ```bash
@@ -36,6 +36,7 @@ index.html            Hero · About · Work · Beyond the work · Résumé · Co
 projects/*.html       One page per flagship project
 archive.html          Curated bachelor coursework
 404.html              Not found
+assets/screens/       Published screenshots, already redacted
 css/
   tokens.css          All colour, type, space and motion tokens. Both themes.
                       The ONLY file allowed to contain a colour literal.
@@ -49,15 +50,16 @@ js/
   i18n/               Engine plus one dictionary per page
   nav.js reveal.js particles.js
   covers.js icons.js  Inline SVG, all currentColor
+  diagrams.js         Inline SVG diagrams
   data/projects.js    Project card metadata
-tools/                Zero-dependency checkers and the one-off portrait crop
+tools/                Checkers, the portrait crop, and the screenshot redactor
 tests/                Unit tests for the pure modules
 ```
 
 ## Conventions
 
 - **Colour lives only in `css/tokens.css`.** Everything else uses `var(--…)`.
-  The two `theme-color` meta tags are the single documented exception —
+  The two `theme-color` meta tags are the single documented exception:
   `theme-color` cannot read a custom property, so if `--bg` changes in either
   theme, those tags change too.
 - **FR/EN parity is enforced.** Adding a string in one language without the
@@ -65,6 +67,10 @@ tests/                Unit tests for the pure modules
 - **Motion respects `prefers-reduced-motion`.** The particle canvas is removed
   entirely, not merely paused.
 - **No phone number and no street address** appear anywhere on the site.
+- **Screenshots are redacted before publication.** `tools/build-screens.py`
+  masks station and department names, the client crest and colleagues' names.
+  The raw captures are gitignored and must never be committed.
+- **No em dashes in copy.** Rephrase instead.
 
 ## Adding a project
 
@@ -72,8 +78,11 @@ tests/                Unit tests for the pure modules
 2. Add `work.<slug>.{role,year,title,summary}` to `js/i18n/home.js`, both languages.
 3. Add a cover motif to `js/covers.js` (or reuse one).
 4. Add a dictionary to `js/i18n/projects.js` with the full key contract.
-5. Copy an existing page in `projects/`, change the page-specific values:
+5. Add a redacted screenshot under `assets/screens/`, and point the card at it
+   with `shot: { src, w, h, alt }`. Without one the card falls back to a
+   diagram, then to the SVG motif.
+6. Copy an existing page in `projects/`, change the page-specific values:
    `<title>`, `<meta name="description">`, the `og:` tags, `canonical`,
-   `data-project`, `data-cover`, the static fallback text, and both nav links.
-6. Fix the prev/next chain on the neighbouring pages.
-7. `npm run verify`.
+   `data-project`, the static fallback text, and both nav links.
+7. Fix the prev/next chain on the neighbouring pages.
+8. `npm run verify`.

@@ -1,31 +1,25 @@
 /**
- * A discreet background particle field: slow-drifting motes that the pointer
- * pushes gently aside. Fixed, out of flow, and behind everything — it can never
- * cause layout shift.
- *
- * Disabled entirely for coarse pointers and for prefers-reduced-motion.
+ * Background motes the pointer pushes aside. Fixed and behind everything, so it
+ * cannot shift layout. Removed entirely for coarse pointers and reduced motion.
  */
 
 const MARGIN = 10;
 const POINTER_RADIUS = 120;
 const MAX_DPR = 2;
 
-/** Half the field on small screens; the base count otherwise. */
+/** Half the field on small screens. */
 export function particleCount(width, base = 60) {
   return width < 768 ? Math.round(base / 2) : base;
 }
 
-/** Wrap around the viewport with a small margin, so motes never pop at an edge. */
+/** Wrap with a margin so motes never pop at an edge. */
 export function wrapPosition(value, max) {
   if (value > max + MARGIN) return -MARGIN;
   if (value < -MARGIN) return max + MARGIN;
   return value;
 }
 
-/**
- * Radial repulsion from the pointer. Returns a unit-ish direction scaled by a
- * strength that decays linearly to zero at `radius`.
- */
+/** Direction away from the pointer, scaled by a strength decaying to 0 at radius. */
 export function repulsion(px, py, mx, my, radius) {
   const vx = px - mx;
   const vy = py - my;
@@ -44,7 +38,6 @@ export function initParticles({ canvas }) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = window.matchMedia('(pointer: fine)');
 
-  // No hover on touch, and no motion for people who asked for none.
   if (reducedMotion.matches || !finePointer.matches) {
     canvas.remove();
     return { destroy() {} };
@@ -61,7 +54,7 @@ export function initParticles({ canvas }) {
   let accent = '185, 165, 255';
 
   function readAccent() {
-    // The canvas cannot use a CSS variable directly, so resolve it per theme.
+    // Canvas cannot read a CSS variable, so resolve it per theme.
     const probe = document.createElement('span');
     probe.style.color = 'var(--accent)';
     probe.style.display = 'none';
@@ -108,7 +101,6 @@ export function initParticles({ canvas }) {
       p.x += p.vx + Math.sin(p.phase) * 0.14;
 
       const { dx, dy, strength } = repulsion(p.x, p.y, pointer.x, pointer.y, POINTER_RADIUS);
-      // Ease toward the pushed offset, then ease back when the pointer leaves.
       p.ox += (dx * 26 - p.ox) * 0.08;
       p.oy += (dy * 26 - p.oy) * 0.08;
 

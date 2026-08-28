@@ -1,6 +1,4 @@
-/* ==========================================================================
-   base.css — reset, document defaults, focus, selection.
-   ========================================================================== */
+/* base.css: reset, document defaults, focus, selection. */
 
 *, *::before, *::after { box-sizing: border-box; }
 * { margin: 0; }

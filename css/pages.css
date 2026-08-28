@@ -1,9 +1,6 @@
-/* ==========================================================================
-   pages.css — hero, project-detail and archive specifics.
-   Populated by Tasks 5, 11 and 13.
-   ========================================================================== */
+/* pages.css: hero, project detail and archive specifics. */
 
-/* ---- Hero ---- */
+/* Hero */
 .hero { padding-block: clamp(2.5rem, 1.5rem + 5vw, 5.5rem) var(--section-gap); }
 
 .hero__inner {
@@ -121,10 +118,10 @@
   .hero__stack { margin-block-start: var(--space-5); padding-block-start: var(--space-4); }
 }
 
-/* ---- Project detail ---- */
+/* Project detail */
 .project { padding-block: clamp(2rem, 1.2rem + 3vw, 3.5rem) 0; }
 
-.project__head { margin-block-end: var(--space-6); }
+.project__head { margin-block-end: var(--space-6); max-width: var(--rail-prose); }
 .project__title { font-size: var(--fs-h1); margin-block: var(--space-3) var(--space-4); }
 .project__lead {
   font-size: clamp(1.05rem, 1rem + .35vw, 1.25rem);
@@ -132,22 +129,10 @@
   max-width: 58ch;
 }
 
-.project__cover {
-  aspect-ratio: 16 / 9;
-  display: grid;
-  place-items: center;
-  margin-block-end: var(--space-6);
-  background: color-mix(in oklab, var(--accent) 6%, var(--surface));
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  color: var(--accent);
-  overflow: hidden;
-}
-
 .project__facts {
   display: grid;
   gap: var(--space-4);
-  margin-block-end: var(--space-7);
+  margin-block-end: var(--section-gap);
   padding-block: var(--space-5);
   border-block: 1px solid var(--border);
   grid-template-columns: 1fr;
@@ -160,11 +145,68 @@
 @media (min-width: 600px) { .project__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1024px) { .project__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
-.project__body { display: flex; flex-direction: column; gap: var(--space-7); }
-.project__body h2 { font-size: var(--fs-h2); margin-block-end: var(--space-4); }
-.project__body p { color: var(--text-muted); }
-.project__body p + p { margin-block-start: var(--space-4); }
-.project__body strong { color: var(--text); font-weight: 600; }
+/* Content blocks */
+.project__body { display: flex; flex-direction: column; gap: var(--section-gap); }
+
+.block { display: grid; gap: clamp(1.75rem, 1rem + 2.5vw, 3rem); align-items: center; }
+.block__text h2 { font-size: var(--fs-h2); margin-block-end: var(--space-4); }
+.block__text p { color: var(--text-muted); }
+.block__text p + p { margin-block-start: var(--space-4); }
+.block__text strong { color: var(--text); font-weight: 600; }
+.block--prose .block__text { max-width: 68ch; }
+
+@media (min-width: 900px) {
+  /* The figure gets the wider column: these are dense screenshots. */
+  .block--split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  .block--split.is-flipped { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .block--split.is-flipped .block__text { order: 2; }
+}
+
+/* Figures */
+.figure { margin: 0; }
+.figure img,
+.figure .diagram {
+  inline-size: 100%;
+  block-size: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+.figure .diagram { display: block; color: var(--accent); padding: var(--space-4); }
+.figure figcaption {
+  margin-block-start: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--text-faint);
+  max-width: 60ch;
+}
+
+/* Paper card */
+.paper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+.paper__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  color: var(--text);
+}
+.paper__meta { font-size: var(--fs-small); color: var(--text-muted); }
+.paper__note {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  line-height: 1.5;
+  color: var(--text-faint);
+}
 
 .project__nav {
   display: flex;
@@ -179,11 +221,7 @@
 .project__nav a { text-decoration: none; }
 .project__nav a:hover { text-decoration: underline; }
 
-/* Wide content inside prose must scroll itself, never the page. */
-.project__body pre,
-.project__body table { display: block; overflow-x: auto; max-width: 100%; }
-
-/* ---- Archive ---- */
+/* Archive */
 .archive-list { display: flex; flex-direction: column; gap: var(--space-6); }
 
 .archive-entry {
@@ -191,6 +229,18 @@
   padding-block-end: var(--space-6);
   border-block-end: 1px solid var(--border);
 }
+.archive-entry__text p { max-width: 62ch; }
+
+@media (min-width: 820px) {
+  .archive-entry--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    align-items: start;
+  }
+  .archive-entry--split.is-flipped .archive-entry__text { order: 2; }
+}
+.archive-entry__figure img { max-block-size: 320px; object-fit: contain; }
 .archive-entry:last-child { border-block-end: 0; padding-block-end: 0; }
 
 .archive-entry__title { font-size: var(--fs-h3); margin-block-end: var(--space-3); }

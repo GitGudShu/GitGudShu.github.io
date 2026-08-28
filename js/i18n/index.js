@@ -4,10 +4,7 @@ export const LANGS = ['en', 'fr'];
 export const DEFAULT_LANG = 'en';
 export const STORAGE_KEY = 'tc-lang';
 
-/**
- * Stored choice wins; otherwise the first browser preference whose base tag is
- * supported; otherwise English.
- */
+/** Stored choice, then the first supported browser preference, then English. */
 export function resolveLang(stored, preferred = [], langs = LANGS, fallback = DEFAULT_LANG) {
   if (langs.includes(stored)) return stored;
   for (const tag of preferred) {
@@ -41,12 +38,8 @@ export function translate(dict, lang, key) {
 }
 
 /**
- * Applies a dictionary to the DOM.
- *
- * `data-i18n="key"`                        -> textContent
- * `data-i18n-html="key"`                   -> innerHTML (only for strings this
- *                                             project authors, never user input)
- * `data-i18n-attr="alt:key,aria-label:key" -> attributes
+ * data-i18n -> textContent, data-i18n-html -> innerHTML (authored strings only),
+ * data-i18n-attr="alt:key,title:key" -> attributes.
  */
 export function applyDict(dict, lang, root = document) {
   root.querySelectorAll('[data-i18n]').forEach((el) => {
@@ -101,7 +94,6 @@ export function initI18n({ dict, buttons = [] }) {
     if (!LANGS.includes(lang) || lang === current) return;
     if (reduced) { commit(lang); return; }
 
-    // Brief blur-fade so differing string lengths do not pop.
     const main = document.querySelector('main');
     if (!main) { commit(lang); return; }
     main.classList.add('is-swapping');

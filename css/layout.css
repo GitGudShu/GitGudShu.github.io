@@ -1,6 +1,4 @@
-/* ==========================================================================
-   layout.css — rail, sections, header, footer, background canvas.
-   ========================================================================== */
+/* layout.css: rail, sections, header, footer, background canvas. */
 
 .rail {
   width: 100%;
@@ -15,7 +13,7 @@
 .section__head { margin-block-end: var(--space-6); }
 .section__title { font-size: var(--fs-h2); margin-block-start: var(--space-2); }
 
-/* ---- Header ---- */
+/* Header */
 .site-header {
   position: sticky;
   inset-block-start: 0;
@@ -91,7 +89,7 @@
 
 .nav-tools { display: flex; align-items: center; gap: var(--space-2); flex: none; }
 
-/* ---- Collapsed panel ---- */
+/* Collapsed panel */
 /* Scoped past .icon-btn in components.css, which loads later at equal weight. */
 .nav-tools .nav-toggle { display: none; }
 
@@ -137,7 +135,7 @@ body.has-panel-open { overflow: hidden; }
 
 /* On the narrowest phones the wordmark, the language pair and the two icon
    buttons cannot all fit. The mark keeps the brand recognisable and the link
-   keeps its accessible name, so the word is what gives way — never a control. */
+   keeps its accessible name, so the word gives way, never a control. */
 @media (max-width: 399px) {
   .brand span { display: none; }
   .nav-tools { gap: var(--space-1); }
@@ -146,7 +144,7 @@ body.has-panel-open { overflow: hidden; }
 /* Anchored sections must clear the sticky header. */
 :target, section[id] { scroll-margin-top: calc(var(--nav-h) + 8px); }
 
-/* ---- Footer ---- */
+/* Footer */
 .site-footer {
   margin-block-start: var(--section-gap);
   padding-block: var(--space-6);
@@ -163,7 +161,7 @@ body.has-panel-open { overflow: hidden; }
   justify-content: space-between;
 }
 
-/* ---- Background canvas ---- */
+/* Background canvas */
 #particles {
   position: fixed;
   inset: 0;
