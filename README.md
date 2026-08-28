@@ -35,10 +35,9 @@ npm run check:contrast # WCAG AA on every token pair, both themes
 index.html            Hero · About · Work · Beyond the work · Résumé · Contact
 projects/*.html       One page per flagship project
 archive.html          Curated bachelor coursework
-music.html            What I listen to, and an audio player for three sketches
+music.html            What I listen to, and a YouTube-backed player
 404.html              Not found
 assets/screens/       Published screenshots, already redacted
-assets/audio/         The three demo sketches, rendered by tools/build-audio.py
 css/
   tokens.css          All colour, type, space and motion tokens. Both themes.
                       The ONLY file allowed to contain a colour literal.
@@ -55,9 +54,8 @@ js/
   diagrams.js         Inline SVG diagrams
   player.js           Audio player for the music page
   data/projects.js    Project card metadata
-  data/tracks.js      Demo sketches and their cover art
-tools/                Checkers, the portrait crop, the screenshot redactor,
-                      and the audio renderer
+  data/tracks.js      The tracks, their cover art, and the video ids to fill in
+tools/                Checkers, the portrait crop, and the screenshot redactor
 tests/                Unit tests for the pure modules
 ```
 
@@ -76,9 +74,15 @@ tests/                Unit tests for the pure modules
   masks station and department names, the client crest and colleagues' names.
   The raw captures are gitignored and must never be committed.
 - **No em dashes in copy.** Rephrase instead.
-- **No third-party audio.** `assets/audio/` holds original sketches rendered by
-  `tools/build-audio.py`, written only to demonstrate one device each. Replace
-  them with real recordings, never with someone else's track.
+- **Never host somebody else's music.** The music page frames YouTube's own
+  player, which their terms permit and which EU case law (*Svensson*,
+  *BestWater*) treats as not a communication to the public. Two rules follow:
+  only ever embed an **official** upload, since *GS Media* removes that
+  protection for a known-unauthorised copy, and never hide or replace the
+  YouTube player. Extracting the audio stream would break both.
+- **Nothing loads from YouTube until a click.** The player shows local cover art
+  and only builds the iframe, against `youtube-nocookie.com`, when the visitor
+  presses play.
 
 ## Adding a project
 

@@ -18,14 +18,14 @@
 </script>
 
 <title>Music, Thomas Chu</title>
-<meta name="description" content="Why &quot;so what music are you into&quot; is the hardest question at any dinner party, what melody-first composers actually do, and three sketches that make it audible.">
+<meta name="description" content="Why &quot;so what music are you into&quot; is the hardest question at any dinner party, what melody-first composers actually do, and the six pieces that explain it.">
 <meta name="theme-color" content="#E9E4F0" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1E1A26" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Thomas Chu">
 <meta property="og:title" content="Music, Thomas Chu">
-<meta property="og:description" content="Why the question at every dinner party is impossible, and three sketches that make the answer audible.">
+<meta property="og:description" content="Why the question at every dinner party is impossible, and the six pieces that answer it.">
 <meta property="og:url" content="https://gitgudshu.github.io/music.html">
 <meta property="og:image" content="https://gitgudshu.github.io/assets/portrait.jpg">
 <meta property="og:image:alt" content="Thomas Chu">
@@ -111,16 +111,24 @@
 
         <section class="block block--player reveal" aria-labelledby="player-title">
           <div class="block__text">
-            <h2 id="player-title" data-i18n="m.player.title">Three sketches</h2>
-            <p class="section__lead" data-i18n="m.player.lead">One device each.</p>
+            <h2 id="player-title" data-i18n="m.player.title">The music itself</h2>
+            <p class="section__lead" data-i18n="m.player.lead">Six pieces, playing here rather than somewhere else.</p>
           </div>
 
           <div class="player" id="player">
-            <div class="player__art" data-player-art aria-hidden="true"></div>
+            <div class="player__stage" data-player-stage>
+              <button type="button" class="player__facade" data-player-facade
+                      data-i18n-attr="aria-label:player.play" aria-label="Play">
+                <span class="player__art" data-player-art aria-hidden="true"></span>
+                <span class="player__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false" fill="currentColor"><path d="M8 5.6v12.8l10-6.4z"/></svg>
+                </span>
+              </button>
+            </div>
 
             <div class="player__body">
               <h3 class="player__title" data-player-title>&nbsp;</h3>
-              <p class="player__note" data-player-note>&nbsp;</p>
+              <p class="player__credit" data-player-credit>&nbsp;</p>
 
               <div class="player__transport">
                 <button type="button" class="player__play" data-player-play
@@ -147,39 +155,51 @@
                 </span>
               </div>
 
-              <div class="player__bars" aria-hidden="true">
-                <span></span><span></span><span></span><span></span><span></span>
-                <span></span><span></span><span></span><span></span><span></span>
-              </div>
+              <p class="player__status" data-player-status role="status"></p>
             </div>
           </div>
 
           <ol class="tracklist" data-tracklist>
-            <li><button type="button" data-track="melody-first" aria-current="false">
+            <li><button type="button" data-track="forbidden-friendship" aria-current="false">
               <span class="tracklist__n">01</span>
-              <span class="tracklist__t" data-i18n="track.melody-first.title">A tune, then a tune with company</span>
-              <span class="tracklist__d">0:23</span>
+              <span class="tracklist__t" data-i18n="track.forbidden-friendship.title">Forbidden Friendship</span>
+              <span class="tracklist__c" data-i18n="track.forbidden-friendship.credit">John Powell</span>
             </button></li>
-            <li><button type="button" data-track="pedal-point" aria-current="false">
+            <li><button type="button" data-track="violet-evergarden" aria-current="false">
               <span class="tracklist__n">02</span>
-              <span class="tracklist__t" data-i18n="track.pedal-point.title">One note that refuses to move</span>
-              <span class="tracklist__d">0:13</span>
+              <span class="tracklist__t" data-i18n="track.violet-evergarden.title">Violet Evergarden</span>
+              <span class="tracklist__c" data-i18n="track.violet-evergarden.credit">Evan Call</span>
             </button></li>
-            <li><button type="button" data-track="borrowed-iv" aria-current="false">
+            <li><button type="button" data-track="be-still-my-soul" aria-current="false">
               <span class="tracklist__n">03</span>
-              <span class="tracklist__t" data-i18n="track.borrowed-iv.title">One semitone, and the room dims</span>
-              <span class="tracklist__d">0:13</span>
+              <span class="tracklist__t" data-i18n="track.be-still-my-soul.title">Be Still My Soul</span>
+              <span class="tracklist__c" data-i18n="track.be-still-my-soul.credit">David Tolk</span>
+            </button></li>
+            <li><button type="button" data-track="land-of-the-lustrous" aria-current="false">
+              <span class="tracklist__n">04</span>
+              <span class="tracklist__t" data-i18n="track.land-of-the-lustrous.title">Land of the Lustrous</span>
+              <span class="tracklist__c" data-i18n="track.land-of-the-lustrous.credit">Yoshiaki Fujisawa</span>
+            </button></li>
+            <li><button type="button" data-track="you-say-run" aria-current="false">
+              <span class="tracklist__n">05</span>
+              <span class="tracklist__t" data-i18n="track.you-say-run.title">You Say Run</span>
+              <span class="tracklist__c" data-i18n="track.you-say-run.credit">Yuki Hayashi</span>
+            </button></li>
+            <li><button type="button" data-track="waving-through-a-window" aria-current="false">
+              <span class="tracklist__n">06</span>
+              <span class="tracklist__t" data-i18n="track.waving-through-a-window.title">Waving Through a Window</span>
+              <span class="tracklist__c" data-i18n="track.waving-through-a-window.credit">Pasek and Paul</span>
             </button></li>
           </ol>
 
-          <p class="player__disclaimer" data-i18n="m.player.disclaimer">These are throwaway phrases.</p>
+          <p class="player__disclaimer" data-i18n="m.player.disclaimer">Played through YouTube.</p>
         </section>
 
         <section class="block block--prose reveal">
           <div class="block__text">
             <h2 data-i18n="m.melody.title">Melody first</h2>
             <div data-i18n-html="m.melody.body"></div>
-            <p><button type="button" class="cue" data-play="melody-first">
+            <p><button type="button" class="cue" data-play="forbidden-friendship">
               <span class="cue__dot" aria-hidden="true"></span>
               <span data-i18n="player.cue">Hear it</span>
             </button></p>
@@ -190,7 +210,7 @@
           <div class="block__text">
             <h2 data-i18n="m.pedal.title">The pedal point</h2>
             <div data-i18n-html="m.pedal.body"></div>
-            <p><button type="button" class="cue" data-play="pedal-point">
+            <p><button type="button" class="cue" data-play="violet-evergarden">
               <span class="cue__dot" aria-hidden="true"></span>
               <span data-i18n="player.cue">Hear it</span>
             </button></p>
@@ -201,7 +221,7 @@
           <div class="block__text">
             <h2 data-i18n="m.borrowed.title">The borrowed minor iv</h2>
             <div data-i18n-html="m.borrowed.body"></div>
-            <p><button type="button" class="cue cue--accent" data-play="borrowed-iv">
+            <p><button type="button" class="cue cue--accent" data-play="be-still-my-soul">
               <span class="cue__dot" aria-hidden="true"></span>
               <span data-i18n="player.cue">Hear it</span>
             </button></p>
