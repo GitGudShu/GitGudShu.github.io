@@ -21,6 +21,9 @@ export const common = {
     'footer.source': 'Source on GitHub',
     'social.github': 'GitHub profile',
     'social.linkedin': 'LinkedIn profile',
+    'nf.title': 'This page doesn’t exist',
+    'nf.text': 'The link may be out of date, or I may have moved something. The work is all still here.',
+    'nf.cta': 'Back to work',
   },
   fr: {
     'skip.link': 'Aller au contenu',
@@ -43,5 +46,8 @@ export const common = {
     'footer.source': 'Code source sur GitHub',
     'social.github': 'Profil GitHub',
     'social.linkedin': 'Profil LinkedIn',
+    'nf.title': "Cette page n'existe pas",
+    'nf.text': "Le lien est peut-être périmé, ou j'ai déplacé quelque chose. Tout le travail est toujours là.",
+    'nf.cta': 'Retour aux projets',
   },
 };

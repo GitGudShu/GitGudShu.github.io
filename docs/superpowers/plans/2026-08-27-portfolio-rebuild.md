@@ -5200,7 +5200,7 @@ git commit -m "feat: add curated bachelor coursework archive"
 - Consumes: every page created in Tasks 4, 11, 12, 13.
 - Produces: `404.html`; `README.md` documenting local preview and the verification commands.
 
-- [ ] **Step 1: Write the failing metadata test**
+- [x] **Step 1: Write the failing metadata test**
 
 `tests/metadata.test.mjs`:
 
@@ -5283,12 +5283,12 @@ test('the 404 page links home and is not indexed', async () => {
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/metadata.test.mjs`
 Expected: FAIL — `ENOENT` on `404.html`.
 
-- [ ] **Step 3: Add the metadata block to every page**
+- [x] **Step 3: Add the metadata block to every page**
 
 In each of the eight pages, replace the single `<meta name="theme-color">` line with this block, substituting that page's own title, description and URL:
 
@@ -5308,7 +5308,7 @@ In each of the eight pages, replace the single `<meta name="theme-color">` line 
 
 These are the only two hardcoded colour values outside `css/tokens.css`. That is unavoidable — `theme-color` cannot read a custom property. Keep them in sync with `--bg` in both themes; if a token changes, these change too.
 
-- [ ] **Step 4: Add JSON-LD to `index.html`**
+- [x] **Step 4: Add JSON-LD to `index.html`**
 
 Immediately before `</head>`:
 
@@ -5334,7 +5334,7 @@ Immediately before `</head>`:
 
 No email, no phone, no address — structured data is machine-harvested first and read by humans second.
 
-- [ ] **Step 5: Write `404.html`**
+- [x] **Step 5: Write `404.html`**
 
 Copy the `archive.html` shell (root-level paths), set `<body data-page="404">`, add `<meta name="robots" content="noindex">`, and use:
 
@@ -5355,7 +5355,7 @@ Copy the `archive.html` shell (root-level paths), set `<body data-page="404">`, 
 
 `404.html` stays English-only and needs no dictionary — `pageDict()` returns `null` for an unrecognised `data-page`, so only the shared `common` strings apply, which is correct.
 
-- [ ] **Step 6: Write `README.md`**
+- [x] **Step 6: Write `README.md`**
 
 ````markdown
 # GitGudShu.github.io
@@ -5434,7 +5434,7 @@ tests/                Unit tests for the pure modules
 7. `npm run verify`.
 ````
 
-- [ ] **Step 7: Run the tests to verify they pass**
+- [x] **Step 7: Run the tests to verify they pass**
 
 Run: `node --test tests/metadata.test.mjs`
 Expected: PASS, 5/5.
@@ -5442,12 +5442,12 @@ Expected: PASS, 5/5.
 Run: `npm run verify`
 Expected: all PASS.
 
-- [ ] **Step 8: Verify the social preview and the 404**
+- [x] **Step 8: Verify the social preview and the 404**
 
 1. Paste a page's raw HTML into any Open Graph preview validator, or inspect the `og:` tags directly, and confirm the title, description and image resolve.
 2. Visit `http://localhost:8000/does-not-exist` — the local server will not serve `404.html` automatically, so open `http://localhost:8000/404.html` directly and confirm it renders with the shell, correct theme, and a working back link. GitHub Pages serves it automatically for missing paths.
 
-- [ ] **Step 9: Commit**
+- [x] **Step 9: Commit**
 
 ```bash
 git add 404.html README.md index.html archive.html projects/ tests/metadata.test.mjs
