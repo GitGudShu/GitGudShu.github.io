@@ -120,3 +120,65 @@
   .hero__portrait { justify-self: end; max-inline-size: 210px; }
   .hero__stack { margin-block-start: var(--space-5); padding-block-start: var(--space-4); }
 }
+
+/* ---- Project detail ---- */
+.project { padding-block: clamp(2rem, 1.2rem + 3vw, 3.5rem) 0; }
+
+.project__head { margin-block-end: var(--space-6); }
+.project__title { font-size: var(--fs-h1); margin-block: var(--space-3) var(--space-4); }
+.project__lead {
+  font-size: clamp(1.05rem, 1rem + .35vw, 1.25rem);
+  color: var(--text-muted);
+  max-width: 58ch;
+}
+
+.project__cover {
+  aspect-ratio: 16 / 9;
+  display: grid;
+  place-items: center;
+  margin-block-end: var(--space-6);
+  background: color-mix(in oklab, var(--accent) 6%, var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--accent);
+  overflow: hidden;
+}
+
+.project__facts {
+  display: grid;
+  gap: var(--space-4);
+  margin-block-end: var(--space-7);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border);
+  grid-template-columns: 1fr;
+}
+.project__facts dd {
+  margin: var(--space-1) 0 0;
+  font-size: var(--fs-small);
+  font-weight: 500;
+}
+@media (min-width: 600px) { .project__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .project__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.project__body { display: flex; flex-direction: column; gap: var(--space-7); }
+.project__body h2 { font-size: var(--fs-h2); margin-block-end: var(--space-4); }
+.project__body p { color: var(--text-muted); }
+.project__body p + p { margin-block-start: var(--space-4); }
+.project__body strong { color: var(--text); font-weight: 600; }
+
+.project__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  justify-content: space-between;
+  margin-block-start: var(--section-gap);
+  padding-block-start: var(--space-5);
+  border-block-start: 1px solid var(--border);
+  font-size: var(--fs-small);
+}
+.project__nav a { text-decoration: none; }
+.project__nav a:hover { text-decoration: underline; }
+
+/* Wide content inside prose must scroll itself, never the page. */
+.project__body pre,
+.project__body table { display: block; overflow-x: auto; max-width: 100%; }

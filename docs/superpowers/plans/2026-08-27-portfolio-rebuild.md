@@ -4027,7 +4027,7 @@ git commit -m "feat: add scroll reveal and pointer-reactive particle field"
 
 **Note on the repeated shell:** with no build step, each project page repeats the `<head>`, header and footer markup. That is the accepted cost of the no-build decision. Copy the shell from `index.html` verbatim and change only: the `<title>`/`<meta>` defaults, the `canonical`, the asset paths (`../` prefix), `<body data-page="project" data-project="<slug>">`, and the nav (a single back link instead of the anchor list).
 
-- [ ] **Step 1: Write the failing project-pages test**
+- [x] **Step 1: Write the failing project-pages test**
 
 `tests/project-pages.test.mjs`:
 
@@ -4138,12 +4138,12 @@ test('no built page contains an inline style attribute except reveal stagger', a
 });
 ```
 
-- [ ] **Step 2: Run the test to verify it fails**
+- [x] **Step 2: Run the test to verify it fails**
 
 Run: `node --test tests/project-pages.test.mjs`
 Expected: FAIL — `Cannot find module '../js/i18n/projects.js'`.
 
-- [ ] **Step 3: Create `js/i18n/projects.js` with the OptimOps entry**
+- [x] **Step 3: Create `js/i18n/projects.js` with the OptimOps entry**
 
 Multi-paragraph bodies use `data-i18n-html` in the markup, so they carry `<p>` tags. These strings are authored here — never user input.
 
@@ -4225,7 +4225,7 @@ export const projects = {
 };
 ```
 
-- [ ] **Step 4: Add the KPI Engine entry to `js/i18n/projects.js`**
+- [x] **Step 4: Add the KPI Engine entry to `js/i18n/projects.js`**
 
 Append inside the same exported object, after `optimops`. Note the framing constraint: this describes a **system**, never the people who built the previous one.
 
@@ -4298,7 +4298,7 @@ Append inside the same exported object, after `optimops`. Note the framing const
   },
 ```
 
-- [ ] **Step 5: Append project-detail styles to `css/pages.css`**
+- [x] **Step 5: Append project-detail styles to `css/pages.css`**
 
 ```css
 /* ---- Project detail ---- */
@@ -4364,7 +4364,7 @@ Append inside the same exported object, after `optimops`. Note the framing const
 .project__body table { display: block; overflow-x: auto; max-width: 100%; }
 ```
 
-- [ ] **Step 6: Write `projects/optimops.html`**
+- [x] **Step 6: Write `projects/optimops.html`**
 
 ```html
 <!DOCTYPE html>
@@ -4507,7 +4507,7 @@ Append inside the same exported object, after `optimops`. Note the framing const
 </html>
 ```
 
-- [ ] **Step 7: Paint `data-cover` slots from `js/main.js`**
+- [x] **Step 7: Paint `data-cover` slots from `js/main.js`**
 
 Add the import:
 
@@ -4528,7 +4528,7 @@ function paintGraphics() {
 }
 ```
 
-- [ ] **Step 8: Write `projects/kpi-engine.html`**
+- [x] **Step 8: Write `projects/kpi-engine.html`**
 
 Copy `projects/optimops.html` verbatim, then change exactly seven things:
 
@@ -4540,7 +4540,7 @@ Copy `projects/optimops.html` verbatim, then change exactly seven things:
 6. The static fallback text inside each `data-i18n` element → the corresponding English string (these are replaced by JS, but must not read "OptimOps" if JS fails)
 7. `project__nav`: first link `href="optimops.html"` with `data-i18n="p.nav.prev"`, second link `href="emotion-recognition.html"` with `data-i18n="p.nav.next"`
 
-- [ ] **Step 9: Run the tests to verify they pass**
+- [x] **Step 9: Run the tests to verify they pass**
 
 Run: `node --test tests/project-pages.test.mjs`
 Expected: PASS, 8/8.
@@ -4548,7 +4548,7 @@ Expected: PASS, 8/8.
 Run: `npm run verify`
 Expected: all PASS; `projects` no longer reports SKIP.
 
-- [ ] **Step 10: Verify in the browser**
+- [x] **Step 10: Verify in the browser**
 
 Open `http://localhost:8000/projects/optimops.html` and `kpi-engine.html`. Confirm:
 1. No console errors; the cover motif renders on both pages and matches the card.
@@ -4560,11 +4560,11 @@ Open `http://localhost:8000/projects/optimops.html` and `kpi-engine.html`. Confi
 7. `document.documentElement.scrollWidth <= window.innerWidth` is `true` at 320, 414, 768, 1024 and 1440px.
 8. Prose measures roughly 65–70 characters per line at desktop width.
 
-- [ ] **Step 11: Verify the confidentiality gate by hand**
+- [x] **Step 11: Verify the confidentiality gate by hand**
 
 Read both rendered pages in full, in both languages. Confirm no client name, no department name, no station name, and no real operational figure appears. The automated test catches known patterns; only reading catches the rest.
 
-- [ ] **Step 12: Commit**
+- [x] **Step 12: Commit**
 
 ```bash
 git add js/i18n/projects.js js/main.js css/pages.css \

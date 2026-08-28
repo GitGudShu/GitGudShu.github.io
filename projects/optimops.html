@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<script>
+  try {
+    var t = localStorage.getItem('tc-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = t;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+</script>
+
+<title>OptimOps Neo — Thomas Chu</title>
+<meta name="description" content="A full-stack decision-support platform for a French fire &amp; rescue service: coverage analysis, scenario simulation and resource optimization.">
+<meta name="theme-color" content="#100D16">
+<link rel="canonical" href="https://gitgudshu.github.io/projects/optimops.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;700&display=swap">
+
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/pages.css">
+
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+</head>
+
+<body data-page="project" data-project="optimops">
+<a class="skip-link" href="#content" data-i18n="skip.link">Skip to content</a>
+
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<header class="site-header" id="top">
+  <div class="rail site-header__inner">
+    <a class="brand" href="../index.html" data-i18n-attr="aria-label:nav.home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="none" stroke="currentColor">
+        <rect x="1" y="1" width="30" height="30" rx="9" stroke-width="1.5"/>
+        <path d="M8 11h8M12 11v11" stroke-width="2" stroke-linecap="round"/>
+        <path d="M24 12.5a4.5 4.5 0 1 0 0 7" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Thomas Chu</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="../index.html#work" data-i18n="nav.back">Back to work</a>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" data-i18n="lang.en" data-i18n-attr="title:lang.toEn">EN</button>
+        <button type="button" data-lang="fr" data-i18n="lang.fr" data-i18n-attr="title:lang.toFr">FR</button>
+      </div>
+
+      <button type="button" class="icon-btn" id="theme-btn" data-i18n-attr="aria-label:theme.toDark">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <article class="project">
+    <div class="rail rail--prose">
+      <header class="project__head reveal">
+        <p class="eyebrow" data-i18n="p.eyebrow">Full-stack &middot; decision support &middot; 2023 &mdash; present</p>
+        <h1 class="project__title" data-i18n="p.title">OptimOps Neo</h1>
+        <p class="project__lead" data-i18n="p.lead">A decision-support platform for a fire &amp; rescue service.</p>
+      </header>
+
+      <div class="project__cover reveal" style="--i:1" data-cover="optimops" aria-hidden="true"></div>
+
+      <dl class="project__facts reveal" style="--i:1">
+        <div>
+          <dt class="eyebrow" data-i18n="p.facts.role.label">Role</dt>
+          <dd data-i18n="p.facts.role.value">Data scientist</dd>
+        </div>
+        <div>
+          <dt class="eyebrow" data-i18n="p.facts.stack.label">Stack</dt>
+          <dd data-i18n="p.facts.stack.value">Python &middot; FastAPI &middot; Vue 3</dd>
+        </div>
+        <div>
+          <dt class="eyebrow" data-i18n="p.facts.scope.label">Scope</dt>
+          <dd data-i18n="p.facts.scope.value">Backend, frontend and the data layer</dd>
+        </div>
+        <div>
+          <dt class="eyebrow" data-i18n="p.facts.status.label">Status</dt>
+          <dd data-i18n="p.facts.status.value">In production</dd>
+        </div>
+      </dl>
+
+      <div class="project__body">
+        <section class="reveal">
+          <h2 data-i18n="p.context.title">Context</h2>
+          <div data-i18n-html="p.context.body"></div>
+        </section>
+        <section class="reveal">
+          <h2 data-i18n="p.built.title">What I built</h2>
+          <div data-i18n-html="p.built.body"></div>
+        </section>
+        <section class="reveal">
+          <h2 data-i18n="p.decisions.title">Engineering decisions</h2>
+          <div data-i18n-html="p.decisions.body"></div>
+        </section>
+        <section class="reveal">
+          <h2 data-i18n="p.outcome.title">Outcome</h2>
+          <div data-i18n-html="p.outcome.body"></div>
+        </section>
+      </div>
+
+      <nav class="project__nav" aria-label="Project navigation">
+        <a href="../index.html#work" data-i18n="p.nav.prev">Back to work</a>
+        <a href="kpi-engine.html" data-i18n="p.nav.next">Next: KPI Engine</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="rail site-footer__inner">
+    <p data-i18n="footer.built">Built from scratch &mdash; no framework, no tracking.</p>
+    <a href="https://github.com/GitGudShu/GitGudShu.github.io" data-i18n="footer.source">Source on GitHub</a>
+  </div>
+</footer>
+
+<script type="module" src="../js/main.js"></script>
+</body>
+</html>

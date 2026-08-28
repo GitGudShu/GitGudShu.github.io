@@ -4,6 +4,7 @@ import { common } from './i18n/common.js';
 import { initNav } from './nav.js';
 import { PROJECTS, renderProjectCard } from './data/projects.js';
 import { renderIcon } from './icons.js';
+import { renderCover } from './covers.js';
 import { initReveal } from './reveal.js';
 import { initParticles } from './particles.js';
 
@@ -33,9 +34,12 @@ function renderWork(dict) {
   document.addEventListener('lang:changed', (event) => paint(event.detail.lang));
 }
 
-function paintIcons() {
+function paintGraphics() {
   document.querySelectorAll('[data-icon]').forEach((slot) => {
     slot.innerHTML = renderIcon(slot.dataset.icon);
+  });
+  document.querySelectorAll('[data-cover]').forEach((slot) => {
+    slot.innerHTML = renderCover(slot.dataset.cover);
   });
 }
 
@@ -64,7 +68,7 @@ async function boot() {
   document.addEventListener('nav:toggled', relabel);
 
   renderWork(dict);
-  paintIcons();
+  paintGraphics();
 
   initReveal();
   initParticles({ canvas: document.getElementById('particles') });

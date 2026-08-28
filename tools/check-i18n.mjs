@@ -12,37 +12,49 @@ const DICTS = [
   ['archive', () => import('../js/i18n/archive.js').then((m) => m.archive).catch(() => null)],
 ];
 
+/**
+ * `projects` is keyed by slug, one {en, fr} pair per page, while every other
+ * group is a single flat pair. Expanding the nested shape lets both be checked
+ * the same way — and reports a failure against the page it belongs to.
+ */
+function expand(group, dict) {
+  if (dict.en && dict.fr) return [[group, dict]];
+  return Object.entries(dict).map(([slug, sub]) => [`${group}/${slug}`, sub]);
+}
+
 let failures = 0;
 
-for (const [name, load] of DICTS) {
-  const dict = await load();
-  if (!dict) {
-    console.log(`SKIP  ${name} (not created yet)`);
+for (const [group, load] of DICTS) {
+  const loaded = await load();
+  if (!loaded) {
+    console.log(`SKIP  ${group} (not created yet)`);
     continue;
   }
 
-  const { missingInEn, missingInFr } = parityReport(dict);
-  for (const key of missingInFr) {
-    console.error(`FAIL  ${name}: "${key}" exists in en but not fr`);
-    failures += 1;
-  }
-  for (const key of missingInEn) {
-    console.error(`FAIL  ${name}: "${key}" exists in fr but not en`);
-    failures += 1;
-  }
+  for (const [name, dict] of expand(group, loaded)) {
+    const { missingInEn, missingInFr } = parityReport(dict);
+    for (const key of missingInFr) {
+      console.error(`FAIL  ${name}: "${key}" exists in en but not fr`);
+      failures += 1;
+    }
+    for (const key of missingInEn) {
+      console.error(`FAIL  ${name}: "${key}" exists in fr but not en`);
+      failures += 1;
+    }
 
-  for (const lang of LANGS) {
-    for (const [key, value] of Object.entries(dict[lang] ?? {})) {
-      if (typeof value !== 'string' || value.trim() === '') {
-        console.error(`FAIL  ${name}.${lang}: "${key}" is empty`);
-        failures += 1;
+    for (const lang of LANGS) {
+      for (const [key, value] of Object.entries(dict[lang] ?? {})) {
+        if (typeof value !== 'string' || value.trim() === '') {
+          console.error(`FAIL  ${name}.${lang}: "${key}" is empty`);
+          failures += 1;
+        }
       }
     }
-  }
 
-  if (missingInEn.length === 0 && missingInFr.length === 0) {
-    const count = Object.keys(dict.en).length;
-    console.log(`PASS  ${name} — ${count} keys at full parity`);
+    if (missingInEn.length === 0 && missingInFr.length === 0) {
+      const count = Object.keys(dict.en ?? {}).length;
+      console.log(`PASS  ${name} — ${count} keys at full parity`);
+    }
   }
 }
 
