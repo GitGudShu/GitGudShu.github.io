@@ -11,11 +11,23 @@ const MAX_DPR = 2;
 /** Roughly one petal for every eleven motes: noticed, never counted. */
 export const PETAL_SHARE = 0.085;
 
+/** Leaves are rarer still, the way they are on a raceme in flower. */
+export const LEAF_SHARE = 0.028;
+
 /** Deterministic so the mix cannot clump differently on every reseed. */
-export function isPetal(index, share = PETAL_SHARE) {
+export function everyNth(index, share) {
   if (share <= 0) return false;
-  const every = Math.round(1 / share);
-  return index % every === 0;
+  return index % Math.round(1 / share) === 0;
+}
+
+export function isPetal(index, share = PETAL_SHARE) {
+  return everyNth(index, share);
+}
+
+export function kindFor(index) {
+  if (everyNth(index, LEAF_SHARE)) return 'leaf';
+  if (everyNth(index, PETAL_SHARE)) return 'petal';
+  return 'mote';
 }
 
 /** Half the field on small screens. */
@@ -63,7 +75,8 @@ export function initParticles({ canvas }) {
   let running = false;
   const pointer = { x: -9999, y: -9999 };
   let accent = '185, 165, 255';
-  let petalColor = '196, 112, 122';
+  let petalColor = '161, 117, 214';
+  let leafColor = '141, 178, 100';
   let alphaScale = 1;
 
   const resolve = (value) => {
@@ -84,6 +97,9 @@ export function initParticles({ canvas }) {
     const petalRgb = resolve('var(--petal)');
     if (petalRgb) petalColor = petalRgb.join(', ');
 
+    const leafRgb = resolve('var(--leaf)');
+    if (leafRgb) leafColor = leafRgb.join(', ');
+
     // Dark motes on a light ground read heavier than light ones on a dark one.
     const bg = resolve('var(--bg)');
     if (bg) {
@@ -95,8 +111,10 @@ export function initParticles({ canvas }) {
   function seed() {
     const count = particleCount(width);
     particles = Array.from({ length: count }, (_, i) => {
-      const petal = isPetal(i);
+      const kind = kindFor(i);
+      const petal = kind !== 'mote';
       return {
+        kind,
         petal,
         x: Math.random() * width,
         y: Math.random() * height,
@@ -116,10 +134,13 @@ export function initParticles({ canvas }) {
     });
   }
 
-  /** A lens of two arcs, turning edge-on and back as it falls. */
-  function drawPetal(p, alpha) {
-    const w = p.r * 1.9;
-    const h = p.r * 0.95;
+  /** A lens of two arcs, turning edge-on and back as it falls. Leaves are
+      cut longer and thinner than petals, which is most of what tells them
+      apart at this size. */
+  function drawBlade(p, alpha) {
+    const leaf = p.kind === 'leaf';
+    const w = p.r * (leaf ? 2.5 : 1.9);
+    const h = p.r * (leaf ? 0.62 : 0.95);
     ctx.save();
     ctx.translate(p.x + p.ox, p.y + p.oy);
     ctx.rotate(p.spin);
@@ -129,7 +150,7 @@ export function initParticles({ canvas }) {
     ctx.quadraticCurveTo(0, -h, w, 0);
     ctx.quadraticCurveTo(0, h, -w, 0);
     ctx.closePath();
-    ctx.fillStyle = `rgba(${petalColor}, ${alpha})`;
+    ctx.fillStyle = `rgba(${leaf ? leafColor : petalColor}, ${alpha})`;
     ctx.fill();
     ctx.restore();
   }
@@ -156,8 +177,8 @@ export function initParticles({ canvas }) {
       p.x += p.vx + Math.sin(p.phase) * p.sway;
 
       if (p.petal) {
-        p.spin += p.spinRate;
-        p.flutter += 0.011;
+        p.spin += p.spinRate * (p.kind === 'leaf' ? 0.7 : 1);
+        p.flutter += p.kind === 'leaf' ? 0.008 : 0.011;
       }
 
       const { dx, dy, strength } = repulsion(p.x, p.y, pointer.x, pointer.y, POINTER_RADIUS);
@@ -172,7 +193,7 @@ export function initParticles({ canvas }) {
       const scale = p.petal ? alphaScale * 0.5 + 0.5 : alphaScale;
       const alpha = ((p.alpha + strength * 0.14) * scale).toFixed(3);
       if (p.petal) {
-        drawPetal(p, alpha);
+        drawBlade(p, alpha);
         continue;
       }
 

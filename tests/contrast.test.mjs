@@ -54,3 +54,35 @@ test('every required pair meets its AA threshold in both themes', async () => {
     }
   }
 });
+
+test('the two dark blocks declare exactly the same values', async () => {
+  const css = await readFile(new URL('../css/tokens.css', import.meta.url), 'utf8');
+  const read = (block) => Object.fromEntries(
+    [...block.matchAll(/(--[\w-]+):\s*([^;]+);/g)].map((m) => [m[1], m[2].replace(/\s+/g, ' ').trim()]),
+  );
+  const toggled = css.match(/\[data-theme="dark"\] \{([\s\S]*?)\n\}/);
+  const preferred = css.match(/@media \(prefers-color-scheme: dark\) \{[\s\S]*?\{([\s\S]*?)\n  \}/);
+  assert.ok(toggled && preferred, 'both dark blocks must exist');
+
+  const a = read(toggled[1]);
+  const b = read(preferred[1]);
+  assert.deepEqual(Object.keys(a).sort(), Object.keys(b).sort(), 'the dark blocks declare different tokens');
+  for (const key of Object.keys(a)) {
+    assert.equal(b[key], a[key], `${key} differs between the toggled and preferred dark themes`);
+  }
+});
+
+test('the theme-color meta matches the background token of each theme', async () => {
+  const css = await readFile(new URL('../css/tokens.css', import.meta.url), 'utf8');
+  const { light, dark } = parseTokens(css);
+  for (const page of ['index.html', 'music.html', 'archive.html', '404.html']) {
+    const html = await readFile(new URL(`../${page}`, import.meta.url), 'utf8');
+    const metas = [...html.matchAll(/<meta name="theme-color"[^>]*>/g)].map((m) => m[0]);
+    const pick = (scheme) => metas
+      .find((tag) => tag.includes(`prefers-color-scheme: ${scheme}`))
+      ?.match(/content="(#[0-9A-Fa-f]{6})"/)?.[1];
+
+    assert.equal(pick('light')?.toUpperCase(), light['--bg'].toUpperCase(), `${page}: light theme-color`);
+    assert.equal(pick('dark')?.toUpperCase(), dark['--bg'].toUpperCase(), `${page}: dark theme-color`);
+  }
+});

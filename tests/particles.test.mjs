@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { particleCount, wrapPosition, repulsion, isPetal, PETAL_SHARE } from '../js/particles.js';
+import { particleCount, wrapPosition, repulsion, isPetal, kindFor,
+         PETAL_SHARE, LEAF_SHARE } from '../js/particles.js';
 
 test('particle count halves on small screens and is capped on large ones', () => {
   assert.equal(particleCount(1920), 170);
@@ -48,18 +49,23 @@ test('a pointer exactly on the particle does not produce NaN', () => {
   assert.ok(Number.isFinite(dx) && Number.isFinite(dy) && Number.isFinite(strength));
 });
 
-test('petals stay a garnish rather than a second snowfall', () => {
+test('the field stays mostly snow, with petals and rarer leaves through it', () => {
   const field = particleCount(1920);
-  const petals = Array.from({ length: field }, (_, i) => isPetal(i)).filter(Boolean).length;
-  const share = petals / field;
-  assert.ok(share > 0.03, `petals should be visible, got ${(share * 100).toFixed(1)}%`);
-  assert.ok(share < 0.15, `petals should stay rare, got ${(share * 100).toFixed(1)}%`);
-  assert.ok(Math.abs(share - PETAL_SHARE) < 0.02, 'the mix should track the declared share');
+  const seen = { mote: 0, petal: 0, leaf: 0 };
+  for (let i = 0; i < field; i++) seen[kindFor(i)] += 1;
+
+  assert.equal(seen.mote + seen.petal + seen.leaf, field, 'every particle needs a kind');
+  assert.ok(seen.mote / field > 0.85, 'snow must stay the bulk of the field');
+  assert.ok(seen.petal > 0 && seen.petal / field < 0.12, `petals should stay rare, got ${seen.petal}`);
+  assert.ok(seen.leaf > 0 && seen.leaf < seen.petal, 'leaves should be rarer than petals');
 });
 
-test('the petal mix is spread out, never clumped at the start', () => {
-  const indices = Array.from({ length: 100 }, (_, i) => i).filter((i) => isPetal(i));
-  const gaps = indices.slice(1).map((v, i) => v - indices[i]);
-  assert.ok(gaps.every((g) => g === gaps[0]), 'petals should be evenly spaced through the field');
-  assert.equal(isPetal(0, 0), false, 'a zero share means no petals at all');
+test('the petal and leaf shares are evenly spread, never clumped', () => {
+  for (const share of [PETAL_SHARE, LEAF_SHARE]) {
+    const hits = Array.from({ length: 200 }, (_, i) => i).filter((i) => isPetal(i, share));
+    const gaps = hits.slice(1).map((v, i) => v - hits[i]);
+    assert.ok(gaps.length > 2, 'the share should recur across the field');
+    assert.ok(gaps.every((g) => g === gaps[0]), `share ${share} clumps instead of spreading`);
+  }
+  assert.equal(isPetal(0, 0), false, 'a zero share means none at all');
 });

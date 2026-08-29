@@ -3,31 +3,34 @@
 :root {
   color-scheme: light;
 
-  /* Colour: warm paper. Everything is tinted from the same warm hue so the
-     greys never turn blue against the cream. */
-  --bg: #F7F2E9;
-  --surface: #FCF8F1;
-  --surface-raised: #FFFCF6;
-  --border: #E4DACA;
-  --border-strong: #8A7A64;
-  --text: #2B2420;
-  --text-muted: #5A5047;
-  --text-faint: #6B6055;
-  --accent: #A2454A;
-  --accent-strong: #8A363C;
+  /* Colour: wisteria. Taken from the flower itself, so the violets run from
+     the pale sky behind the raceme down to the dark heart of a petal, with
+     the leaf green kept back for the one job only it can do. */
+  --bg: #EDF1FB;
+  --surface: #F5F7FD;
+  --surface-raised: #FCFDFF;
+  --border: #D7DEF3;
+  --border-strong: #7A719B;
+  --text: #2A2136;
+  --text-muted: #554A6B;
+  --text-faint: #635878;
+  --accent: #5E3A78;
+  --accent-strong: #4A2C61;
   --accent-contrast: #FFFFFF;
-  --petal: #C4707A;
+  --petal: #A175D6;
+  --leaf: #8DB264;
 
   /* Derived surfaces. Shadows carry the paper's hue rather than neutral black. */
   --nav-bg: color-mix(in oklab, var(--bg) 74%, transparent);
   --nav-bg-scrolled: color-mix(in oklab, var(--bg) 90%, transparent);
-  --shadow-card: 0 1px 2px color-mix(in oklab, #5A4632 12%, transparent),
-                 0 10px 28px color-mix(in oklab, #5A4632 8%, transparent);
-  --shadow-card-hover: 0 2px 5px color-mix(in oklab, #5A4632 14%, transparent),
-                       0 18px 44px color-mix(in oklab, #5A4632 13%, transparent);
-  --shadow-nav: 0 1px 24px color-mix(in oklab, #5A4632 10%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, #3B2F55 12%, transparent),
+                 0 10px 28px color-mix(in oklab, #3B2F55 9%, transparent);
+  --shadow-card-hover: 0 2px 5px color-mix(in oklab, #3B2F55 15%, transparent),
+                       0 18px 44px color-mix(in oklab, #3B2F55 14%, transparent);
+  --shadow-nav: 0 1px 24px color-mix(in oklab, #3B2F55 11%, transparent);
   --glow-accent: 0 0 60px color-mix(in oklab, var(--accent) 18%, transparent);
-  --particle-color: var(--accent);
+  /* Motes sit a few steps up from the accent so they float rather than speckle. */
+  --particle-color: #8E76B9;
   --grain-opacity: .045;
 
   /* Typography. A display serif with real character over a text serif built
@@ -89,24 +92,26 @@
 [data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #221D19;
-  --surface: #2B251F;
-  --surface-raised: #342D26;
-  --border: #3E362E;
-  --border-strong: #8A7B68;
-  --text: #F0E9DF;
-  --text-muted: #BAAE9F;
-  --text-faint: #A79A8B;
-  --accent: #E8A0A0;
-  --accent-strong: #F2B8B4;
-  --accent-contrast: #2A1618;
-  --petal: #E8A0A0;
+  --bg: #201B2B;
+  --surface: #292236;
+  --surface-raised: #322A41;
+  --border: #3B3349;
+  --border-strong: #8177A3;
+  --text: #ECE8F5;
+  --text-muted: #B4AAC8;
+  --text-faint: #A196B8;
+  --accent: #C6A9EC;
+  --accent-strong: #D8C4F5;
+  --accent-contrast: #241A33;
+  --petal: #B79AE0;
+  --leaf: #9CBE79;
+  --particle-color: var(--accent);
 
-  --shadow-card: 0 1px 2px color-mix(in oklab, #140F0B 30%, transparent),
-                 0 10px 30px color-mix(in oklab, #140F0B 24%, transparent);
-  --shadow-card-hover: 0 2px 6px color-mix(in oklab, #140F0B 36%, transparent),
-                       0 20px 50px color-mix(in oklab, #140F0B 30%, transparent);
-  --shadow-nav: 0 1px 28px color-mix(in oklab, #140F0B 32%, transparent);
+  --shadow-card: 0 1px 2px color-mix(in oklab, #0D0916 30%, transparent),
+                 0 10px 30px color-mix(in oklab, #0D0916 24%, transparent);
+  --shadow-card-hover: 0 2px 6px color-mix(in oklab, #0D0916 36%, transparent),
+                       0 20px 50px color-mix(in oklab, #0D0916 30%, transparent);
+  --shadow-nav: 0 1px 28px color-mix(in oklab, #0D0916 32%, transparent);
   --glow-accent: 0 0 70px color-mix(in oklab, var(--accent) 16%, transparent);
   --grain-opacity: .055;
 }
@@ -116,24 +121,26 @@
   :root:not([data-theme="light"]) {
     color-scheme: dark;
 
-    --bg: #221D19;
-    --surface: #2B251F;
-    --surface-raised: #342D26;
-    --border: #3E362E;
-    --border-strong: #8A7B68;
-    --text: #F0E9DF;
-    --text-muted: #BAAE9F;
-    --text-faint: #A79A8B;
-    --accent: #E8A0A0;
-    --accent-strong: #F2B8B4;
-    --accent-contrast: #2A1618;
-    --petal: #E8A0A0;
+    --bg: #201B2B;
+    --surface: #292236;
+    --surface-raised: #322A41;
+    --border: #3B3349;
+    --border-strong: #8177A3;
+    --text: #ECE8F5;
+    --text-muted: #B4AAC8;
+    --text-faint: #A196B8;
+    --accent: #C6A9EC;
+    --accent-strong: #D8C4F5;
+    --accent-contrast: #241A33;
+    --petal: #B79AE0;
+    --leaf: #9CBE79;
+    --particle-color: var(--accent);
 
-    --shadow-card: 0 1px 2px color-mix(in oklab, #140F0B 30%, transparent),
-                   0 10px 30px color-mix(in oklab, #140F0B 24%, transparent);
-    --shadow-card-hover: 0 2px 6px color-mix(in oklab, #140F0B 36%, transparent),
-                         0 20px 50px color-mix(in oklab, #140F0B 30%, transparent);
-    --shadow-nav: 0 1px 28px color-mix(in oklab, #140F0B 32%, transparent);
+    --shadow-card: 0 1px 2px color-mix(in oklab, #0D0916 30%, transparent),
+                   0 10px 30px color-mix(in oklab, #0D0916 24%, transparent);
+    --shadow-card-hover: 0 2px 6px color-mix(in oklab, #0D0916 36%, transparent),
+                         0 20px 50px color-mix(in oklab, #0D0916 30%, transparent);
+    --shadow-nav: 0 1px 28px color-mix(in oklab, #0D0916 32%, transparent);
     --glow-accent: 0 0 70px color-mix(in oklab, var(--accent) 16%, transparent);
     --grain-opacity: .055;
   }
