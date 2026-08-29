@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { particleCount, wrapPosition, repulsion } from '../js/particles.js';
+import { particleCount, wrapPosition, repulsion, isPetal, PETAL_SHARE } from '../js/particles.js';
 
 test('particle count halves on small screens and is capped on large ones', () => {
   assert.equal(particleCount(1920), 170);
@@ -46,4 +46,20 @@ test('repulsion is strongest at the pointer and falls to zero at the radius', ()
 test('a pointer exactly on the particle does not produce NaN', () => {
   const { dx, dy, strength } = repulsion(100, 100, 100, 100, 120);
   assert.ok(Number.isFinite(dx) && Number.isFinite(dy) && Number.isFinite(strength));
+});
+
+test('petals stay a garnish rather than a second snowfall', () => {
+  const field = particleCount(1920);
+  const petals = Array.from({ length: field }, (_, i) => isPetal(i)).filter(Boolean).length;
+  const share = petals / field;
+  assert.ok(share > 0.03, `petals should be visible, got ${(share * 100).toFixed(1)}%`);
+  assert.ok(share < 0.15, `petals should stay rare, got ${(share * 100).toFixed(1)}%`);
+  assert.ok(Math.abs(share - PETAL_SHARE) < 0.02, 'the mix should track the declared share');
+});
+
+test('the petal mix is spread out, never clumped at the start', () => {
+  const indices = Array.from({ length: 100 }, (_, i) => i).filter((i) => isPetal(i));
+  const gaps = indices.slice(1).map((v, i) => v - indices[i]);
+  assert.ok(gaps.every((g) => g === gaps[0]), 'petals should be evenly spaced through the field');
+  assert.equal(isPetal(0, 0), false, 'a zero share means no petals at all');
 });

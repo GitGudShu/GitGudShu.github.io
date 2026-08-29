@@ -1,11 +1,22 @@
 /**
- * Background motes the pointer pushes aside. Fixed and behind everything, so it
- * cannot shift layout. Removed entirely for coarse pointers and reduced motion.
+ * Background motes the pointer pushes aside, with the occasional petal turning
+ * over as it falls. Fixed and behind everything, so it cannot shift layout.
+ * Removed entirely for coarse pointers and reduced motion.
  */
 
 const MARGIN = 10;
 const POINTER_RADIUS = 120;
 const MAX_DPR = 2;
+
+/** Roughly one petal for every eleven motes: noticed, never counted. */
+export const PETAL_SHARE = 0.085;
+
+/** Deterministic so the mix cannot clump differently on every reseed. */
+export function isPetal(index, share = PETAL_SHARE) {
+  if (share <= 0) return false;
+  const every = Math.round(1 / share);
+  return index % every === 0;
+}
 
 /** Half the field on small screens. */
 export function particleCount(width, base = 170) {
@@ -52,6 +63,7 @@ export function initParticles({ canvas }) {
   let running = false;
   const pointer = { x: -9999, y: -9999 };
   let accent = '185, 165, 255';
+  let petalColor = '196, 112, 122';
   let alphaScale = 1;
 
   const resolve = (value) => {
@@ -69,6 +81,9 @@ export function initParticles({ canvas }) {
     const rgb = resolve('var(--accent)');
     if (rgb) accent = rgb.join(', ');
 
+    const petalRgb = resolve('var(--petal)');
+    if (petalRgb) petalColor = petalRgb.join(', ');
+
     // Dark motes on a light ground read heavier than light ones on a dark one.
     const bg = resolve('var(--bg)');
     if (bg) {
@@ -79,17 +94,44 @@ export function initParticles({ canvas }) {
 
   function seed() {
     const count = particleCount(width);
-    particles = Array.from({ length: count }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      r: 1.1 + Math.random() * 1.7,
-      vy: 0.08 + Math.random() * 0.22,
-      vx: (Math.random() - 0.5) * 0.12,
-      phase: Math.random() * Math.PI * 2,
-      alpha: 0.14 + Math.random() * 0.16,
-      ox: 0,
-      oy: 0,
-    }));
+    particles = Array.from({ length: count }, (_, i) => {
+      const petal = isPetal(i);
+      return {
+        petal,
+        x: Math.random() * width,
+        y: Math.random() * height,
+        // Petals are broader and fall slower, the way something with surface does.
+        r: petal ? 3.4 + Math.random() * 2.6 : 1.1 + Math.random() * 1.7,
+        vy: petal ? 0.05 + Math.random() * 0.13 : 0.08 + Math.random() * 0.22,
+        vx: (Math.random() - 0.5) * (petal ? 0.2 : 0.12),
+        phase: Math.random() * Math.PI * 2,
+        sway: petal ? 0.42 : 0.14,
+        spin: Math.random() * Math.PI,
+        spinRate: (Math.random() - 0.5) * 0.012,
+        flutter: Math.random() * Math.PI * 2,
+        alpha: petal ? 0.13 + Math.random() * 0.13 : 0.14 + Math.random() * 0.16,
+        ox: 0,
+        oy: 0,
+      };
+    });
+  }
+
+  /** A lens of two arcs, turning edge-on and back as it falls. */
+  function drawPetal(p, alpha) {
+    const w = p.r * 1.9;
+    const h = p.r * 0.95;
+    ctx.save();
+    ctx.translate(p.x + p.ox, p.y + p.oy);
+    ctx.rotate(p.spin);
+    ctx.scale(0.45 + Math.abs(Math.cos(p.flutter)) * 0.55, 1);
+    ctx.beginPath();
+    ctx.moveTo(-w, 0);
+    ctx.quadraticCurveTo(0, -h, w, 0);
+    ctx.quadraticCurveTo(0, h, -w, 0);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(${petalColor}, ${alpha})`;
+    ctx.fill();
+    ctx.restore();
   }
 
   function resize() {
@@ -109,9 +151,14 @@ export function initParticles({ canvas }) {
     ctx.clearRect(0, 0, width, height);
 
     for (const p of particles) {
-      p.phase += 0.006;
+      p.phase += p.petal ? 0.004 : 0.006;
       p.y += p.vy;
-      p.x += p.vx + Math.sin(p.phase) * 0.14;
+      p.x += p.vx + Math.sin(p.phase) * p.sway;
+
+      if (p.petal) {
+        p.spin += p.spinRate;
+        p.flutter += 0.011;
+      }
 
       const { dx, dy, strength } = repulsion(p.x, p.y, pointer.x, pointer.y, POINTER_RADIUS);
       p.ox += (dx * 26 - p.ox) * 0.08;
@@ -120,9 +167,18 @@ export function initParticles({ canvas }) {
       p.x = wrapPosition(p.x, width);
       p.y = wrapPosition(p.y, height);
 
+      // A petal spreads its colour over far more pixels than a mote, so the
+      // light-theme knockdown is only half applied or it disappears entirely.
+      const scale = p.petal ? alphaScale * 0.5 + 0.5 : alphaScale;
+      const alpha = ((p.alpha + strength * 0.14) * scale).toFixed(3);
+      if (p.petal) {
+        drawPetal(p, alpha);
+        continue;
+      }
+
       ctx.beginPath();
       ctx.arc(p.x + p.ox, p.y + p.oy, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${accent}, ${((p.alpha + strength * 0.14) * alphaScale).toFixed(3)})`;
+      ctx.fillStyle = `rgba(${accent}, ${alpha})`;
       ctx.fill();
     }
 

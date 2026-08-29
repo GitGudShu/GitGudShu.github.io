@@ -3,7 +3,6 @@ export const music = {
     'meta.title': 'Music, Thomas Chu',
     'meta.description': 'Why "so what music are you into" is the hardest question at any dinner party, what melody-first composers actually do, and the seven pieces that explain it.',
 
-    'm.eyebrow': 'Beyond the work · music',
     'm.title': 'Music',
     'm.lead': 'Somebody asks what music I like and I say film scores or classical music, mostly. That is a lie by omission and you don\'t want to be that guy that says "Actually it\'s called neo-classical", especially if the classification is this wide (premature classifcation is the bane of the data-driven way). This is the long version, with the actual music playing alongside it.',
 
@@ -73,7 +72,6 @@ export const music = {
     'meta.title': 'Musique, Thomas Chu',
     'meta.description': "Pourquoi « tu écoutes quoi comme musique » est la pire question d'un dîner, ce que font vraiment les compositeurs qui écrivent la mélodie d'abord, et les sept morceaux qui l'expliquent.",
 
-    'm.eyebrow': 'En dehors du travail · musique',
     'm.title': 'Musique',
     'm.lead': "On me demande ce que j'écoute, je réponds « des musiques de film, du classique ». C'est un mensonge par omission. Voici la version longue, avec la vraie musique qui joue à côté.",
 

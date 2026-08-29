@@ -35,9 +35,9 @@
   border-radius: var(--radius-full);
   background: var(--surface);
   color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
-  letter-spacing: var(--tracking-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
   text-decoration: none;
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
 }
@@ -71,10 +71,10 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
   min-inline-size: 44px;
   min-block-size: 44px;
   padding-inline: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   font-weight: 500;
-  letter-spacing: var(--tracking-mono);
+  letter-spacing: var(--tracking-label);
   color: var(--text-faint);
   transition: color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease);
 }
@@ -204,8 +204,8 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1) var(--space-3);
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   color: var(--text-faint);
 }
 .card__tags li { max-width: none; }
@@ -350,9 +350,9 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
 
 .hobby__link {
   margin-block-start: auto;
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
-  letter-spacing: var(--tracking-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
 }
 
 /* Timeline */
@@ -391,9 +391,9 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
 .timeline__role { font-weight: 600; }
 .timeline__meta {
   margin-block-start: var(--space-1);
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
-  letter-spacing: var(--tracking-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
   color: var(--text-faint);
 }
 .timeline__text { margin-block-start: var(--space-2); color: var(--text-muted); font-size: var(--fs-small); }

@@ -16,26 +16,51 @@ body {
   font-size: var(--fs-body);
   line-height: var(--lh-body);
   font-weight: 400;
+  font-optical-sizing: auto;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  caret-color: var(--accent);
   overflow-x: hidden;
   transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
 
+/* A little tooth on the paper. Sits above the particle canvas and below every
+   piece of content, so nothing here can catch a pointer or shift a layout. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 40, "WONK" 0;
   font-weight: 600;
   line-height: var(--lh-tight);
   letter-spacing: -.015em;
   text-wrap: balance;
 }
 
+/* Display sizes carry more weight and tighter tracking than running heads. */
+h1 {
+  font-weight: 700;
+  letter-spacing: -.022em;
+}
+
 p { text-wrap: pretty; }
 p, li { max-width: var(--measure); }
 
-a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: .2em; }
-a:hover { color: var(--accent-strong); }
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, currentColor 42%, transparent);
+  text-underline-offset: .22em;
+  transition: color var(--dur-fast) var(--ease), text-decoration-color var(--dur-fast) var(--ease);
+}
+a:hover { color: var(--accent-strong); text-decoration-color: currentColor; }
 
 img, svg, canvas { display: block; max-width: 100%; }
 img { height: auto; }
@@ -51,16 +76,15 @@ ul, ol { padding: 0; list-style: none; }
 }
 :focus:not(:focus-visible) { outline: none; }
 
-::selection { background: color-mix(in oklab, var(--accent) 32%, transparent); color: var(--text); }
+::selection { background: color-mix(in oklab, var(--accent) 26%, transparent); color: var(--text); }
 
 * { scrollbar-color: var(--border-strong) transparent; scrollbar-width: thin; }
 
 .eyebrow {
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
-  font-weight: 500;
-  letter-spacing: var(--tracking-mono);
-  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
   color: var(--text-faint);
 }
 

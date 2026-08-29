@@ -74,3 +74,13 @@ test('the 404 page links home and is not indexed', async () => {
   assert.match(html, /href="\/index\.html"|href="\/"/);
   assert.match(html, /name="robots" content="noindex"/);
 });
+
+test('no page or dictionary ships an em-dash', async () => {
+  const files = ['index.html', 'music.html', 'archive.html', '404.html',
+                 'js/i18n/common.js', 'js/i18n/home.js', 'js/i18n/projects.js',
+                 'js/i18n/archive.js', 'js/i18n/music.js'];
+  for (const file of files) {
+    const text = await readFile(new URL(`../${file}`, import.meta.url), 'utf8');
+    assert.doesNotMatch(text, /—|&mdash;/, `${file} contains an em-dash`);
+  }
+});

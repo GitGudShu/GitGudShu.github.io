@@ -25,10 +25,19 @@ test('contrastRatio accepts shorthand hex', () => {
 test('parseTokens extracts both theme blocks', async () => {
   const css = await readFile(new URL('../css/tokens.css', import.meta.url), 'utf8');
   const { light, dark } = parseTokens(css);
-  assert.equal(light['--bg'], '#E9E4F0');
-  assert.equal(dark['--bg'], '#1E1A26');
-  assert.equal(light['--text-faint'], '#6B6379');
-  assert.equal(dark['--text-faint'], '#9691A6');
+
+  // Pinning the palette here would mean editing the test on every recolour, so
+  // this checks the parser found two distinct themes the right way round.
+  for (const key of ['--bg', '--text', '--text-faint', '--accent']) {
+    for (const [name, theme] of [['light', light], ['dark', dark]]) {
+      assert.match(theme[key] ?? '', /^#[0-9A-Fa-f]{3,8}$/, `${name} ${key} is not a hex colour`);
+    }
+    assert.notEqual(light[key], dark[key], `${key} is identical in both themes`);
+  }
+
+  const luminance = (hex) => parseInt(hex.slice(1, 3), 16) + parseInt(hex.slice(3, 5), 16)
+    + parseInt(hex.slice(5, 7), 16);
+  assert.ok(luminance(light['--bg']) > luminance(dark['--bg']), 'the light theme must be the lighter one');
 });
 
 test('every required pair meets its AA threshold in both themes', async () => {

@@ -56,7 +56,6 @@
   color: var(--text);
   text-decoration: none;
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 40, "WONK" 0;
   font-weight: 600;
   font-size: 1.05rem;
   letter-spacing: -.01em;

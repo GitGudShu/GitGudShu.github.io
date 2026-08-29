@@ -12,12 +12,20 @@
 .hero__name {
   font-size: var(--fs-display);
   font-weight: 600;
-  margin-block: var(--space-3) var(--space-4);
+  margin-block-end: var(--space-3);
+}
+
+/* What he does, sitting under his name where a person would say it. */
+.hero__role {
+  font-size: var(--fs-small);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+  margin-block-end: var(--space-5);
 }
 
 .hero__tagline {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 40, "WONK" 0;
   font-size: clamp(1.05rem, 1rem + .3vw, 1.3rem);
   font-weight: 400;
   font-style: italic;
@@ -87,13 +95,18 @@
 .hero__stack-list {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-4);
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  gap: var(--space-2) var(--space-3);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   color: var(--text-muted);
 }
 .hero__stack-list li { max-width: none; }
-.hero__stack-list li::before { content: "· "; color: var(--text-faint); }
+/* The separator needs room on both sides, or it hugs the word after it. */
+.hero__stack-list li::before {
+  content: "·";
+  margin-inline-end: var(--space-3);
+  color: var(--text-faint);
+}
 .hero__stack-list li:first-child::before { content: none; }
 
 @media (min-width: 900px) {
@@ -123,7 +136,34 @@
 .project { padding-block: clamp(2rem, 1.2rem + 3vw, 3.5rem) 0; }
 
 .project__head { margin-block-end: var(--space-6); max-width: var(--rail-prose); }
-.project__title { font-size: var(--fs-h1); margin-block: var(--space-3) var(--space-4); }
+.project__title { font-size: var(--fs-h1); margin-block: var(--space-4) var(--space-3); }
+
+/* A way back out of the page, rather than a label that only looks like one. */
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
+  color: var(--text-faint);
+  text-decoration: none;
+}
+.breadcrumb::before {
+  content: "";
+  inline-size: 1.1em;
+  block-size: 1px;
+  background: currentColor;
+  transition: inline-size var(--dur-fast) var(--ease);
+}
+.breadcrumb:hover { color: var(--accent); }
+.breadcrumb:hover::before { inline-size: 1.7em; }
+
+.project__meta {
+  font-size: var(--fs-label);
+  color: var(--text-faint);
+  margin-block-end: var(--space-4);
+}
 .project__lead {
   font-size: clamp(1.05rem, 1rem + .35vw, 1.25rem);
   color: var(--text-muted);
@@ -203,8 +243,8 @@
 }
 .paper__meta { font-size: var(--fs-small); color: var(--text-muted); }
 .paper__note {
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   line-height: 1.5;
   color: var(--text-faint);
 }
@@ -256,7 +296,7 @@
   max-width: none;
   font-size: var(--fs-small);
 }
-.archive-entry__links a { font-family: var(--font-mono); font-size: var(--fs-mono); }
+.archive-entry__links a { font-family: var(--font-label); font-size: var(--fs-label); }
 
 /* Music page */
 .music .block--prose .block__text { max-width: 66ch; }
@@ -418,16 +458,16 @@
 @keyframes sheen { to { transform: translateX(100%); } }
 
 .player__status {
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   color: var(--text-faint);
   min-block-size: 1.4em;
 }
 .player.is-unset .player__status { color: var(--accent); }
 
 .player__attrib {
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   color: var(--text-faint);
 }
 .player__attrib:empty { display: none; }
@@ -555,12 +595,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.tracklist__n,
-.tracklist__c {
+.tracklist__n {
   font-family: var(--font-mono);
   font-size: var(--fs-mono);
-  color: var(--text-faint);
   font-variant-numeric: tabular-nums;
+}
+.tracklist__n,
+.tracklist__c {
+  font-size: var(--fs-label);
+  color: var(--text-faint);
 }
 .tracklist button.is-current .tracklist__n { color: var(--accent); }
 .tracklist__t {
@@ -571,8 +614,8 @@
 }
 
 .player__disclaimer {
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
   line-height: 1.5;
   color: var(--text-faint);
   max-width: 60ch;
@@ -587,10 +630,10 @@
   padding: var(--space-2) var(--space-5) var(--space-2) var(--space-4);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius-full);
-  font-family: var(--font-mono);
-  font-size: var(--fs-mono);
-  letter-spacing: var(--tracking-mono);
-  text-transform: uppercase;
+  font-family: var(--font-label);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: var(--tracking-label);
   color: var(--text);
   transition: border-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease),
               background-color var(--dur-fast) var(--ease);
