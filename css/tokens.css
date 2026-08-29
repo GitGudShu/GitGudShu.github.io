@@ -4,8 +4,7 @@
   color-scheme: light;
 
   /* Colour: wisteria. Taken from the flower itself, so the violets run from
-     the pale sky behind the raceme down to the dark heart of a petal, with
-     the leaf green kept back for the one job only it can do. */
+     the pale sky behind the raceme down to the dark heart of a petal. */
   --bg: #EDF1FB;
   --surface: #F5F7FD;
   --surface-raised: #FCFDFF;
@@ -17,8 +16,6 @@
   --accent: #5E3A78;
   --accent-strong: #4A2C61;
   --accent-contrast: #FFFFFF;
-  --petal: #A175D6;
-  --leaf: #8DB264;
 
   /* Derived surfaces. Shadows carry the paper's hue rather than neutral black. */
   --nav-bg: color-mix(in oklab, var(--bg) 74%, transparent);
@@ -103,8 +100,6 @@
   --accent: #C6A9EC;
   --accent-strong: #D8C4F5;
   --accent-contrast: #241A33;
-  --petal: #B79AE0;
-  --leaf: #9CBE79;
   --particle-color: var(--accent);
 
   --shadow-card: 0 1px 2px color-mix(in oklab, #0D0916 30%, transparent),
@@ -132,8 +127,6 @@
     --accent: #C6A9EC;
     --accent-strong: #D8C4F5;
     --accent-contrast: #241A33;
-    --petal: #B79AE0;
-    --leaf: #9CBE79;
     --particle-color: var(--accent);
 
     --shadow-card: 0 1px 2px color-mix(in oklab, #0D0916 30%, transparent),

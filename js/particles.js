@@ -1,41 +1,34 @@
 /**
- * Background motes the pointer pushes aside, with the occasional petal turning
- * over as it falls. Fixed and behind everything, so it cannot shift layout.
- * Removed entirely for coarse pointers and reduced motion.
+ * The background field, fixed behind everything so it cannot shift layout and
+ * removed outright for coarse pointers and reduced motion.
+ *
+ * One set of particles with two temperaments. By day they drift down like
+ * motes in a sunbeam. At night they slow to almost nothing, stop drifting
+ * sideways, and breathe on their own cycles, which reads as a sky rather than
+ * as weather. The pointer pushes them aside in both.
  */
 
 const MARGIN = 10;
 const POINTER_RADIUS = 120;
 const MAX_DPR = 2;
 
-/** Roughly one petal for every eleven motes: noticed, never counted. */
-export const PETAL_SHARE = 0.085;
-
-/** Leaves are rarer still, the way they are on a raceme in flower. */
-export const LEAF_SHARE = 0.028;
-
-/** Deterministic so the mix cannot clump differently on every reseed. */
-export function everyNth(index, share) {
-  if (share <= 0) return false;
-  return index % Math.round(1 / share) === 0;
-}
-
-export function isPetal(index, share = PETAL_SHARE) {
-  return everyNth(index, share);
-}
-
-export function kindFor(index) {
-  if (everyNth(index, LEAF_SHARE)) return 'leaf';
-  if (everyNth(index, PETAL_SHARE)) return 'petal';
-  return 'mote';
-}
-
-/** Half the field on small screens. */
-export function particleCount(width, base = 170) {
+/** Halved on small screens, where the same count reads as noise. */
+export function particleCount(width, base = 260) {
   return width < 768 ? Math.round(base / 2) : base;
 }
 
-/** Wrap with a margin so motes never pop at an edge. */
+/**
+ * How the field behaves under each theme. Night is slow enough that a point
+ * crosses the screen in about an hour, so the motion is felt rather than
+ * watched.
+ */
+export function driftFor(night) {
+  return night
+    ? { speed: 0.07, sway: 0.02, twinkle: 0.45, halo: true }
+    : { speed: 1, sway: 0.14, twinkle: 0, halo: false };
+}
+
+/** Wrap with a margin so particles never pop at an edge. */
 export function wrapPosition(value, max) {
   if (value > max + MARGIN) return -MARGIN;
   if (value < -MARGIN) return max + MARGIN;
@@ -74,10 +67,9 @@ export function initParticles({ canvas }) {
   let frame = 0;
   let running = false;
   const pointer = { x: -9999, y: -9999 };
-  let accent = '185, 165, 255';
-  let petalColor = '161, 117, 214';
-  let leafColor = '141, 178, 100';
+  let accent = '198, 169, 236';
   let alphaScale = 1;
+  let drift = driftFor(false);
 
   const resolve = (value) => {
     // Canvas cannot read a CSS variable, so resolve it per theme.
@@ -91,68 +83,35 @@ export function initParticles({ canvas }) {
   };
 
   function readTheme() {
-    const rgb = resolve('var(--accent)');
+    const rgb = resolve('var(--particle-color)');
     if (rgb) accent = rgb.join(', ');
 
-    const petalRgb = resolve('var(--petal)');
-    if (petalRgb) petalColor = petalRgb.join(', ');
-
-    const leafRgb = resolve('var(--leaf)');
-    if (leafRgb) leafColor = leafRgb.join(', ');
-
-    // Dark motes on a light ground read heavier than light ones on a dark one.
+    // Dark points on a light ground read heavier than light ones on a dark one,
+    // and the same luminance tells us which temperament the field should have.
     const bg = resolve('var(--bg)');
     if (bg) {
       const lum = (0.2126 * bg[0] + 0.7152 * bg[1] + 0.0722 * bg[2]) / 255;
       alphaScale = lum > 0.5 ? 0.6 : 1;
+      drift = driftFor(lum <= 0.5);
     }
   }
 
   function seed() {
     const count = particleCount(width);
-    particles = Array.from({ length: count }, (_, i) => {
-      const kind = kindFor(i);
-      const petal = kind !== 'mote';
-      return {
-        kind,
-        petal,
-        x: Math.random() * width,
-        y: Math.random() * height,
-        // Petals are broader and fall slower, the way something with surface does.
-        r: petal ? 3.4 + Math.random() * 2.6 : 1.1 + Math.random() * 1.7,
-        vy: petal ? 0.05 + Math.random() * 0.13 : 0.08 + Math.random() * 0.22,
-        vx: (Math.random() - 0.5) * (petal ? 0.2 : 0.12),
-        phase: Math.random() * Math.PI * 2,
-        sway: petal ? 0.42 : 0.14,
-        spin: Math.random() * Math.PI,
-        spinRate: (Math.random() - 0.5) * 0.012,
-        flutter: Math.random() * Math.PI * 2,
-        alpha: petal ? 0.13 + Math.random() * 0.13 : 0.14 + Math.random() * 0.16,
-        ox: 0,
-        oy: 0,
-      };
-    });
-  }
-
-  /** A lens of two arcs, turning edge-on and back as it falls. Leaves are
-      cut longer and thinner than petals, which is most of what tells them
-      apart at this size. */
-  function drawBlade(p, alpha) {
-    const leaf = p.kind === 'leaf';
-    const w = p.r * (leaf ? 2.5 : 1.9);
-    const h = p.r * (leaf ? 0.62 : 0.95);
-    ctx.save();
-    ctx.translate(p.x + p.ox, p.y + p.oy);
-    ctx.rotate(p.spin);
-    ctx.scale(0.45 + Math.abs(Math.cos(p.flutter)) * 0.55, 1);
-    ctx.beginPath();
-    ctx.moveTo(-w, 0);
-    ctx.quadraticCurveTo(0, -h, w, 0);
-    ctx.quadraticCurveTo(0, h, -w, 0);
-    ctx.closePath();
-    ctx.fillStyle = `rgba(${leaf ? leafColor : petalColor}, ${alpha})`;
-    ctx.fill();
-    ctx.restore();
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      r: 1 + Math.random() * 1.7,
+      vy: 0.08 + Math.random() * 0.22,
+      vx: (Math.random() - 0.5) * 0.12,
+      phase: Math.random() * Math.PI * 2,
+      // Every point breathes on its own cycle, or they would pulse in unison.
+      tw: Math.random() * Math.PI * 2,
+      twRate: 0.004 + Math.random() * 0.009,
+      alpha: 0.14 + Math.random() * 0.16,
+      ox: 0,
+      oy: 0,
+    }));
   }
 
   function resize() {
@@ -172,14 +131,10 @@ export function initParticles({ canvas }) {
     ctx.clearRect(0, 0, width, height);
 
     for (const p of particles) {
-      p.phase += p.petal ? 0.004 : 0.006;
-      p.y += p.vy;
-      p.x += p.vx + Math.sin(p.phase) * p.sway;
-
-      if (p.petal) {
-        p.spin += p.spinRate * (p.kind === 'leaf' ? 0.7 : 1);
-        p.flutter += p.kind === 'leaf' ? 0.008 : 0.011;
-      }
+      p.phase += 0.006;
+      p.tw += p.twRate;
+      p.y += p.vy * drift.speed;
+      p.x += (p.vx + Math.sin(p.phase) * drift.sway) * drift.speed;
 
       const { dx, dy, strength } = repulsion(p.x, p.y, pointer.x, pointer.y, POINTER_RADIUS);
       p.ox += (dx * 26 - p.ox) * 0.08;
@@ -188,18 +143,23 @@ export function initParticles({ canvas }) {
       p.x = wrapPosition(p.x, width);
       p.y = wrapPosition(p.y, height);
 
-      // A petal spreads its colour over far more pixels than a mote, so the
-      // light-theme knockdown is only half applied or it disappears entirely.
-      const scale = p.petal ? alphaScale * 0.5 + 0.5 : alphaScale;
-      const alpha = ((p.alpha + strength * 0.14) * scale).toFixed(3);
-      if (p.petal) {
-        drawBlade(p, alpha);
-        continue;
+      const breathe = 1 - drift.twinkle * (0.5 + 0.5 * Math.sin(p.tw));
+      const alpha = (p.alpha + strength * 0.14) * alphaScale * breathe;
+      const x = p.x + p.ox;
+      const y = p.y + p.oy;
+
+      // The larger points carry a halo at night, which is what separates a
+      // star from a speck without drawing anything sharper.
+      if (drift.halo && p.r > 2.2) {
+        ctx.beginPath();
+        ctx.arc(x, y, p.r * 2.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${accent}, ${(alpha * 0.16).toFixed(3)})`;
+        ctx.fill();
       }
 
       ctx.beginPath();
-      ctx.arc(p.x + p.ox, p.y + p.oy, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${accent}, ${alpha})`;
+      ctx.arc(x, y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${accent}, ${alpha.toFixed(3)})`;
       ctx.fill();
     }
 
