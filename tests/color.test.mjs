@@ -137,6 +137,20 @@ test('one link per letter, written as a full watch url', () => {
   assert.ok(LETTERS.length >= 26, 'letters went missing');
 });
 
+test('every letter with a link has its own thumbnail, stored locally', async () => {
+  const js = await readFile(new URL('../js/letters.js', import.meta.url), 'utf8');
+  assert.match(js, /src="assets\/thumbs\//, 'the facade should show the video thumbnail');
+  // A real thumbnail URL has a path. Mentioning the host in a comment is fine.
+  assert.doesNotMatch(js, /ytimg\.com\//, 'thumbnails must be served from here, not from Google');
+
+  for (const letter of LETTERS) {
+    if (!letterHasVideo(letter)) continue;
+    const jpg = await readFile(new URL(`../assets/thumbs/${letter.id}.jpg`, import.meta.url));
+    assert.equal(jpg.subarray(0, 2).toString('hex'), 'ffd8', `${letter.id}.jpg is not a jpeg`);
+    assert.ok(jpg.length > 3000, `${letter.id}.jpg looks like a placeholder`);
+  }
+});
+
 test('a refused embed becomes a link out instead of a dead box', async () => {
   const js = await readFile(new URL('../js/letters.js', import.meta.url), 'utf8');
   assert.match(js, /onError/, 'nothing listens for a refused embed');

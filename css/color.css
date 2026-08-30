@@ -280,13 +280,38 @@
 /* The player sits in a sleeve until somebody wants it. */
 .letter__player {
   position: relative;
-  aspect-ratio: 16 / 10;
+  /* Same shape as the embed, so nothing resizes when it starts playing. */
+  aspect-ratio: 16 / 9;
   border-radius: var(--radius-md);
   overflow: hidden;
   background: color-mix(in oklab, var(--accent) 9%, var(--surface));
   border: 1px solid var(--border);
 }
-.letter__player.is-live { aspect-ratio: 16 / 9; background: var(--surface); }
+.letter__player.is-live { background: var(--media-bg); }
+
+/* The video's own thumbnail, so you can see what you are about to hear. */
+.letter__thumb {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease), filter var(--dur) var(--ease);
+}
+.letter__play .letter__thumb { filter: saturate(.85) brightness(.72); }
+.letter__play:hover .letter__thumb,
+.letter__play:focus-visible .letter__thumb {
+  filter: saturate(1) brightness(.85);
+  transform: scale(1.04);
+}
+/* A wash under the badge and the caption so both stay readable on any frame. */
+.letter__play::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--media-scrim) 0%, transparent 46%);
+  pointer-events: none;
+}
 .letter__player iframe { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; border: 0; }
 
 .letter__play {
@@ -323,6 +348,7 @@
 }
 .letter__badge {
   position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -336,12 +362,13 @@
 .letter__badge svg { inline-size: 24px; block-size: 24px; }
 .letter__cta {
   position: absolute;
+  z-index: 1;
   inset-block-end: var(--space-3);
   font-family: var(--font-mono);
   font-size: var(--fs-mono);
   letter-spacing: var(--tracking-mono);
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--on-media);
 }
 .letter__play:hover .letter__badge { transform: scale(1.12); box-shadow: var(--glow-accent); }
 .letter__play:hover .letter__sleeve { transform: translate(-50%, -50%) rotate(22deg) scale(1.04); }
@@ -355,11 +382,12 @@
   font-size: var(--fs-mono);
   color: var(--text-faint);
 }
-.letter__player.is-pending { border-style: dashed; }
+.letter__player.is-pending:not(:has(.letter__thumb)) { border-style: dashed; }
 
 /* Some labels will not allow off-site play. The letter offers the door out. */
 .letter__out {
   position: absolute;
+  z-index: 1;
   inset-block-end: var(--space-4);
   inset-inline: var(--space-4);
   display: block;
@@ -370,14 +398,18 @@
   letter-spacing: var(--tracking-mono);
   color: var(--accent);
   text-decoration: none;
-  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--border));
   border-radius: var(--radius-sm);
-  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  /* Solid, because behind it is somebody's album art, not our surface. */
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-card);
   transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
 .letter__out::after { content: " ↗"; }
+/* The artwork behind the link is dimmed so the link stays the loudest thing. */
+.letter__player.is-pending .letter__thumb { filter: saturate(.8) brightness(.6); }
 .letter__out:hover {
-  background: color-mix(in oklab, var(--accent) 16%, transparent);
+  background: color-mix(in oklab, var(--accent) 16%, var(--surface-raised));
   border-color: var(--accent);
 }
 .letter__player.is-pending .letter__sleeve { opacity: .35; }

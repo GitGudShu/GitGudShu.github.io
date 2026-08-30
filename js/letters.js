@@ -27,6 +27,15 @@ export function initLetters({ dict, getLang }) {
   const sleeve = '<span class="letter__sleeve" aria-hidden="true">' +
     '<span class="letter__grooves"></span></span>';
 
+  /**
+   * Our own copy of the video's thumbnail, fetched by tools/build-thumbs.py.
+   * Serving it from here rather than i.ytimg.com is what keeps the promise that
+   * nothing reaches YouTube until somebody presses play.
+   */
+  const art = (letter) =>
+    `<img class="letter__thumb" src="assets/thumbs/${letter.id}.jpg" alt="" ` +
+    'loading="lazy" decoding="async" width="1000" height="562">';
+
   const outLink = (letter) =>
     `<a class="letter__out" href="https://www.youtube.com/watch?v=${letterVideoId(letter)}" ` +
     `target="_blank" rel="noopener noreferrer">${t('c.player.out')}</a>`;
@@ -45,14 +54,14 @@ export function initLetters({ dict, getLang }) {
 
       if (refused.has(letter.id)) {
         slot.classList.add('is-pending');
-        slot.innerHTML = sleeve + outLink(letter);
+        slot.innerHTML = art(letter) + outLink(letter);
         continue;
       }
 
       slot.classList.remove('is-pending');
       slot.innerHTML =
         `<button type="button" class="letter__play" aria-label="${t('c.player.play')} ${letter.composer}">` +
-        sleeve +
+        art(letter) +
         '<span class="letter__badge" aria-hidden="true">' +
         '<svg viewBox="0 0 24 24" focusable="false" fill="currentColor"><path d="M8 5.6v12.8l10-6.4z"/></svg>' +
         '</span>' +
@@ -66,7 +75,7 @@ export function initLetters({ dict, getLang }) {
     refused.add(letter.id);
     slot.classList.remove('is-live');
     slot.classList.add('is-pending');
-    slot.innerHTML = sleeve + outLink(letter);
+    slot.innerHTML = art(letter) + outLink(letter);
   }
 
   async function play(slot, letter) {

@@ -57,10 +57,21 @@ becomes
 { id: 'call', composer: 'Evan Call', video: 'https://www.youtube.com/watch?v=XXXXXXXXXXX' },
 ```
 
-That is the whole job. **You do not need to know whether the video allows
-playing outside YouTube.** The page tries to play it, and if YouTube refuses,
-that letter turns itself into a "Listen on YouTube" link instead. Leave `video`
-empty and the letter just renders without a player.
+Then run:
+
+```
+npm run thumbs
+```
+
+That fetches the video's own thumbnail into `assets/thumbs/<id>.jpg`, which is
+what the letter shows before you press play. Keeping our own copy rather than
+pointing at Google is what lets the page contact nobody until somebody clicks.
+It only fetches what is missing; add `--force` to redo the lot.
+
+You **do not need to know whether the video allows playing outside YouTube.**
+The page tries to play it, and if YouTube refuses, that letter turns itself into
+a "Listen on YouTube" button over the same thumbnail. Leave `video` empty and
+the letter renders quietly without a player.
 
 ### The one rule worth keeping
 
@@ -181,6 +192,10 @@ you swap links and want to know what you are getting.
 ```
 npm run verify
 ```
+
+If you changed a link, `npm run thumbs` first. If you changed a gif,
+`npm run gifs` first. Both are safe to run at any time.
+
 
 That runs the contrast check, the English/French parity check, and the tests.
 It is fast, and it catches the two mistakes that are easy to make: a string

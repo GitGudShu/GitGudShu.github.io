@@ -26,6 +26,12 @@
                        0 18px 44px color-mix(in oklab, #3B2F55 14%, transparent);
   --shadow-nav: 0 1px 24px color-mix(in oklab, #3B2F55 11%, transparent);
   --glow-accent: 0 0 60px color-mix(in oklab, var(--accent) 18%, transparent);
+
+  /* Media. A video letterboxes against black in either theme, and anything
+     sitting on top of somebody's artwork needs its own scrim to stay legible. */
+  --media-bg: #000000;
+  --media-scrim: color-mix(in oklab, #000000 62%, transparent);
+  --on-media: #FFFFFF;
   /* Motes sit a few steps up from the accent so they float rather than speckle. */
   --particle-color: #8E76B9;
   --grain-opacity: .045;
