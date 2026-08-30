@@ -104,7 +104,10 @@
         <section class="strand strand--scene reveal">
           <div class="strand__text" data-i18n-html="c.floor"></div>
           <figure class="scene">
-            <div class="scene__stage" data-scene="floor" aria-hidden="true"></div>
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/floor.png">
+              <img class="scene__art" src="assets/gifs/floor.gif" alt="" width="480" height="480" loading="lazy" decoding="async">
+            </picture>
             <figcaption data-i18n="c.scene.floor">.</figcaption>
           </figure>
         </section>
@@ -124,7 +127,10 @@
         <section class="strand strand--scene is-flipped reveal">
           <div class="strand__text" data-i18n-html="c.ikenouchi"></div>
           <figure class="scene">
-            <div class="scene__stage" data-scene="glass" aria-hidden="true"></div>
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/glass.png">
+              <img class="scene__art" src="assets/gifs/glass.gif" alt="" width="480" height="480" loading="lazy" decoding="async">
+            </picture>
             <figcaption data-i18n="c.scene.glass">.</figcaption>
           </figure>
         </section>
@@ -140,7 +146,10 @@
         <section class="strand strand--scene reveal">
           <div class="strand__text" data-i18n-html="c.collapse"></div>
           <figure class="scene">
-            <div class="scene__stage" data-scene="gymnast" aria-hidden="true"></div>
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/gymnast.png">
+              <img class="scene__art" src="assets/gifs/gymnast.gif" alt="" width="480" height="263" loading="lazy" decoding="async">
+            </picture>
             <figcaption data-i18n="c.scene.gymnast">.</figcaption>
           </figure>
         </section>
@@ -181,7 +190,10 @@
         <section class="strand strand--scene is-flipped reveal">
           <div class="strand__text" data-i18n-html="c.judah"></div>
           <figure class="scene">
-            <div class="scene__stage" data-scene="whiteboard" aria-hidden="true"></div>
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/whiteboard.png">
+              <img class="scene__art" src="assets/gifs/whiteboard.gif" alt="" width="480" height="360" loading="lazy" decoding="async">
+            </picture>
             <figcaption data-i18n="c.scene.whiteboard">.</figcaption>
           </figure>
         </section>
@@ -248,10 +260,13 @@
             <div class="letter__player" data-letter="kitamura"></div>
           </li>
           <li class="letter letter--aside reveal">
-            <figure class="scene scene--wide">
-              <div class="scene__stage" data-scene="cottage" aria-hidden="true"></div>
-              <figcaption data-i18n="c.scene.cottage">.</figcaption>
-            </figure>
+          <figure class="scene scene--wide">
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/cottage.png">
+              <img class="scene__art" src="assets/gifs/cottage.gif" alt="" width="480" height="477" loading="lazy" decoding="async">
+            </picture>
+            <figcaption data-i18n="c.scene.cottage">.</figcaption>
+          </figure>
           </li>
           <li class="letter reveal" style="--n:2">
             <div class="letter__text">
@@ -415,20 +430,20 @@
           </li>
         </ol>
 
-        <section class="strand strand--spec reveal">
-          <h2 class="spec__title" data-i18n="c.spec.title">.</h2>
-          <div class="strand__text" data-i18n-html="c.spec.body"></div>
-        </section>
-
         <section class="strand strand--scene reveal">
-          <div class="strand__text" data-i18n-html="c.end"></div>
+          <div class="strand__text" data-i18n-html="c.coda"></div>
           <figure class="scene">
-            <div class="scene__stage" data-scene="piano" aria-hidden="true"></div>
+            <picture>
+              <source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/piano.png">
+              <img class="scene__art" src="assets/gifs/piano.gif" alt="" width="320" height="240" loading="lazy" decoding="async">
+            </picture>
             <figcaption data-i18n="c.scene.piano">.</figcaption>
           </figure>
         </section>
 
         <p class="wish reveal" data-i18n="c.wish">.</p>
+
+        <p class="gif-credit reveal" data-i18n="c.gifs">.</p>
       </div>
 
       <nav class="project__nav" aria-label="Page navigation">

@@ -30,7 +30,7 @@
 /* Head */
 .colour__head {
   position: relative;
-  max-width: 30ch;
+  max-width: min(100%, 54rem);
   margin-block-end: var(--section-gap);
 }
 .colour__title {
@@ -50,6 +50,8 @@
   background: linear-gradient(to right, var(--accent), transparent);
 }
 .colour__lead {
+  max-width: 40ch;
+  text-wrap: balance;
   font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem);
   font-style: italic;
   color: var(--text-muted);
@@ -99,8 +101,9 @@
   font-family: var(--font-display);
   font-size: 3.6em;
   line-height: .82;
-  padding-inline-end: .09em;
+  padding-inline-end: .16em;
   padding-block-start: .06em;
+  margin-inline-end: .04em;
   color: var(--accent);
 }
 
@@ -120,16 +123,20 @@
 }
 
 .scene { margin: 0; }
-.scene__stage {
+/* Borrowed cats. Framed like everything else on the site so they sit in the
+   page rather than on top of it. */
+.scene__art {
   display: block;
-  padding: var(--space-4);
+  /* Sized by the gif itself, so nothing gets letterboxed inside a frame. */
+  inline-size: auto;
+  block-size: auto;
+  max-inline-size: 100%;
+  max-block-size: 20rem;
+  margin-inline: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  background: color-mix(in oklab, var(--accent) 7%, var(--surface));
-  color: var(--accent);
   box-shadow: var(--shadow-card);
 }
-.scene__art { inline-size: 100%; block-size: auto; }
 .scene figcaption {
   margin-block-start: var(--space-3);
   font-family: var(--font-mono);
@@ -139,101 +146,6 @@
   max-width: 46ch;
 }
 .scene--wide { grid-column: 1 / -1; max-width: 34rem; }
-
-/* ── the scenes ─────────────────────────────────────────────────────────── */
-
-.cat-tail { transform-origin: 242px 138px; animation: tail 3.4s ease-in-out infinite; }
-@keyframes tail {
-  0%, 62%, 100% { transform: rotate(0deg); }
-  72% { transform: rotate(-16deg); }
-  82% { transform: rotate(9deg); }
-  92% { transform: rotate(-4deg); }
-}
-.cat-ear { transform-origin: 112px 128px; animation: ear 5.2s ease-in-out infinite; }
-.cat-ear--b { transform-origin: 145px 122px; animation-delay: .18s; }
-@keyframes ear { 0%, 88%, 100% { transform: rotate(0deg); } 92% { transform: rotate(-11deg); } }
-.cat-zzz { animation: zzz 4.6s ease-out infinite; }
-@keyframes zzz {
-  0% { opacity: 0; transform: translate(0, 6px) scale(.85); }
-  25% { opacity: .75; }
-  70%, 100% { opacity: 0; transform: translate(10px, -22px) scale(1.1); }
-}
-
-.paw { animation: paw 4.4s cubic-bezier(.5, 0, .3, 1) infinite; }
-@keyframes paw {
-  0%, 22% { transform: translateX(0); }
-  34% { transform: translateX(34px); }
-  46%, 100% { transform: translateX(0); }
-}
-.glass { animation: glass 4.4s cubic-bezier(.5, 0, .3, 1) infinite; transform-origin: 184px 148px; }
-@keyframes glass {
-  0%, 26% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-  38% { transform: translate(26px, 0) rotate(22deg); opacity: 1; }
-  50% { transform: translate(52px, 34px) rotate(96deg); opacity: 0; }
-  51%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
-}
-.shatter { animation: shatter 4.4s ease-out infinite; }
-@keyframes shatter {
-  0%, 48% { opacity: 0; transform: scale(.7); }
-  56% { opacity: .9; transform: scale(1); }
-  84%, 100% { opacity: 0; transform: scale(1.05); }
-}
-
-.tumbler { transform-origin: 96px 120px; animation: tumble 5s cubic-bezier(.4, 0, .2, 1) infinite; }
-@keyframes tumble {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  34% { transform: translate(40px, -34px) rotate(340deg); }
-  52% { transform: translate(78px, 0) rotate(720deg); }
-  60%, 100% { transform: translate(78px, 0) rotate(720deg); }
-}
-.impact { transform-origin: 240px 100px; animation: impact 5s steps(1, end) infinite; }
-@keyframes impact {
-  0%, 60% { opacity: 0; transform: scale(.4) rotate(-12deg); }
-  64% { opacity: 1; transform: scale(1.12) rotate(4deg); }
-  70% { opacity: 1; transform: scale(1) rotate(0deg); }
-  88%, 100% { opacity: 0; transform: scale(1) rotate(0deg); }
-}
-
-.thread { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw 7s ease-in-out infinite; }
-.thread--1 { animation-delay: .3s; }
-.thread--2 { animation-delay: .6s; }
-.thread--3 { animation-delay: .9s; }
-.thread--4 { animation-delay: 1.2s; }
-.thread--5 { animation-delay: 1.5s; }
-@keyframes draw {
-  0% { stroke-dashoffset: 200; }
-  30%, 78% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 200; }
-}
-.scholar { transform-origin: 268px 130px; animation: ponder 6s ease-in-out infinite; }
-@keyframes ponder { 0%, 100% { transform: rotate(0deg); } 45% { transform: rotate(-5deg); } }
-.lens { animation: glint 6s ease-in-out infinite; }
-.lens--b { animation-delay: .12s; }
-@keyframes glint { 0%, 74%, 100% { opacity: 1; } 80% { opacity: .35; } }
-
-.boss { animation: bossout 7s ease-in-out infinite; }
-@keyframes bossout { 0%, 42% { opacity: 1; } 50%, 92% { opacity: 0; } 100% { opacity: 1; } }
-.boss__fill { transform-origin: 49px 96px; animation: drain 7s linear infinite; }
-@keyframes drain { 0% { transform: scaleX(1); } 42% { transform: scaleX(.06); } 43%, 100% { transform: scaleX(1); } }
-.cottage { animation: cosy 7s ease-in-out infinite; }
-@keyframes cosy { 0%, 46% { opacity: 0; } 56%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
-.smoke { animation: smoke 3.2s ease-in-out infinite; }
-@keyframes smoke {
-  0% { opacity: 0; transform: translateY(6px); }
-  40% { opacity: .8; }
-  100% { opacity: 0; transform: translateY(-16px); }
-}
-
-.pounce { animation: pounce 1.9s cubic-bezier(.4, 0, .3, 1) infinite; }
-@keyframes pounce { 0%, 100% { transform: translateY(0); } 42% { transform: translateY(18px); } }
-.key-hit { animation: hit 1.9s steps(1, end) infinite; }
-@keyframes hit { 0%, 36% { opacity: 0; } 42% { opacity: .28; } 60%, 100% { opacity: 0; } }
-.note-up { animation: rise 1.9s ease-out infinite; }
-@keyframes rise {
-  0%, 40% { opacity: 0; transform: translateY(6px) scale(.9); }
-  52% { opacity: .9; }
-  100% { opacity: 0; transform: translateY(-30px) scale(1.05); }
-}
 
 /* ── the royal road ─────────────────────────────────────────────────────── */
 
@@ -442,17 +354,33 @@
   color: var(--text-faint);
 }
 .letter__player.is-pending { border-style: dashed; }
+
+/* Some labels will not allow off-site play. The letter offers the door out. */
+.letter__out {
+  position: absolute;
+  inset-block-end: var(--space-4);
+  inset-inline: var(--space-4);
+  display: block;
+  padding-block: var(--space-2);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--accent) 8%, transparent);
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.letter__out::after { content: " ↗"; }
+.letter__out:hover {
+  background: color-mix(in oklab, var(--accent) 16%, transparent);
+  border-color: var(--accent);
+}
 .letter__player.is-pending .letter__sleeve { opacity: .35; }
 
 /* ── the ending ─────────────────────────────────────────────────────────── */
-
-.strand--spec {
-  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
-  border-inline-start: 3px solid var(--accent);
-  border-radius: 0 var(--radius-md) var(--radius-md) 0;
-  background: color-mix(in oklab, var(--accent) 5%, var(--surface));
-}
-.spec__title { font-size: var(--fs-h2); margin-block-end: var(--space-4); }
 
 .wish {
   font-family: var(--font-display);
@@ -463,12 +391,18 @@
   margin-block: var(--section-gap) 0;
 }
 
+/* Whose cats these are. Quiet, at the very bottom, where a credit belongs. */
+.gif-credit {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  line-height: 1.6;
+  color: var(--text-faint);
+  text-align: center;
+  max-width: 62ch;
+  margin: var(--space-6) auto 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .colour::before { animation: none; }
-  .cat-tail, .cat-ear, .cat-zzz, .paw, .glass, .shatter, .tumbler, .impact,
-  .thread, .scholar, .lens, .boss, .boss__fill, .cottage, .smoke,
-  .pounce, .key-hit, .note-up, .chord, .chord:nth-child(2) { animation: none; }
-  .thread { stroke-dashoffset: 0; }
-  .impact, .cottage, .note-up, .shatter { opacity: 1; }
-  .boss, .key-hit { opacity: .35; }
+  .chord, .chord:nth-child(2) { animation: none; }
 }

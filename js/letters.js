@@ -27,8 +27,13 @@ export function initLetters({ dict, getLang }) {
         '<span class="letter__grooves"></span></span>';
 
       if (!letterHasVideo(letter)) {
+        // Plenty of labels put their catalogue on YouTube but forbid off-site
+        // play. Sending the reader out beats a box that does nothing.
         slot.classList.add('is-pending');
-        slot.innerHTML = sleeve + `<p class="letter__pending">${t('c.player.pending')}</p>`;
+        slot.innerHTML = sleeve + (letter.watch
+          ? `<a class="letter__out" href="${letter.watch}" target="_blank" rel="noopener noreferrer">` +
+            `${t('c.player.out')}</a>`
+          : `<p class="letter__pending">${t('c.player.pending')}</p>`);
         continue;
       }
 

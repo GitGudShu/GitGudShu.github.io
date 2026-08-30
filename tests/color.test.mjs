@@ -1,7 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
-import { SCENE_IDS, renderScene } from '../js/scenes.js';
+import { readFile, stat } from 'node:fs/promises';
 import { LETTERS, letterHasVideo, letterVideoId } from '../js/data/letters.js';
 import { stageFor, purrLength, TO_CAT, TO_OPEN, FOUND_KEY, DESTINATION } from '../js/secret.js';
 import { color } from '../js/i18n/color.js';
@@ -39,28 +38,63 @@ test('the button is labelled at every stage, in both languages', () => {
   }
 });
 
-test('every scene draws itself without colour literals or NaN', () => {
-  assert.equal(SCENE_IDS.length, 6);
-  for (const id of SCENE_IDS) {
-    const svg = renderScene(id);
-    assert.match(svg, /^<svg[\s>]/, `${id} is not an svg`);
-    assert.match(svg, /<\/svg>$/, `${id} is unterminated`);
-    assert.match(svg, /aria-hidden="true"/, `${id} is not decorative`);
-    assert.doesNotMatch(svg, /#[0-9a-fA-F]{3,8}\b/, `${id} contains a colour literal`);
-    assert.doesNotMatch(svg, /NaN|undefined/, `${id} emitted junk`);
+const SCENES = ['floor', 'glass', 'gymnast', 'whiteboard', 'cottage', 'piano'];
+const asset = (name) => new URL(`../assets/gifs/${name}`, import.meta.url);
+
+test('every gif on the page is a real gif that exists on disk', async () => {
+  for (const id of SCENES) {
+    const gif = await readFile(asset(`${id}.gif`));
+    assert.equal(gif.subarray(0, 6).toString('latin1').slice(0, 3), 'GIF', `${id}.gif is not a gif`);
+    // 239321 bytes is Giphy's "content is not available" placeholder.
+    assert.notEqual(gif.length, 239321, `${id}.gif is a Giphy placeholder, not the real thing`);
+    assert.ok(gif.length > 20000, `${id}.gif looks truncated`);
   }
 });
 
-test('an unknown scene throws rather than rendering an empty box', () => {
-  assert.throws(() => renderScene('nope'), /Unknown scene/);
+test('every gif has a still frame for reduced motion', async () => {
+  const html = await page();
+  for (const id of SCENES) {
+    const png = await readFile(asset(`${id}.png`));
+    assert.equal(png.subarray(1, 4).toString('latin1'), 'PNG', `${id}.png is not a png`);
+    assert.ok(
+      html.includes(`<source media="(prefers-reduced-motion: reduce)" srcset="assets/gifs/${id}.png">`),
+      `${id} has no reduced-motion source`);
+  }
 });
 
-test('every scene on the page exists, and every scene is used', async () => {
+test('every gif is placed once, declares its size, and loads lazily', async () => {
   const html = await page();
-  const used = [...html.matchAll(/data-scene="([^"]+)"/g)].map((m) => m[1]);
-  assert.ok(used.length, 'no scenes on the page');
-  for (const id of used) assert.ok(SCENE_IDS.includes(id), `data-scene="${id}" matches nothing`);
-  for (const id of SCENE_IDS) assert.ok(used.includes(id), `${id} is never placed`);
+  for (const id of SCENES) {
+    const tags = [...html.matchAll(new RegExp(`<img class="scene__art" src="assets/gifs/${id}\.gif"[^>]*>`, 'g'))];
+    assert.equal(tags.length, 1, `${id}.gif should appear exactly once`);
+    const tag = tags[0][0];
+    assert.match(tag, /width="\d+" height="\d+"/, `${id} has no intrinsic size`);
+    assert.match(tag, /loading="lazy"/, `${id} is not lazy`);
+    assert.match(tag, /alt=""/, `${id} should be decorative`);
+  }
+});
+
+test('the borrowed cats are credited', async () => {
+  const html = await page();
+  assert.match(html, /data-i18n="c\.gifs"/, 'no credit line on the page');
+  for (const lang of LANGS) {
+    const credit = translate(color, lang, 'c.gifs');
+    assert.notEqual(credit, 'c.gifs', `missing ${lang} credit`);
+    assert.match(credit, /Giphy/, `${lang} credit should name the source`);
+  }
+});
+
+test('the map is gone and the page ends on the letters', async () => {
+  const html = await page();
+  assert.doesNotMatch(html, /strand--spec/, 'the map section should be removed');
+  for (const lang of LANGS) {
+    for (const key of ['c.spec.title', 'c.spec.body', 'c.end']) {
+      assert.equal(translate(color, lang, key), key, `${key} should no longer exist`);
+    }
+    assert.notEqual(translate(color, lang, 'c.coda'), 'c.coda', `${lang} is missing the close`);
+  }
+  const body = html.slice(html.indexOf('</ol>'));
+  assert.ok(body.indexOf('c.coda') < body.indexOf('c.wish'), 'the close comes before the wish');
 });
 
 test('nobody is merged with anybody else', () => {
@@ -85,6 +119,31 @@ test('every letter has a name, a work and a body in both languages', async () =>
       }
     }
   }
+});
+
+test('every link is an official upload written as a full watch url', () => {
+  for (const letter of LETTERS) {
+    for (const url of [letter.video, letter.watch]) {
+      if (!url) continue;
+      assert.match(url, /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/,
+        `${letter.id}: ${url}`);
+    }
+    // A letter is either playable in the page or a way out, never both.
+    assert.ok(!(letterHasVideo(letter) && letter.watch), `${letter.id} has two links`);
+  }
+  const ids = LETTERS.flatMap((l) => [l.video, l.watch]).filter(Boolean);
+  assert.equal(new Set(ids).size, ids.length, 'the same video is used twice');
+});
+
+test('a letter with no embeddable upload still offers a way out', async () => {
+  const js = await readFile(new URL('../js/letters.js', import.meta.url), 'utf8');
+  assert.match(js, /letter\.watch/, 'the renderer ignores the watch link');
+  assert.match(js, /rel="noopener noreferrer"/, 'an outbound link needs rel=noopener');
+  for (const lang of LANGS) {
+    assert.notEqual(translate(color, lang, 'c.player.out'), 'c.player.out', `missing ${lang}`);
+  }
+  const linksOut = LETTERS.filter((l) => !letterHasVideo(l) && l.watch);
+  assert.ok(linksOut.length > 0, 'nothing links out, so the fallback is untested');
 });
 
 test('an unset link leaves the letter quiet rather than broken', () => {

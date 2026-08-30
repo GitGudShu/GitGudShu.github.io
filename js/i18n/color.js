@@ -131,13 +131,18 @@ export const color = {
 
     'c.letters.judah.work': 'Ivory Coast',
     'c.letters.judah.body': '<p>And finally the one that broke the case open.</p><p>An independent composer. No film, no anime, no narrative, no context, licensed on a stock music platform for filmmakers to buy. Found by an algorithm at random while I was busy being unimpressed by somebody else.</p><p>And it did the thing. Immediately. No story required. Which means the last five years of me quietly suspecting I only love this music because of the shows it came attached to were wrong.</p><p>I just like beautiful things. Turns out that was allowed the whole time.</p>',
-
-    'c.spec.title': 'The map',
-    'c.spec.body': '<p>Melody first, foreground, singable, with an arc. One distinctive solo timbre carrying it, ideally a voice or something unusual. Soft strings underneath doing warmth, not activity. Harmony that moves and stays warm but stays legible. Chamber scale, two to four voices. Around sixty-eight beats per minute. No ambient drift. It has to go somewhere.</p><p>And here is the humiliating bit. That is almost word for word what I said I wanted at the very start, before any of the research. Something simple with two or three instruments, a lead instrument telling the story, some very soft strings, maybe a choir.</p><p>I had it the whole time. I just did not trust it, so I went looking for permission. From history, from France, from Tokyo, from a textbook, from anybody.</p><p>The permission was never coming. Nobody is going to hand it to me.</p>',
-
-    'c.end': '<p>So. Eight bars. One lead line. One held note with the chords moving underneath it. Soft strings. Sixty-eight bpm. Played in with my actual hands instead of drawn in with a mouse.</p><p>It is going to be bad, and that is fine. That is the entire point.</p>',
     'c.scene.piano': 'Progress. Technically.',
-    'c.wish': 'Wish me luck.',
+    'c.coda':
+      '<p>That is the list. Twenty-six people who have all, at one point or another, ' +
+      'made me sit completely still in a dark room.</p>' +
+      '<p>What I want is to write one piece that does that to somebody else. Nothing clever. ' +
+      'Nothing that proves I did the reading. Something kind and unhurried and a little too pretty, ' +
+      'that somebody puts on at eleven at night without quite knowing why, the way I have been ' +
+      'putting their music on for years.</p>' +
+      '<p>That is the whole ambition. It is not a small one and I am nowhere near it.</p>',
+    'c.player.out': 'Listen on YouTube',
+    'c.gifs': 'Cats above are other people\'s work, from Giphy. Nothing on this page is mine except the words and the bad decisions.',
+    'c.wish': 'Wish me luck ;)',
 
     'c.player.play': 'Play',
     'c.player.pending': 'No link on this one yet.',
@@ -277,13 +282,18 @@ export const color = {
 
     'c.letters.judah.work': 'Ivory Coast',
     'c.letters.judah.body': "<p>Et enfin celui qui a fait tomber l'affaire.</p><p>Un compositeur indépendant. Pas de film, pas d'anime, pas de récit, pas de contexte, licencié sur une plateforme de musique au catalogue pour que des réalisateurs l'achètent. Trouvé au hasard par un algorithme pendant que j'étais occupé à ne pas être impressionné par quelqu'un d'autre.</p><p>Et il a fait l'effet. Immédiatement. Sans histoire. Ce qui veut dire que mes cinq dernières années à soupçonner en silence de n'aimer cette musique que grâce aux séries auxquelles elle était attachée étaient une erreur.</p><p>J'aime simplement les belles choses. Il s'avère que c'était autorisé depuis le début.</p>",
-
-    'c.spec.title': 'La carte',
-    'c.spec.body': "<p>La mélodie d'abord, au premier plan, chantable, avec un arc. Un timbre soliste distinct qui la porte, idéalement une voix ou quelque chose d'inhabituel. Des cordes douces en dessous qui font de la chaleur, pas de l'activité. Une harmonie qui bouge, reste chaude et reste lisible. Échelle de musique de chambre, deux à quatre voix. Autour de soixante-huit battements par minute. Pas de dérive ambiante. Il faut que ça aille quelque part.</p><p>Et voici le passage humiliant. C'est presque mot pour mot ce que j'ai dit vouloir tout au début, avant la moindre recherche. Quelque chose de simple avec deux ou trois instruments, un instrument principal qui raconte, des cordes très douces, peut-être un chœur.</p><p>Je l'avais depuis le début. Je ne m'y fiais simplement pas, alors je suis allé chercher une autorisation. À l'histoire, à la France, à Tokyo, à un manuel, à n'importe qui.</p><p>L'autorisation n'allait jamais venir. Personne ne va me la tendre.</p>",
-
-    'c.end': "<p>Donc. Huit mesures. Une ligne principale. Une note tenue avec les accords qui bougent dessous. Des cordes douces. Soixante-huit à la noire. Jouées avec mes vraies mains au lieu d'être dessinées à la souris.</p><p>Ce sera mauvais, et c'est très bien. C'est même tout l'intérêt.</p>",
     'c.scene.piano': 'Des progrès. Techniquement.',
-    'c.wish': 'Souhaitez-moi bonne chance.',
+    'c.coda':
+      '<p>Voilà la liste. Vingt-six personnes qui m\'ont toutes, à un moment ou à un autre, ' +
+      'cloué sur place dans une pièce sombre.</p>' +
+      '<p>Ce que je veux, c\'est écrire un morceau qui fasse ça à quelqu\'un d\'autre. Rien de malin. ' +
+      'Rien qui prouve que j\'ai bien révisé. Quelque chose de doux, de posé, d\'un peu trop joli, ' +
+      'que quelqu\'un lance à onze heures du soir sans trop savoir pourquoi, comme je lance leur ' +
+      'musique depuis des années.</p>' +
+      '<p>C\'est toute l\'ambition. Elle n\'est pas modeste et j\'en suis très loin.</p>',
+    'c.player.out': 'Écouter sur YouTube',
+    'c.gifs': 'Les chats ci-dessus viennent de Giphy et ne sont pas de moi. Sur cette page il n\'y a que les mots et les mauvaises décisions qui m\'appartiennent.',
+    'c.wish': 'Souhaitez-moi bonne chance ;)',
 
     'c.player.play': 'Écouter',
     'c.player.pending': 'Pas encore de lien pour celui-ci.',

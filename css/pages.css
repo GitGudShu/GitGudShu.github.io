@@ -315,9 +315,12 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) clamp(19rem, 26vw, 22.5rem);
     column-gap: clamp(2rem, 1rem + 3vw, 4rem);
-    row-gap: var(--section-gap);
+    /* The aside spans more rows than the essay has, so the spare rows must not
+       each charge a row-gap. The blocks carry their own spacing instead. */
+    row-gap: 0;
   }
   .music .project__body > .block { grid-column: 1; align-self: start; }
+  .music .project__body > .block:not(:first-child) { margin-block-start: var(--section-gap); }
 
   /* Spans every row so the sticky child has the whole essay to travel down. */
   .music__aside { grid-column: 2; grid-row: 1 / span 50; align-self: stretch; }
@@ -682,18 +685,21 @@
   .cue__dot { animation: none; }
 }
 
-/* The mark at the bottom of the music page. Small on purpose. */
+/* The mark at the bottom of the music page. Off to one side, so it reads as a
+   flourish rather than a call to action. */
 .secret {
   display: flex;
-  justify-content: center;
-  padding-block: var(--space-7) var(--space-5);
+  justify-content: flex-end;
+  padding-block: var(--space-5) var(--space-4);
+  padding-inline-end: clamp(0rem, -2rem + 6vw, 3.5rem);
 }
 
 .secret__btn {
+  position: relative;
   display: inline-grid;
   place-items: center;
-  inline-size: 44px;
-  block-size: 44px;
+  inline-size: 72px;
+  block-size: 72px;
   border-radius: var(--radius-full);
   color: var(--text-faint);
   opacity: 0;
@@ -701,7 +707,23 @@
   pointer-events: none;
   transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
-.secret__btn svg { inline-size: 26px; block-size: 26px; }
+.secret__btn svg { inline-size: 30px; block-size: 30px; transition: inline-size var(--dur) var(--ease), block-size var(--dur) var(--ease); }
+.secret__btn[data-stage="cat"] svg,
+.secret__btn[data-stage="open"] svg { inline-size: 46px; block-size: 46px; }
+
+/* A ring that only shows up once you are near it. */
+.secret__btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid color-mix(in oklab, var(--accent) 30%, transparent);
+  opacity: 0;
+  transform: scale(.82);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.secret__btn:hover::before,
+.secret__btn:focus-visible::before { opacity: 1; transform: scale(1); }
 
 .secret__btn.is-here {
   pointer-events: auto;
@@ -709,11 +731,11 @@
 }
 @keyframes secret-pop {
   0% { opacity: 0; transform: scale(.4); }
-  55% { opacity: .5; transform: scale(1.28); }
-  75% { transform: scale(.94); }
-  100% { opacity: .32; transform: scale(1); }
+  55% { opacity: .55; transform: scale(1.24); }
+  75% { transform: scale(.95); }
+  100% { opacity: .38; transform: scale(1); }
 }
-.secret__btn:hover { opacity: .8; color: var(--accent); background: color-mix(in oklab, var(--accent) 10%, transparent); }
+.secret__btn:hover { opacity: .9; color: var(--accent); background: color-mix(in oklab, var(--accent) 9%, transparent); }
 .secret__btn:focus-visible { opacity: 1; }
 
 /* Poked, but not yet convinced. */
@@ -727,7 +749,18 @@
 
 /* It is a cat now. */
 .secret__btn[data-stage="cat"],
-.secret__btn[data-stage="open"] { opacity: .78; color: var(--accent); }
+.secret__btn[data-stage="open"] { opacity: .82; color: var(--accent); }
+.secret__btn[data-stage="cat"] .secret__tail,
+.secret__btn[data-stage="open"] .secret__tail {
+  transform-box: fill-box;
+  transform-origin: 12% 88%;
+  animation: secret-tail 2.6s var(--ease) infinite;
+}
+@keyframes secret-tail {
+  0%, 100% { transform: rotate(0deg); }
+  35% { transform: rotate(-9deg); }
+  70% { transform: rotate(6deg); }
+}
 .secret__btn.is-becoming { animation: secret-become 700ms var(--ease); }
 @keyframes secret-become {
   0% { transform: scale(.2) rotate(-40deg); opacity: 0; }
@@ -746,7 +779,9 @@
   25% { transform: translate(.6px, -.6px) scale(1.045); }
   75% { transform: translate(-.6px, .6px) scale(1.02); }
 }
-.secret__btn.is-purring .secret__eye { opacity: .25; }
+/* Eyes squeeze shut while it is being scratched. */
+.secret__eye { transform-box: fill-box; transform-origin: center; transition: transform 160ms var(--ease); }
+.secret__btn.is-purring .secret__eye { transform: scaleY(.18); }
 
 .secret__btn.is-opening { animation: secret-open 620ms var(--ease) forwards; }
 @keyframes secret-open {
@@ -759,5 +794,7 @@
   .secret__btn.is-here { animation: none; opacity: .32; transform: none; }
   .secret__btn.is-nudged, .secret__btn.is-becoming,
   .secret__btn.is-purring, .secret__btn.is-opening { animation: none; }
+  .secret__tail { animation: none !important; }
+  .secret__eye { transition: none; }
   .secret__btn.is-opening { opacity: 0; }
 }

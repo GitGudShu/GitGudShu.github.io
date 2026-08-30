@@ -6,7 +6,6 @@ import { PROJECTS, renderProjectCard } from './data/projects.js';
 import { renderIcon } from './icons.js';
 import { renderCover } from './covers.js';
 import { renderDiagram } from './diagrams.js';
-import { renderScene } from './scenes.js';
 import { initReveal } from './reveal.js';
 import { initParticles } from './particles.js';
 
@@ -45,9 +44,6 @@ function paintGraphics() {
   });
   document.querySelectorAll('[data-diagram]').forEach((slot) => {
     slot.innerHTML = renderDiagram(slot.dataset.diagram);
-  });
-  document.querySelectorAll('[data-scene]').forEach((slot) => {
-    slot.innerHTML = renderScene(slot.dataset.scene);
   });
 }
 
