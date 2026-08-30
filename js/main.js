@@ -90,6 +90,14 @@ async function boot() {
     initLetters({ dict, getLang: i18n.getLang });
   }
 
+  // Only where the site is allowed to be silly: the music page and what it hides.
+  if (['music', 'color'].includes(document.body.dataset.page)) {
+    const { initBloom } = await import('./bloom.js');
+    initBloom({
+      reduced: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+    });
+  }
+
   const secret = document.getElementById('secret');
   if (secret) {
     const { initSecret } = await import('./secret.js');

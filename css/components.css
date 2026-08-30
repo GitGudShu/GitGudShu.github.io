@@ -445,3 +445,62 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); }
 
 .card__cover--diagram { color: var(--accent); padding: var(--space-4); }
 .card__cover--diagram svg { inline-size: 100%; block-size: 100%; }
+
+/* ── the tap bloom ──────────────────────────────────────────────────────────
+   A flower opens where you tap the empty page. Fixed to the viewport because
+   it is pinned to where the pointer was, not to anything in the document. */
+.bloom {
+  position: fixed;
+  inset-block-start: var(--y);
+  inset-inline-start: var(--x);
+  inline-size: 0;
+  block-size: 0;
+  z-index: 60;
+  pointer-events: none;
+  rotate: var(--tilt);
+}
+
+.bloom__petal,
+.bloom__heart {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  will-change: transform, opacity;
+}
+
+.bloom__petal {
+  inline-size: 11px;
+  block-size: 15px;
+  margin: -7px 0 0 -5px;
+  border-radius: 50% 50% 46% 46% / 62% 62% 38% 38%;
+  background: linear-gradient(to bottom,
+    color-mix(in oklab, var(--accent) 78%, transparent),
+    color-mix(in oklab, var(--accent) 34%, transparent));
+  transform: rotate(var(--a)) translateY(0) scale(0);
+  animation: bloom-petal 900ms cubic-bezier(.2, .9, .3, 1) forwards;
+}
+@keyframes bloom-petal {
+  0%   { transform: rotate(var(--a)) translateY(0) scale(0); opacity: 0; }
+  22%  { opacity: 1; }
+  55%  { transform: rotate(var(--a)) translateY(-13px) scale(1); }
+  100% { transform: rotate(var(--a)) translateY(-21px) scale(.72); opacity: 0; }
+}
+
+.bloom__heart {
+  inline-size: 7px;
+  block-size: 7px;
+  margin: -3.5px 0 0 -3.5px;
+  border-radius: var(--radius-full);
+  background: color-mix(in oklab, var(--accent) 92%, var(--on-media));
+  animation: bloom-heart 900ms cubic-bezier(.2, .9, .3, 1) forwards;
+}
+@keyframes bloom-heart {
+  0%   { transform: scale(0); opacity: 0; }
+  30%  { transform: scale(1.35); opacity: 1; }
+  60%  { transform: scale(1); }
+  100% { transform: scale(.5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bloom { display: none; }
+}

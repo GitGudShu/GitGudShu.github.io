@@ -208,3 +208,24 @@ VS Code Live Preview extension.
 > **If a change does not show up in the browser**, it is the module cache, not
 > your edit. Hard-reload with Ctrl+Shift+R. Live Preview usually handles this
 > for you.
+
+---
+
+## 7. The flower
+
+Tapping the empty parts of the music page or the secret page opens a small
+flower where you clicked. It is in [`js/bloom.js`](../js/bloom.js), styled at
+the bottom of `css/components.css`.
+
+It deliberately ignores anything you could click for a reason — links, buttons,
+players, sliders, the hidden cat — and ignores the click that ends a text
+selection, so it never gets in the way. Anyone who has asked their system for
+reduced motion gets nothing at all.
+
+It is limited to those two pages, in `js/main.js`:
+
+```js
+if (['music', 'color'].includes(document.body.dataset.page)) {
+```
+
+Add `'home'` or a project page id to that list to let it loose elsewhere.
