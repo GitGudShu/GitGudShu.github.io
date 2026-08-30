@@ -65,6 +65,9 @@ export const music = {
     'm.list.hayashi': 'You Say Run, Haikyuu, Death Parade',
     'm.list.kajiura': 'The Case Study of Vanitas, Puella Magi Madoka Magica',
     'm.list.pasekpaul': 'Waving Through a Window, Words Fail, Pretty Funny',
+    'm.secret.dot': 'A small mark at the end of the page',
+    'm.secret.cat': 'It is a cat now. Keep going.',
+    'm.secret.open': 'Open the thing that was hidden here',
     'm.back': 'Back to work',
   },
 
@@ -134,6 +137,9 @@ export const music = {
     'm.list.hayashi': 'You Say Run, Haikyuu, Death Parade',
     'm.list.kajiura': 'Vanitas no Carte, Madoka Magica',
     'm.list.pasekpaul': 'Waving Through a Window, Words Fail, Pretty Funny',
+    'm.secret.dot': "Une petite marque au bas de la page",
+    'm.secret.cat': "C'est un chat maintenant. Continuez.",
+    'm.secret.open': "Ouvrir ce qui était caché ici",
     'm.back': 'Retour aux projets',
   },
 };

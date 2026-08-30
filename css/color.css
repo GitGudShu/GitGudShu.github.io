@@ -1,0 +1,474 @@
+/* color.css: the hidden page. Louder than the rest of the site, on purpose. */
+
+.colour { padding-block: clamp(2rem, 1.2rem + 3vw, 4rem) 0; }
+
+/* The colour being chased, drifting under the whole page as you go down it.
+   Scroll-driven where the browser has it, a still wash everywhere else. */
+.colour::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .55;
+  background:
+    radial-gradient(60vw 60vh at 18% 12%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 70%),
+    radial-gradient(55vw 55vh at 82% 68%, color-mix(in oklab, var(--accent) 11%, transparent), transparent 72%);
+}
+
+@supports (animation-timeline: scroll()) {
+  .colour::before {
+    animation: chase linear both;
+    animation-timeline: scroll();
+  }
+  @keyframes chase {
+    from { filter: hue-rotate(-16deg) saturate(.85); }
+    to { filter: hue-rotate(22deg) saturate(1.25); }
+  }
+}
+
+/* Head */
+.colour__head {
+  position: relative;
+  max-width: 30ch;
+  margin-block-end: var(--section-gap);
+}
+.colour__title {
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin-block: var(--space-3) var(--space-4);
+  text-wrap: balance;
+}
+.colour__title::after {
+  content: "";
+  display: block;
+  inline-size: 4.5rem;
+  block-size: 3px;
+  margin-block-start: var(--space-4);
+  border-radius: var(--radius-full);
+  background: linear-gradient(to right, var(--accent), transparent);
+}
+.colour__lead {
+  font-size: clamp(1.05rem, 1rem + .4vw, 1.3rem);
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* The thread running down the page, pinned at every strand. */
+.colour__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+@media (min-width: 900px) {
+  .colour__body::before {
+    content: "";
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: -2.25rem;
+    inline-size: 1px;
+    background: linear-gradient(to bottom,
+      transparent, color-mix(in oklab, var(--accent) 45%, transparent) 8%,
+      color-mix(in oklab, var(--accent) 45%, transparent) 92%, transparent);
+  }
+  .strand { position: relative; }
+  .strand::before {
+    content: "";
+    position: absolute;
+    inset-block-start: .85em;
+    inset-inline-start: -2.6rem;
+    inline-size: 9px;
+    block-size: 9px;
+    border-radius: var(--radius-full);
+    background: var(--bg);
+    border: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+}
+
+.strand__text { max-width: 64ch; }
+.strand__text p { color: var(--text-muted); }
+.strand__text p + p { margin-block-start: var(--space-4); }
+.strand__text strong { color: var(--text); font-weight: 600; }
+.strand__text em { color: var(--text); }
+
+/* An opening letter big enough to be a decision. */
+.colour__body > .strand:first-child .strand__text > p:first-child::first-letter {
+  float: inline-start;
+  font-family: var(--font-display);
+  font-size: 3.6em;
+  line-height: .82;
+  padding-inline-end: .09em;
+  padding-block-start: .06em;
+  color: var(--accent);
+}
+
+.kao {
+  font-family: var(--font-mono);
+  font-size: .92em;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+/* Strands with a scene beside them */
+.strand--scene { display: grid; gap: clamp(1.5rem, 1rem + 2vw, 2.75rem); align-items: center; }
+@media (min-width: 900px) {
+  .strand--scene { grid-template-columns: minmax(0, 1fr) minmax(0, .82fr); }
+  .strand--scene.is-flipped { grid-template-columns: minmax(0, .82fr) minmax(0, 1fr); }
+  .strand--scene.is-flipped .strand__text { order: 2; }
+}
+
+.scene { margin: 0; }
+.scene__stage {
+  display: block;
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: color-mix(in oklab, var(--accent) 7%, var(--surface));
+  color: var(--accent);
+  box-shadow: var(--shadow-card);
+}
+.scene__art { inline-size: 100%; block-size: auto; }
+.scene figcaption {
+  margin-block-start: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  line-height: 1.55;
+  color: var(--text-faint);
+  max-width: 46ch;
+}
+.scene--wide { grid-column: 1 / -1; max-width: 34rem; }
+
+/* ── the scenes ─────────────────────────────────────────────────────────── */
+
+.cat-tail { transform-origin: 242px 138px; animation: tail 3.4s ease-in-out infinite; }
+@keyframes tail {
+  0%, 62%, 100% { transform: rotate(0deg); }
+  72% { transform: rotate(-16deg); }
+  82% { transform: rotate(9deg); }
+  92% { transform: rotate(-4deg); }
+}
+.cat-ear { transform-origin: 112px 128px; animation: ear 5.2s ease-in-out infinite; }
+.cat-ear--b { transform-origin: 145px 122px; animation-delay: .18s; }
+@keyframes ear { 0%, 88%, 100% { transform: rotate(0deg); } 92% { transform: rotate(-11deg); } }
+.cat-zzz { animation: zzz 4.6s ease-out infinite; }
+@keyframes zzz {
+  0% { opacity: 0; transform: translate(0, 6px) scale(.85); }
+  25% { opacity: .75; }
+  70%, 100% { opacity: 0; transform: translate(10px, -22px) scale(1.1); }
+}
+
+.paw { animation: paw 4.4s cubic-bezier(.5, 0, .3, 1) infinite; }
+@keyframes paw {
+  0%, 22% { transform: translateX(0); }
+  34% { transform: translateX(34px); }
+  46%, 100% { transform: translateX(0); }
+}
+.glass { animation: glass 4.4s cubic-bezier(.5, 0, .3, 1) infinite; transform-origin: 184px 148px; }
+@keyframes glass {
+  0%, 26% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  38% { transform: translate(26px, 0) rotate(22deg); opacity: 1; }
+  50% { transform: translate(52px, 34px) rotate(96deg); opacity: 0; }
+  51%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+}
+.shatter { animation: shatter 4.4s ease-out infinite; }
+@keyframes shatter {
+  0%, 48% { opacity: 0; transform: scale(.7); }
+  56% { opacity: .9; transform: scale(1); }
+  84%, 100% { opacity: 0; transform: scale(1.05); }
+}
+
+.tumbler { transform-origin: 96px 120px; animation: tumble 5s cubic-bezier(.4, 0, .2, 1) infinite; }
+@keyframes tumble {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  34% { transform: translate(40px, -34px) rotate(340deg); }
+  52% { transform: translate(78px, 0) rotate(720deg); }
+  60%, 100% { transform: translate(78px, 0) rotate(720deg); }
+}
+.impact { transform-origin: 240px 100px; animation: impact 5s steps(1, end) infinite; }
+@keyframes impact {
+  0%, 60% { opacity: 0; transform: scale(.4) rotate(-12deg); }
+  64% { opacity: 1; transform: scale(1.12) rotate(4deg); }
+  70% { opacity: 1; transform: scale(1) rotate(0deg); }
+  88%, 100% { opacity: 0; transform: scale(1) rotate(0deg); }
+}
+
+.thread { stroke-dasharray: 200; stroke-dashoffset: 200; animation: draw 7s ease-in-out infinite; }
+.thread--1 { animation-delay: .3s; }
+.thread--2 { animation-delay: .6s; }
+.thread--3 { animation-delay: .9s; }
+.thread--4 { animation-delay: 1.2s; }
+.thread--5 { animation-delay: 1.5s; }
+@keyframes draw {
+  0% { stroke-dashoffset: 200; }
+  30%, 78% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 200; }
+}
+.scholar { transform-origin: 268px 130px; animation: ponder 6s ease-in-out infinite; }
+@keyframes ponder { 0%, 100% { transform: rotate(0deg); } 45% { transform: rotate(-5deg); } }
+.lens { animation: glint 6s ease-in-out infinite; }
+.lens--b { animation-delay: .12s; }
+@keyframes glint { 0%, 74%, 100% { opacity: 1; } 80% { opacity: .35; } }
+
+.boss { animation: bossout 7s ease-in-out infinite; }
+@keyframes bossout { 0%, 42% { opacity: 1; } 50%, 92% { opacity: 0; } 100% { opacity: 1; } }
+.boss__fill { transform-origin: 49px 96px; animation: drain 7s linear infinite; }
+@keyframes drain { 0% { transform: scaleX(1); } 42% { transform: scaleX(.06); } 43%, 100% { transform: scaleX(1); } }
+.cottage { animation: cosy 7s ease-in-out infinite; }
+@keyframes cosy { 0%, 46% { opacity: 0; } 56%, 90% { opacity: 1; } 96%, 100% { opacity: 0; } }
+.smoke { animation: smoke 3.2s ease-in-out infinite; }
+@keyframes smoke {
+  0% { opacity: 0; transform: translateY(6px); }
+  40% { opacity: .8; }
+  100% { opacity: 0; transform: translateY(-16px); }
+}
+
+.pounce { animation: pounce 1.9s cubic-bezier(.4, 0, .3, 1) infinite; }
+@keyframes pounce { 0%, 100% { transform: translateY(0); } 42% { transform: translateY(18px); } }
+.key-hit { animation: hit 1.9s steps(1, end) infinite; }
+@keyframes hit { 0%, 36% { opacity: 0; } 42% { opacity: .28; } 60%, 100% { opacity: 0; } }
+.note-up { animation: rise 1.9s ease-out infinite; }
+@keyframes rise {
+  0%, 40% { opacity: 0; transform: translateY(6px) scale(.9); }
+  52% { opacity: .9; }
+  100% { opacity: 0; transform: translateY(-30px) scale(1.05); }
+}
+
+/* ── the royal road ─────────────────────────────────────────────────────── */
+
+.strand--royal {
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border: 1px solid color-mix(in oklab, var(--accent) 28%, var(--border));
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--accent) 6%, var(--surface));
+}
+.royal__kanji {
+  font-size: clamp(2.5rem, 1.6rem + 4vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: .06em;
+  color: color-mix(in oklab, var(--accent) 26%, transparent);
+  margin-block-end: var(--space-2);
+  user-select: none;
+}
+.royal__name { font-size: var(--fs-h2); margin-block-end: var(--space-5); }
+
+.chords {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin-block-end: var(--space-4);
+}
+@media (min-width: 700px) { .chords { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.chord {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-width: none;
+  padding: var(--space-4) var(--space-4) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  animation: chord-in var(--dur-slow) var(--ease) both;
+  animation-delay: calc(var(--n) * 90ms);
+}
+@keyframes chord-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.chord__name { font-family: var(--font-mono); font-size: 1.05rem; color: var(--text); }
+.chord__mood {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+}
+.chord--bright { border-color: color-mix(in oklab, var(--accent) 40%, var(--border)); }
+.chord--bright .chord__mood { color: var(--accent); }
+.chord--dark {
+  background: color-mix(in oklab, var(--text) 6%, var(--surface-raised));
+}
+.chord--dark .chord__mood { color: var(--text-faint); }
+
+/* The second chord is the one that will not go home. */
+.chord:nth-child(2) { animation: chord-in var(--dur-slow) var(--ease) both, slip 4.5s ease-in-out infinite 1s; }
+@keyframes slip {
+  0%, 70%, 100% { transform: none; }
+  80% { transform: translateX(9px) rotate(1.2deg); }
+  90% { transform: translateX(4px); }
+}
+
+.royal__slip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  color: var(--text-faint);
+  margin-block-end: var(--space-5);
+}
+.royal__arrow {
+  inline-size: 3rem;
+  block-size: 1px;
+  flex: none;
+  background: linear-gradient(to right, transparent, var(--accent));
+  position: relative;
+}
+.royal__arrow::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: -3px;
+  inline-size: 7px;
+  block-size: 7px;
+  border-block-start: 1px solid var(--accent);
+  border-inline-end: 1px solid var(--accent);
+  transform: rotate(45deg);
+}
+
+/* ── the love letters ───────────────────────────────────────────────────── */
+
+.letters__intro {
+  font-size: clamp(1.05rem, 1rem + .35vw, 1.25rem);
+  font-style: italic;
+  color: var(--text-muted);
+  max-width: 52ch;
+}
+
+.letters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.letter {
+  display: grid;
+  gap: clamp(1.25rem, .8rem + 1.6vw, 2.25rem);
+  max-width: none;
+}
+@media (min-width: 880px) {
+  .letter { grid-template-columns: minmax(0, 1fr) minmax(0, 21rem); align-items: start; }
+}
+.letter--aside { display: block; }
+
+.letter__who {
+  font-size: var(--fs-h3);
+  letter-spacing: -.01em;
+}
+.letter__work {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-mono);
+  color: var(--accent);
+  margin-block: var(--space-2) var(--space-4);
+}
+.letter__text p { color: var(--text-muted); max-width: 58ch; }
+.letter__text p + p { margin-block-start: var(--space-3); }
+
+/* The player sits in a sleeve until somebody wants it. */
+.letter__player {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: color-mix(in oklab, var(--accent) 9%, var(--surface));
+  border: 1px solid var(--border);
+}
+.letter__player.is-live { aspect-ratio: 16 / 9; background: var(--surface); }
+.letter__player iframe { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; border: 0; }
+
+.letter__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  gap: var(--space-3);
+  inline-size: 100%;
+  color: var(--accent);
+}
+.letter__sleeve {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 8.5rem;
+  block-size: 8.5rem;
+  translate: -50% -50%;
+  border-radius: var(--radius-full);
+  border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent);
+  background: radial-gradient(circle at center,
+    color-mix(in oklab, var(--accent) 30%, transparent) 0 12%,
+    transparent 13%);
+  transition: transform var(--dur-slow) var(--ease), opacity var(--dur) var(--ease);
+}
+.letter__grooves {
+  position: absolute;
+  inset: 12%;
+  border-radius: var(--radius-full);
+  background: repeating-radial-gradient(circle at center,
+    color-mix(in oklab, var(--accent) 22%, transparent) 0 1px,
+    transparent 1px 6px);
+  opacity: .8;
+}
+.letter__badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 46px;
+  block-size: 46px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.letter__badge svg { inline-size: 20px; block-size: 20px; }
+.letter__cta {
+  position: absolute;
+  inset-block-end: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.letter__play:hover .letter__badge { transform: scale(1.12); box-shadow: var(--glow-accent); }
+.letter__play:hover .letter__sleeve { transform: translate(-50%, -50%) rotate(22deg) scale(1.04); }
+
+.letter__pending {
+  position: absolute;
+  inset-block-end: var(--space-3);
+  inset-inline: var(--space-4);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono);
+  color: var(--text-faint);
+}
+.letter__player.is-pending { border-style: dashed; }
+.letter__player.is-pending .letter__sleeve { opacity: .35; }
+
+/* ── the ending ─────────────────────────────────────────────────────────── */
+
+.strand--spec {
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border-inline-start: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: color-mix(in oklab, var(--accent) 5%, var(--surface));
+}
+.spec__title { font-size: var(--fs-h2); margin-block-end: var(--space-4); }
+
+.wish {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.4rem);
+  font-style: italic;
+  text-align: center;
+  color: var(--accent);
+  margin-block: var(--section-gap) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .colour::before { animation: none; }
+  .cat-tail, .cat-ear, .cat-zzz, .paw, .glass, .shatter, .tumbler, .impact,
+  .thread, .scholar, .lens, .boss, .boss__fill, .cottage, .smoke,
+  .pounce, .key-hit, .note-up, .chord, .chord:nth-child(2) { animation: none; }
+  .thread { stroke-dashoffset: 0; }
+  .impact, .cottage, .note-up, .shatter { opacity: 1; }
+  .boss, .key-hit { opacity: .35; }
+}

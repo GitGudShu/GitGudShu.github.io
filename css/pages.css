@@ -681,3 +681,83 @@
   .player__facade::after { animation: none; opacity: 0; }
   .cue__dot { animation: none; }
 }
+
+/* The mark at the bottom of the music page. Small on purpose. */
+.secret {
+  display: flex;
+  justify-content: center;
+  padding-block: var(--space-7) var(--space-5);
+}
+
+.secret__btn {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  border-radius: var(--radius-full);
+  color: var(--text-faint);
+  opacity: 0;
+  transform: scale(.4);
+  pointer-events: none;
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.secret__btn svg { inline-size: 26px; block-size: 26px; }
+
+.secret__btn.is-here {
+  pointer-events: auto;
+  animation: secret-pop 900ms var(--ease) forwards;
+}
+@keyframes secret-pop {
+  0% { opacity: 0; transform: scale(.4); }
+  55% { opacity: .5; transform: scale(1.28); }
+  75% { transform: scale(.94); }
+  100% { opacity: .32; transform: scale(1); }
+}
+.secret__btn:hover { opacity: .8; color: var(--accent); background: color-mix(in oklab, var(--accent) 10%, transparent); }
+.secret__btn:focus-visible { opacity: 1; }
+
+/* Poked, but not yet convinced. */
+.secret__btn.is-nudged { animation: secret-shake 320ms var(--ease); opacity: .55; }
+@keyframes secret-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  20% { transform: translateX(-3px) rotate(-6deg); }
+  45% { transform: translateX(3px) rotate(5deg); }
+  70% { transform: translateX(-2px) rotate(-3deg); }
+}
+
+/* It is a cat now. */
+.secret__btn[data-stage="cat"],
+.secret__btn[data-stage="open"] { opacity: .78; color: var(--accent); }
+.secret__btn.is-becoming { animation: secret-become 700ms var(--ease); }
+@keyframes secret-become {
+  0% { transform: scale(.2) rotate(-40deg); opacity: 0; }
+  50% { transform: scale(1.35) rotate(12deg); opacity: 1; }
+  75% { transform: scale(.92) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: .78; }
+}
+
+/* --purr rises with each scratch, so the cat gets progressively happier. */
+.secret__btn.is-purring {
+  animation: secret-purr calc(240ms / max(var(--purr, 2), 1) * 2) linear
+             calc(var(--purr, 2) * 2);
+}
+@keyframes secret-purr {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(.6px, -.6px) scale(1.045); }
+  75% { transform: translate(-.6px, .6px) scale(1.02); }
+}
+.secret__btn.is-purring .secret__eye { opacity: .25; }
+
+.secret__btn.is-opening { animation: secret-open 620ms var(--ease) forwards; }
+@keyframes secret-open {
+  0% { transform: scale(1); opacity: .78; }
+  40% { transform: scale(1.5); opacity: 1; box-shadow: var(--glow-accent); }
+  100% { transform: scale(14); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secret__btn.is-here { animation: none; opacity: .32; transform: none; }
+  .secret__btn.is-nudged, .secret__btn.is-becoming,
+  .secret__btn.is-purring, .secret__btn.is-opening { animation: none; }
+  .secret__btn.is-opening { opacity: 0; }
+}

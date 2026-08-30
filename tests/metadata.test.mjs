@@ -6,6 +6,7 @@ const PAGES = [
   'index.html',
   'archive.html',
   'music.html',
+  'the-color-i-was-chasing.html',
   '404.html',
   'projects/optimops.html',
   'projects/emotion-recognition.html',

@@ -9,3 +9,6 @@ assets/images/but/
 
 # Source photos for tools/build-composers.py, not committed.
 tools/_photos/
+
+# The journal itself stays local. The page is the published version.
+the-color-i-was-chasing.md

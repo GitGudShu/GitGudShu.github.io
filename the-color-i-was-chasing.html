@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- The only inline script in the project: prevents a flash of the wrong theme. -->
+<script>
+  try {
+    var t = localStorage.getItem('tc-theme');
+    if (t !== 'light' && t !== 'dark') {
+      t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.dataset.theme = t;
+  } catch (e) {
+    document.documentElement.dataset.theme = 'dark';
+  }
+</script>
+
+<title>The Colour I Was Chasing</title>
+<meta name="description" content="A very long detour through Paris in 1927, a phone company engineer, a gymnast, and twenty-six composers, in search of one specific warm sad sound.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#EDF1FB" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#201B2B" media="(prefers-color-scheme: dark)">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Thomas Chu">
+<meta property="og:title" content="The Colour I Was Chasing">
+<meta property="og:description" content="The very long way round to finding out what one specific warm sad sound actually was.">
+<meta property="og:url" content="https://gitgudshu.github.io/the-color-i-was-chasing.html">
+<meta property="og:image" content="https://gitgudshu.github.io/assets/portrait.jpg">
+<meta property="og:image:alt" content="Thomas Chu">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://gitgudshu.github.io/the-color-i-was-chasing.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..800;1,400..700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/color.css">
+
+<!-- Reveal starts at opacity 0 and is switched on by js/reveal.js. Without
+     scripting nothing would ever switch it on, so the page must start visible. -->
+<noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+</head>
+
+<body data-page="color">
+<a class="skip-link" href="#content" data-i18n="skip.link">Skip to content</a>
+
+<canvas id="particles" aria-hidden="true"></canvas>
+
+<header class="site-header" id="top">
+  <div class="rail site-header__inner">
+    <a class="brand" href="index.html" data-i18n-attr="aria-label:nav.home">
+      <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false" fill="none" stroke="currentColor">
+        <rect x="1" y="1" width="30" height="30" rx="9" stroke-width="1.5"/>
+        <path d="M8 11h8M12 11v11" stroke-width="2" stroke-linecap="round"/>
+        <path d="M24 12.5a4.5 4.5 0 1 0 0 7" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span>Thomas Chu</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="music.html" data-i18n="c.back">Back to the music page</a>
+    </nav>
+
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-lang="en" data-i18n="lang.en" data-i18n-attr="title:lang.toEn">EN</button>
+        <button type="button" data-lang="fr" data-i18n="lang.fr" data-i18n-attr="title:lang.toFr">FR</button>
+      </div>
+
+      <button type="button" class="icon-btn" id="theme-btn" data-i18n-attr="aria-label:theme.toDark">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4.2"/>
+          <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4 17 7M7 17l-1.6 1.6"/>
+        </svg>
+      </button>
+
+    </div>
+  </div>
+</header>
+
+<main id="content">
+  <article class="project colour">
+    <div class="rail">
+      <header class="colour__head reveal">
+        <p class="eyebrow" data-i18n="c.eyebrow">.</p>
+        <h1 class="colour__title" data-i18n="c.title">The Colour I Was Chasing</h1>
+        <p class="colour__lead" data-i18n="c.lead">.</p>
+      </header>
+
+      <div class="colour__body">
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.open"></div>
+        </section>
+
+        <section class="strand strand--scene reveal">
+          <div class="strand__text" data-i18n-html="c.floor"></div>
+          <figure class="scene">
+            <div class="scene__stage" data-scene="floor" aria-hidden="true"></div>
+            <figcaption data-i18n="c.scene.floor">.</figcaption>
+          </figure>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.list"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.priority"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.question"></div>
+        </section>
+
+        <section class="strand strand--scene is-flipped reveal">
+          <div class="strand__text" data-i18n-html="c.ikenouchi"></div>
+          <figure class="scene">
+            <div class="scene__stage" data-scene="glass" aria-hidden="true"></div>
+            <figcaption data-i18n="c.scene.glass">.</figcaption>
+          </figure>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.france"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.redbooks"></div>
+        </section>
+
+        <section class="strand strand--scene reveal">
+          <div class="strand__text" data-i18n-html="c.collapse"></div>
+          <figure class="scene">
+            <div class="scene__stage" data-scene="gymnast" aria-hidden="true"></div>
+            <figcaption data-i18n="c.scene.gymnast">.</figcaption>
+          </figure>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.houseparty"></div>
+        </section>
+
+        <section class="strand strand--royal reveal" aria-labelledby="royal-name">
+          <p class="royal__kanji" aria-hidden="true">王道進行</p>
+          <h2 class="royal__name" id="royal-name" data-i18n="c.royal.name">.</h2>
+          <ol class="chords">
+              <li class="chord chord--bright" style="--n:0"><span class="chord__name">Fmaj7</span><span class="chord__mood" data-i18n="c.royal.bright">.</span></li>
+              <li class="chord chord--bright" style="--n:1"><span class="chord__name">G7</span><span class="chord__mood" data-i18n="c.royal.bright">.</span></li>
+              <li class="chord chord--dark" style="--n:2"><span class="chord__name">Em7</span><span class="chord__mood" data-i18n="c.royal.dark">.</span></li>
+              <li class="chord chord--dark" style="--n:3"><span class="chord__name">Am</span><span class="chord__mood" data-i18n="c.royal.dark">.</span></li>
+          </ol>
+          <p class="royal__slip"><span class="royal__arrow" aria-hidden="true"></span><span data-i18n="c.royal.slip">.</span></p>
+          <div class="strand__text" data-i18n-html="c.royal.body"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.nhk"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.dislike"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.setsunai"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.rounds"></div>
+        </section>
+
+        <section class="strand strand--scene is-flipped reveal">
+          <div class="strand__text" data-i18n-html="c.judah"></div>
+          <figure class="scene">
+            <div class="scene__stage" data-scene="whiteboard" aria-hidden="true"></div>
+            <figcaption data-i18n="c.scene.whiteboard">.</figcaption>
+          </figure>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.landing"></div>
+        </section>
+
+        <section class="strand reveal">
+          <div class="strand__text" data-i18n-html="c.conclusion"></div>
+        </section>
+
+        <section class="strand strand--letters reveal">
+          <p class="letters__intro" data-i18n="c.letters.intro">.</p>
+        </section>
+
+        <ol class="letters">
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">Evan Call</h2>
+              <p class="letter__work" data-i18n="c.letters.call.work">.</p>
+              <div data-i18n-html="c.letters.call.body"></div>
+            </div>
+            <div class="letter__player" data-letter="call"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Yoshiaki Fujisawa</h2>
+              <p class="letter__work" data-i18n="c.letters.fujisawa.work">.</p>
+              <div data-i18n-html="c.letters.fujisawa.body"></div>
+            </div>
+            <div class="letter__player" data-letter="fujisawa"></div>
+          </li>
+          <li class="letter reveal" style="--n:2">
+            <div class="letter__text">
+              <h2 class="letter__who">Yuki Hayashi</h2>
+              <p class="letter__work" data-i18n="c.letters.hayashi.work">.</p>
+              <div data-i18n-html="c.letters.hayashi.body"></div>
+            </div>
+            <div class="letter__player" data-letter="hayashi"></div>
+          </li>
+          <li class="letter reveal" style="--n:3">
+            <div class="letter__text">
+              <h2 class="letter__who">Yuki Kajiura</h2>
+              <p class="letter__work" data-i18n="c.letters.kajiura.work">.</p>
+              <div data-i18n-html="c.letters.kajiura.body"></div>
+            </div>
+            <div class="letter__player" data-letter="kajiura"></div>
+          </li>
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">Michiru Ōshima</h2>
+              <p class="letter__work" data-i18n="c.letters.oshima.work">.</p>
+              <div data-i18n-html="c.letters.oshima.body"></div>
+            </div>
+            <div class="letter__player" data-letter="oshima"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Yuka Kitamura</h2>
+              <p class="letter__work" data-i18n="c.letters.kitamura.work">.</p>
+              <div data-i18n-html="c.letters.kitamura.body"></div>
+            </div>
+            <div class="letter__player" data-letter="kitamura"></div>
+          </li>
+          <li class="letter letter--aside reveal">
+            <figure class="scene scene--wide">
+              <div class="scene__stage" data-scene="cottage" aria-hidden="true"></div>
+              <figcaption data-i18n="c.scene.cottage">.</figcaption>
+            </figure>
+          </li>
+          <li class="letter reveal" style="--n:2">
+            <div class="letter__text">
+              <h2 class="letter__who">Kei Haneoka</h2>
+              <p class="letter__work" data-i18n="c.letters.haneoka.work">.</p>
+              <div data-i18n-html="c.letters.haneoka.body"></div>
+            </div>
+            <div class="letter__player" data-letter="haneoka"></div>
+          </li>
+          <li class="letter reveal" style="--n:3">
+            <div class="letter__text">
+              <h2 class="letter__who">Yasunori Nishiki</h2>
+              <p class="letter__work" data-i18n="c.letters.nishiki.work">.</p>
+              <div data-i18n-html="c.letters.nishiki.body"></div>
+            </div>
+            <div class="letter__player" data-letter="nishiki"></div>
+          </li>
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">Yasuharu Takanashi</h2>
+              <p class="letter__work" data-i18n="c.letters.takanashi.work">.</p>
+              <div data-i18n-html="c.letters.takanashi.body"></div>
+            </div>
+            <div class="letter__player" data-letter="takanashi"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Tatsuya Katō</h2>
+              <p class="letter__work" data-i18n="c.letters.kato.work">.</p>
+              <div data-i18n-html="c.letters.kato.body"></div>
+            </div>
+            <div class="letter__player" data-letter="kato"></div>
+          </li>
+          <li class="letter reveal" style="--n:2">
+            <div class="letter__text">
+              <h2 class="letter__who">Kevin Penkin</h2>
+              <p class="letter__work" data-i18n="c.letters.penkin.work">.</p>
+              <div data-i18n-html="c.letters.penkin.body"></div>
+            </div>
+            <div class="letter__player" data-letter="penkin"></div>
+          </li>
+          <li class="letter reveal" style="--n:3">
+            <div class="letter__text">
+              <h2 class="letter__who">Yoko Shimomura</h2>
+              <p class="letter__work" data-i18n="c.letters.shimomura.work">.</p>
+              <div data-i18n-html="c.letters.shimomura.body"></div>
+            </div>
+            <div class="letter__player" data-letter="shimomura"></div>
+          </li>
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">MAYUKO</h2>
+              <p class="letter__work" data-i18n="c.letters.mayuko.work">.</p>
+              <div data-i18n-html="c.letters.mayuko.body"></div>
+            </div>
+            <div class="letter__player" data-letter="mayuko"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Takatsugu Muramatsu</h2>
+              <p class="letter__work" data-i18n="c.letters.muramatsu.work">.</p>
+              <div data-i18n-html="c.letters.muramatsu.body"></div>
+            </div>
+            <div class="letter__player" data-letter="muramatsu"></div>
+          </li>
+          <li class="letter reveal" style="--n:2">
+            <div class="letter__text">
+              <h2 class="letter__who">Masaru Yokoyama</h2>
+              <p class="letter__work" data-i18n="c.letters.yokoyama.work">.</p>
+              <div data-i18n-html="c.letters.yokoyama.body"></div>
+            </div>
+            <div class="letter__player" data-letter="yokoyama"></div>
+          </li>
+          <li class="letter reveal" style="--n:3">
+            <div class="letter__text">
+              <h2 class="letter__who">John Powell</h2>
+              <p class="letter__work" data-i18n="c.letters.powell.work">.</p>
+              <div data-i18n-html="c.letters.powell.body"></div>
+            </div>
+            <div class="letter__player" data-letter="powell"></div>
+          </li>
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">Pasek and Paul</h2>
+              <p class="letter__work" data-i18n="c.letters.pasekpaul.work">.</p>
+              <div data-i18n-html="c.letters.pasekpaul.body"></div>
+            </div>
+            <div class="letter__player" data-letter="pasekpaul"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Isobel Waller-Bridge</h2>
+              <p class="letter__work" data-i18n="c.letters.wallerbridge.work">.</p>
+              <div data-i18n-html="c.letters.wallerbridge.body"></div>
+            </div>
+            <div class="letter__player" data-letter="wallerbridge"></div>
+          </li>
+          <li class="letter reveal" style="--n:2">
+            <div class="letter__text">
+              <h2 class="letter__who">Kris Bowers</h2>
+              <p class="letter__work" data-i18n="c.letters.bowers.work">.</p>
+              <div data-i18n-html="c.letters.bowers.body"></div>
+            </div>
+            <div class="letter__player" data-letter="bowers"></div>
+          </li>
+          <li class="letter reveal" style="--n:3">
+            <div class="letter__text">
+              <h2 class="letter__who">Nicholas Britell</h2>
+              <p class="letter__work" data-i18n="c.letters.britell.work">.</p>
+              <div data-i18n-html="c.letters.britell.body"></div>
+            </div>
+            <div class="letter__player" data-letter="britell"></div>
+          </li>
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">Gareth Coker</h2>
+              <p class="letter__work" data-i18n="c.letters.coker.work">.</p>
+              <div data-i18n-html="c.letters.coker.body"></div>
+            </div>
+            <div class="letter__player" data-letter="coker"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Christopher Larkin</h2>
+              <p class="letter__work" data-i18n="c.letters.larkin.work">.</p>
+              <div data-i18n-html="c.letters.larkin.body"></div>
+            </div>
+            <div class="letter__player" data-letter="larkin"></div>
+          </li>
+          <li class="letter reveal" style="--n:2">
+            <div class="letter__text">
+              <h2 class="letter__who">Park Chan Young</h2>
+              <p class="letter__work" data-i18n="c.letters.park.work">.</p>
+              <div data-i18n-html="c.letters.park.body"></div>
+            </div>
+            <div class="letter__player" data-letter="park"></div>
+          </li>
+          <li class="letter reveal" style="--n:3">
+            <div class="letter__text">
+              <h2 class="letter__who">almond</h2>
+              <p class="letter__work" data-i18n="c.letters.almond.work">.</p>
+              <div data-i18n-html="c.letters.almond.body"></div>
+            </div>
+            <div class="letter__player" data-letter="almond"></div>
+          </li>
+          <li class="letter reveal" style="--n:0">
+            <div class="letter__text">
+              <h2 class="letter__who">Mizusato</h2>
+              <p class="letter__work" data-i18n="c.letters.mizusato.work">.</p>
+              <div data-i18n-html="c.letters.mizusato.body"></div>
+            </div>
+            <div class="letter__player" data-letter="mizusato"></div>
+          </li>
+          <li class="letter reveal" style="--n:1">
+            <div class="letter__text">
+              <h2 class="letter__who">Judah Earl</h2>
+              <p class="letter__work" data-i18n="c.letters.judah.work">.</p>
+              <div data-i18n-html="c.letters.judah.body"></div>
+            </div>
+            <div class="letter__player" data-letter="judah"></div>
+          </li>
+        </ol>
+
+        <section class="strand strand--spec reveal">
+          <h2 class="spec__title" data-i18n="c.spec.title">.</h2>
+          <div class="strand__text" data-i18n-html="c.spec.body"></div>
+        </section>
+
+        <section class="strand strand--scene reveal">
+          <div class="strand__text" data-i18n-html="c.end"></div>
+          <figure class="scene">
+            <div class="scene__stage" data-scene="piano" aria-hidden="true"></div>
+            <figcaption data-i18n="c.scene.piano">.</figcaption>
+          </figure>
+        </section>
+
+        <p class="wish reveal" data-i18n="c.wish">.</p>
+      </div>
+
+      <nav class="project__nav" aria-label="Page navigation">
+        <a href="music.html" data-i18n="c.back">Back to the music page</a>
+        <a href="index.html#beyond" data-i18n="c.home">Back to work</a>
+      </nav>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">
+  <div class="rail site-footer__inner">
+    <p data-i18n="footer.built">Built from scratch. No framework, no tracking.</p>
+    <a href="https://github.com/GitGudShu/GitGudShu.github.io" data-i18n="footer.source">Source on GitHub</a>
+  </div>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

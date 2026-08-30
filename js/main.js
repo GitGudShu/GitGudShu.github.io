@@ -6,6 +6,7 @@ import { PROJECTS, renderProjectCard } from './data/projects.js';
 import { renderIcon } from './icons.js';
 import { renderCover } from './covers.js';
 import { renderDiagram } from './diagrams.js';
+import { renderScene } from './scenes.js';
 import { initReveal } from './reveal.js';
 import { initParticles } from './particles.js';
 
@@ -45,6 +46,9 @@ function paintGraphics() {
   document.querySelectorAll('[data-diagram]').forEach((slot) => {
     slot.innerHTML = renderDiagram(slot.dataset.diagram);
   });
+  document.querySelectorAll('[data-scene]').forEach((slot) => {
+    slot.innerHTML = renderScene(slot.dataset.scene);
+  });
 }
 
 async function pageDict() {
@@ -52,6 +56,7 @@ async function pageDict() {
   if (page === 'home') return (await import('./i18n/home.js')).home;
   if (page === 'archive') return (await import('./i18n/archive.js')).archive;
   if (page === 'music') return (await import('./i18n/music.js')).music;
+  if (page === 'color') return (await import('./i18n/color.js')).color;
   if (page === 'project') {
     const { projects } = await import('./i18n/projects.js');
     return projects[document.body.dataset.project] ?? null;
@@ -82,6 +87,22 @@ async function boot() {
   if (player) {
     const { initPlayer } = await import('./player.js');
     initPlayer({ root: player, dict, getLang: i18n.getLang });
+  }
+
+  if (document.querySelector('[data-letter]')) {
+    const { initLetters } = await import('./letters.js');
+    initLetters({ dict, getLang: i18n.getLang });
+  }
+
+  const secret = document.getElementById('secret');
+  if (secret) {
+    const { initSecret } = await import('./secret.js');
+    initSecret({
+      root: secret,
+      sentinel: document.querySelector('[data-secret-sentinel]'),
+      dict,
+      getLang: i18n.getLang,
+    });
   }
 
   const header = document.querySelector('.site-header');
