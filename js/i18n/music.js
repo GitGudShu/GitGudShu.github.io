@@ -53,6 +53,7 @@ export const music = {
     'player.consent': "Press play to load YouTube's player.",
     'player.loading': 'Loading the player.',
     'player.blocked': 'YouTube did not load. A blocker is probably in the way.',
+    'player.refused': 'YouTube will not play this one outside YouTube. Open it there instead.',
     'player.empty': 'No link set for this one yet.',
     'player.photo': 'Photo:',
 
@@ -125,6 +126,7 @@ export const music = {
     'player.consent': 'Appuyez sur lecture pour charger le lecteur YouTube.',
     'player.loading': 'Chargement du lecteur.',
     'player.blocked': "YouTube ne s'est pas chargé. Un bloqueur doit être passé par là.",
+    'player.refused': "YouTube refuse de lire ce morceau ailleurs que chez lui. Ouvrez-le là-bas.",
     'player.empty': 'Pas encore de lien pour celui-ci.',
     'player.photo': 'Photo :',
 

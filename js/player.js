@@ -30,7 +30,8 @@ export function nextIndex(index, length) {
 
 let apiPromise = null;
 
-function loadApi() {
+/** Shared with the colour page, so the API script is fetched at most once. */
+export function loadApi() {
   if (apiPromise) return apiPromise;
   apiPromise = new Promise((resolve, reject) => {
     if (window.YT?.Player) { resolve(window.YT); return; }
@@ -188,6 +189,13 @@ export function initPlayer({ root, dict, getLang }) {
           if (autoplay) yt.playVideo();
         },
         onStateChange: onState,
+        // 101 and 150 mean the label allows the video on YouTube but nowhere
+        // else. Nothing here can fix that, so say so and go back to the cover
+        // rather than leaving YouTube's black box on the page.
+        onError: () => {
+          showCover();
+          status.textContent = t('player.refused');
+        },
       },
     });
   }

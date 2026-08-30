@@ -121,29 +121,27 @@ test('every letter has a name, a work and a body in both languages', async () =>
   }
 });
 
-test('every link is an official upload written as a full watch url', () => {
+test('one link per letter, written as a full watch url', () => {
   for (const letter of LETTERS) {
-    for (const url of [letter.video, letter.watch]) {
-      if (!url) continue;
-      assert.match(url, /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/,
-        `${letter.id}: ${url}`);
-    }
-    // A letter is either playable in the page or a way out, never both.
-    assert.ok(!(letterHasVideo(letter) && letter.watch), `${letter.id} has two links`);
+    assert.ok(!('watch' in letter), `${letter.id} still carries a second link field`);
+    if (!letter.video) continue;
+    assert.match(letter.video, /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/,
+      `${letter.id}: ${letter.video}`);
   }
-  const ids = LETTERS.flatMap((l) => [l.video, l.watch]).filter(Boolean);
+  const ids = LETTERS.map((l) => l.video).filter(Boolean);
   assert.equal(new Set(ids).size, ids.length, 'the same video is used twice');
 });
 
-test('a letter with no embeddable upload still offers a way out', async () => {
+test('a refused embed becomes a link out instead of a dead box', async () => {
   const js = await readFile(new URL('../js/letters.js', import.meta.url), 'utf8');
-  assert.match(js, /letter\.watch/, 'the renderer ignores the watch link');
+  assert.match(js, /onError/, 'nothing listens for a refused embed');
+  assert.match(js, /giveUp/, 'there is no fallback path');
   assert.match(js, /rel="noopener noreferrer"/, 'an outbound link needs rel=noopener');
+  // The fallback must be reachable when the API itself never arrives.
+  assert.match(js, /catch \{\s*giveUp/, 'a blocked API should also fall back');
   for (const lang of LANGS) {
     assert.notEqual(translate(color, lang, 'c.player.out'), 'c.player.out', `missing ${lang}`);
   }
-  const linksOut = LETTERS.filter((l) => !letterHasVideo(l) && l.watch);
-  assert.ok(linksOut.length > 0, 'nothing links out, so the fallback is untested');
 });
 
 test('an unset link leaves the letter quiet rather than broken', () => {
