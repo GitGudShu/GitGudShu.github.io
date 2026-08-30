@@ -62,8 +62,6 @@ playing outside YouTube.** The page tries to play it, and if YouTube refuses,
 that letter turns itself into a "Listen on YouTube" link instead. Leave `video`
 empty and the letter just renders without a player.
 
-The four still empty are `call`, `fujisawa`, `almond` and `mizusato`.
-
 ### The one rule worth keeping
 
 Link the **rightsholder's own upload**, not a fan re-upload. Embedding somebody
@@ -118,7 +116,67 @@ Captions live in [`js/i18n/color.js`](../js/i18n/color.js) under
 
 ---
 
-## 4. After any change
+## 4. Writing the words
+
+**Files:** [`js/i18n/color.js`](../js/i18n/color.js) (the secret page),
+[`js/i18n/music.js`](../js/i18n/music.js) (the music page)
+
+Prose is written in blocks. Break the lines wherever they read best; only a
+**blank line** starts a new paragraph, and nothing else about your line breaks
+reaches the page.
+
+```js
+// Beside the flopped-cat gif.
+'c.floor': p`
+  You know that feeling when you cook something, you follow the recipe
+  exactly, and it still tastes like nothing. That.
+
+  So I did what any reasonable person does at midnight.
+`,
+```
+
+That renders as two paragraphs. Rewrap it, split a sentence over three lines,
+add a line break mid-thought because it reads better in the editor: the page
+does not change.
+
+Two tags, and the difference is only which one the page expects:
+
+| tag | for | gives |
+|---|---|---|
+| `` p`…` `` | prose | paragraphs, one `<p>` per block |
+| `` one`…` `` | titles, captions, buttons, labels | a single run of text |
+
+A comment above each key says where it appears on the page, so you can find the
+bit you want without loading the site.
+
+**Apostrophes need no escaping.** These are backtick templates, so write
+`it isn't` and `l'ambition` directly. The one character that does need care is
+a literal backtick, which has to be written `` \` `` — the only place that
+comes up is inside a kaomoji like `` (´；ω；\`) ``.
+
+Inline markup passes straight through: `<em>`, `<strong>`, and
+`<span class="kao">(◕‿◕)</span>` all work.
+
+Every key exists twice, once under `en:` and once under `fr:`. `npm run check:i18n`
+fails if you add one and forget the other.
+
+---
+
+## 5. Checking which links actually play
+
+Not every YouTube video is allowed to play outside YouTube, and you cannot tell
+from the link. With the site running, open:
+
+    http://127.0.0.1:8000/tools/check-embeds.html
+
+It tries every link in `letters.js` and reports each as **plays in page**,
+**links out**, or **no link yet**. Both of the first two are fine; a letter that
+links out shows a "Listen on YouTube" button instead of a player. Use it when
+you swap links and want to know what you are getting.
+
+---
+
+## 6. After any change
 
 ```
 npm run verify

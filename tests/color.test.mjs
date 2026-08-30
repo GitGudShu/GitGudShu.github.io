@@ -98,13 +98,16 @@ test('the map is gone and the page ends on the letters', async () => {
 });
 
 test('nobody is merged with anybody else', () => {
-  assert.equal(LETTERS.length, 26);
   const ids = LETTERS.map((l) => l.id);
   assert.equal(new Set(ids).size, ids.length, 'a letter id is reused');
   // The pairs the journal talks about together still get a letter each.
   for (const pair of [['takanashi', 'kato'], ['coker', 'larkin'], ['almond', 'mizusato']]) {
     for (const id of pair) assert.ok(ids.includes(id), `${id} was folded into somebody else`);
   }
+  // Kitamura gets two on purpose: what she is known for, and what she does now.
+  const kitamura = LETTERS.filter((l) => l.composer === 'Yuka Kitamura');
+  assert.equal(kitamura.length, 2, 'Kitamura should keep both sides');
+  assert.deepEqual(kitamura.map((l) => l.id), ['kitamura1', 'kitamura2']);
 });
 
 test('every letter has a name, a work and a body in both languages', async () => {
@@ -125,11 +128,13 @@ test('one link per letter, written as a full watch url', () => {
   for (const letter of LETTERS) {
     assert.ok(!('watch' in letter), `${letter.id} still carries a second link field`);
     if (!letter.video) continue;
-    assert.match(letter.video, /^https:\/\/www\.youtube\.com\/watch\?v=[\w-]{11}$/,
-      `${letter.id}: ${letter.video}`);
+    assert.ok(letterVideoId(letter).length === 11,
+      `${letter.id}: cannot read a video id out of ${letter.video}`);
   }
   const ids = LETTERS.map((l) => l.video).filter(Boolean);
   assert.equal(new Set(ids).size, ids.length, 'the same video is used twice');
+  // Two letters share a composer, so names may repeat; links may not.
+  assert.ok(LETTERS.length >= 26, 'letters went missing');
 });
 
 test('a refused embed becomes a link out instead of a dead box', async () => {

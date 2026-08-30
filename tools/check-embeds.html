@@ -1,0 +1,85 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Which links actually play in the page</title>
+<style>
+  body { background: #15121e; color: #eee; font: 14px/1.6 ui-monospace, monospace; margin: 24px; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p  { color: #b9aecd; margin: 0 0 20px; max-width: 70ch; }
+  table { border-collapse: collapse; }
+  td { padding: 3px 14px 3px 0; vertical-align: top; }
+  .ok   { color: #7ee0a8; }
+  .out  { color: #ffc48a; }
+  .none { color: #8b8299; }
+  a { color: #c9a6ff; }
+  #pool { position: fixed; left: -9999px; top: 0; }
+</style>
+
+<h1>Which links actually play in the page</h1>
+<p>
+  Open this with the site running (<code>npm run serve</code>, then
+  <a href="http://127.0.0.1:8000/tools/check-embeds.html">127.0.0.1:8000/tools/check-embeds.html</a>).
+  It asks YouTube about every link in <code>js/data/letters.js</code> and reports which ones
+  are allowed to play outside YouTube. Nothing here changes the site: a letter marked
+  <span class="out">links out</span> still works, it just shows a "Listen on YouTube" button
+  instead of a player. Takes about ten seconds.
+</p>
+
+<table id="out"><tr><td>working…</td></tr></table>
+<div id="pool"></div>
+
+<script src="https://www.youtube.com/iframe_api"></script>
+<script type="module">
+  import { LETTERS, letterVideoId, letterHasVideo } from '../js/data/letters.js';
+
+  const rows = new Map();
+  const table = document.getElementById('out');
+
+  function draw() {
+    table.innerHTML = '';
+    for (const letter of LETTERS) {
+      const state = rows.get(letter.id) ?? '…';
+      const cls = state === 'plays in page' ? 'ok' : state === 'links out' ? 'out' : 'none';
+      const id = letterVideoId(letter);
+      table.insertAdjacentHTML('beforeend',
+        `<tr><td>${letter.id}</td><td>${letter.composer}</td>` +
+        `<td class="${cls}">${state}</td>` +
+        `<td>${id ? `<a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${id}</a>` : ''}</td></tr>`);
+    }
+  }
+
+  function settle(letter, state) {
+    if (rows.get(letter.id) && rows.get(letter.id) !== '…') return;
+    rows.set(letter.id, state);
+    draw();
+  }
+
+  function run() {
+    for (const letter of LETTERS) {
+      if (!letterHasVideo(letter)) { settle(letter, 'no link yet'); continue; }
+      rows.set(letter.id, '…');
+
+      const host = document.createElement('div');
+      document.getElementById('pool').appendChild(host);
+
+      const player = new YT.Player(host, {
+        videoId: letterVideoId(letter),
+        host: 'https://www.youtube-nocookie.com',
+        events: {
+          // A refused video still builds a player, so ask it for a duration.
+          onReady: () => setTimeout(() => {
+            let seconds = 0;
+            try { seconds = player.getDuration(); } catch { /* refused */ }
+            settle(letter, seconds > 0 ? 'plays in page' : 'links out');
+          }, 4000),
+          onError: () => settle(letter, 'links out'),
+        },
+      });
+      setTimeout(() => settle(letter, 'links out'), 25000);
+    }
+    draw();
+  }
+
+  // This module is deferred, so the API may already be up by the time it runs.
+  if (window.YT?.Player) run();
+  else window.onYouTubeIframeAPIReady = run;
+</script>

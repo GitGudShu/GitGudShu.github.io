@@ -257,7 +257,9 @@
   max-width: none;
 }
 @media (min-width: 880px) {
-  .letter { grid-template-columns: minmax(0, 1fr) minmax(0, 21rem); align-items: start; }
+  /* The player gets as much room as the letter it belongs to. Sixteen by nine
+     at this width is big enough to actually use the volume slider. */
+  .letter { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
 }
 .letter--aside { display: block; }
 
@@ -300,8 +302,8 @@
   position: absolute;
   inset-block-start: 50%;
   inset-inline-start: 50%;
-  inline-size: 8.5rem;
-  block-size: 8.5rem;
+  inline-size: clamp(8.5rem, 6rem + 9vw, 13rem);
+  block-size: clamp(8.5rem, 6rem + 9vw, 13rem);
   translate: -50% -50%;
   border-radius: var(--radius-full);
   border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent);
@@ -324,14 +326,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 46px;
-  block-size: 46px;
+  inline-size: 56px;
+  block-size: 56px;
   border-radius: var(--radius-full);
   background: var(--accent);
   color: var(--accent-contrast);
   transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
 }
-.letter__badge svg { inline-size: 20px; block-size: 20px; }
+.letter__badge svg { inline-size: 24px; block-size: 24px; }
 .letter__cta {
   position: absolute;
   inset-block-end: var(--space-3);
